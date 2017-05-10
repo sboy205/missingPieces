@@ -1,0 +1,6 @@
+{
+"parent": "missing_pieces:block/lamp_model_ceiling",
+"textures": {
+        "wood": "natura:blocks/aramanth_planks"
+	}
+}

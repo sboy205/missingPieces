@@ -1,0 +1,6 @@
+{
+  "parent": "missing_pieces:block/silverbell_log",
+  "textures": {
+      "rim": "missing_pieces:blocks/silverbell_rim"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "mineralogy:blocks/phyllite",
+    		"bottom": "mineralogy:blocks/phyllite",
+    		"rim": "missing_pieces:blocks/phyllite_rim",
+    		"side": "mineralogy:blocks/phyllite"
+	    }
+}

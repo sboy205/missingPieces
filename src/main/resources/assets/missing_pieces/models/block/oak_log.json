@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "minecraft:blocks/log_oak_top",
+    		"bottom": "minecraft:blocks/log_oak_top",
+    		"rim": "missing_pieces:blocks/oak_rim",
+    		"side": "minecraft:blocks/log_oak"
+	    }
+}

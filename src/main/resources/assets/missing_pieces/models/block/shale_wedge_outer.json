@@ -1,0 +1,8 @@
+{
+"parent": "missing_pieces:block/wedge_model_outer",
+"textures": {
+"top": "mineralogy:blocks/shale",
+"bottom": "mineralogy:blocks/shale",
+"side": "mineralogy:blocks/shale"
+}
+}

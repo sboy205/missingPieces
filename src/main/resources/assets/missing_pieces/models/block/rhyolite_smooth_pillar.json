@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "mineralogy:blocks/rhyolite_smooth",
+    		"bottom": "mineralogy:blocks/rhyolite_smooth",
+    		"rim": "missing_pieces:blocks/rhyolite_smooth_rim",
+    		"side": "mineralogy:blocks/rhyolite_smooth"
+	    }
+}

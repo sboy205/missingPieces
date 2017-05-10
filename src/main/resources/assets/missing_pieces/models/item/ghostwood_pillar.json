@@ -1,0 +1,6 @@
+{
+  "parent": "missing_pieces:block/ghostwood_pillar",
+  "textures": {
+      "rim": "missing_pieces:blocks/ghostwood_rim"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+    "textures": {
+    		"down": "minecraft:blocks/planks_jungle",
+    		"up": "minecraft:blocks/planks_jungle",
+    		"north": "minecraft:blocks/planks_jungle",
+    		"east": "minecraft:blocks/planks_jungle",
+    		"south": "minecraft:blocks/planks_jungle",
+    		"west": "minecraft:blocks/planks_jungle",
+    		"particle": "minecraft:blocks/planks_jungle"
+	    }
+}

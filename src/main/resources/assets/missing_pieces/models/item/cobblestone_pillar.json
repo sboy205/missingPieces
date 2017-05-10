@@ -1,0 +1,13 @@
+{
+  "parent": "missing_pieces:block/cobblestone_pillar",
+  "textures": {
+  "rim": "missing_pieces:blocks/stone_rim"
+  },
+  "display": {
+    "thirdperson": {
+	"rotation": [ 10, -45, 170 ],
+	"translation": [ 0, 1.5, -2.75 ],
+	"scale": [ 0.375, 0.375, 0.375 ]
+	}
+	}
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "minecraft:blocks/sandstone_top",
+    		"bottom": "minecraft:blocks/sandstone_top",
+    		"rim": "minecraft:blocks/sandstone_top",
+    		"side": "minecraft:blocks/sandstone_top"
+	    }
+}

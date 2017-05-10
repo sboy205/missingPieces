@@ -1,0 +1,6 @@
+{
+"parent": "missing_pieces:block/candelabra_model_side",
+"textures": {
+        "wood": "missing_pieces:blocks/Rainbow"
+	}
+}

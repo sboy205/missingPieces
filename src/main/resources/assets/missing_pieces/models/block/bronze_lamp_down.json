@@ -1,0 +1,6 @@
+{
+"parent": "missing_pieces:block/lamp_model_down",
+"textures": {
+        "wood": "basemetals:blocks/bronze_block"
+	}
+}

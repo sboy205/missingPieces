@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/log_model",
+    "textures": {
+    		"top": "natura:blocks/logs/overworld/redwood_heart",
+    		"bottom": "natura:blocks/logs/overworld/redwood_heart",
+    		"rim": "missing_pieces:blocks/redwood_rim",
+    		"side": "natura:blocks/logs/overworld/redwood_bark"
+	    }
+}

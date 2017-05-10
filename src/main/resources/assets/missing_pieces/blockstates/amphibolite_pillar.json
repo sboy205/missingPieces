@@ -1,0 +1,12 @@
+{
+"variants": {
+    "ceiling=up,facing=east":  { "model": "missing_pieces:amphibolite_pillar", "uvlock": true},
+    "ceiling=up,facing=west":  { "model": "missing_pieces:amphibolite_pillar", "uvlock": true},
+    "ceiling=up,facing=south": { "model": "missing_pieces:amphibolite_pillar", "uvlock": true},
+    "ceiling=up,facing=north": { "model": "missing_pieces:amphibolite_pillar", "uvlock": true},
+    "ceiling=down,facing=east":  { "model": "missing_pieces:amphibolite_pillar", "x": 90, "y": 90, "uvlock": true  },
+    "ceiling=down,facing=west":  { "model": "missing_pieces:amphibolite_pillar", "x": 90, "y": 90, "uvlock": true },
+    "ceiling=down,facing=south": { "model": "missing_pieces:amphibolite_pillar", "x": 90, "uvlock": true },
+    "ceiling=down,facing=north": { "model": "missing_pieces:amphibolite_pillar", "x": 90, "uvlock": true }
+	}
+}

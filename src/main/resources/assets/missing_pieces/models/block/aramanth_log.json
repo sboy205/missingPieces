@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/log_model",
+    "textures": {
+    		"top": "natura:blocks/aramanth_log_top",
+    		"bottom": "natura:blocks/aramanth_log_top",
+    		"rim": "missing_pieces:blocks/aramanth_rim",
+    		"side": "natura:blocks/aramanth_log"
+	    }
+}

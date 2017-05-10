@@ -1,0 +1,7 @@
+{
+  "parent": "missing_pieces:block/table_model",
+    "textures": {
+    		"top": "natura:blocks/planks/overworld/maple_planks",
+			"legs": "natura:blocks/planks/overworld/maple_planks"
+	    }
+}

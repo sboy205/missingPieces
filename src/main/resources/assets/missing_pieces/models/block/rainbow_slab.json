@@ -1,0 +1,9 @@
+{
+  "parent": "block/half_slab",
+    "textures": {
+    		"bottom": "missing_pieces:blocks/Rainbow",
+    		"top": "missing_pieces:blocks/Rainbow",
+    		"side": "missing_pieces:blocks/Rainbow",
+    		"particle": "missing_pieces:blocks/Rainbow"
+	    }
+}

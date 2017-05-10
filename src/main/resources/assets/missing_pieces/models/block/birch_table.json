@@ -1,0 +1,7 @@
+{
+  "parent": "missing_pieces:block/table_model",
+    "textures": {
+    		"top": "minecraft:blocks/planks_birch",
+			"legs": "minecraft:blocks/planks_birch"
+	    }
+}

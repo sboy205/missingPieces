@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+    "textures": {
+    		"down": "minecraft:blocks/hardened_clay_stained_black",
+    		"up": "minecraft:blocks/hardened_clay_stained_black",
+    		"north": "minecraft:blocks/hardened_clay_stained_black",
+    		"east": "minecraft:blocks/hardened_clay_stained_black",
+    		"south": "minecraft:blocks/hardened_clay_stained_black",
+    		"west": "minecraft:blocks/hardened_clay_stained_black",
+    		"particle": "minecraft:blocks/hardened_clay_stained_black"
+	    }
+}

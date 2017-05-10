@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+    "textures": {
+    		"down": "missing_pieces:blocks/Rainbow",
+    		"up": "missing_pieces:blocks/Rainbow",
+    		"north": "missing_pieces:blocks/Rainbow",
+    		"east": "missing_pieces:blocks/Rainbow",
+    		"south": "missing_pieces:blocks/Rainbow",
+    		"west": "missing_pieces:blocks/Rainbow",
+    		"particle": "missing_pieces:blocks/Rainbow"
+	    }
+}

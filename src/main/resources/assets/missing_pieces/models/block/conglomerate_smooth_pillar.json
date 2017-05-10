@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "mineralogy:blocks/conglomerate_smooth",
+    		"bottom": "mineralogy:blocks/conglomerate_smooth",
+    		"rim": "missing_pieces:blocks/conglomerate_smooth_rim",
+    		"side": "mineralogy:blocks/conglomerate_smooth"
+	    }
+}

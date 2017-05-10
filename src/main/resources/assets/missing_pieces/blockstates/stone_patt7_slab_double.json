@@ -1,0 +1,6 @@
+{
+"variants": {
+    "variant=false": { "model": "missing_pieces:stone_patt7_slab_double" },
+    "variant=true": { "model": "missing_pieces:stone_patt7_slab_double" }
+	}
+}

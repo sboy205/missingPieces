@@ -1,0 +1,8 @@
+{
+"parent": "missing_pieces:block/wedge_model_inner",
+"textures": {
+"top": "minecraft:blocks/stone_diorite_smooth",
+"bottom": "minecraft:blocks/stone_diorite_smooth",
+"side": "minecraft:blocks/stone_diorite_smooth"
+}
+}

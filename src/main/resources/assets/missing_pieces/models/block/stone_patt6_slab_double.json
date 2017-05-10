@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+    "textures": {
+    		"down": "missing_pieces:blocks/Stonebrickdeco06",
+    		"up": "missing_pieces:blocks/Stonebrickdeco06",
+    		"north": "missing_pieces:blocks/Stonebrickdeco06",
+    		"east": "missing_pieces:blocks/Stonebrickdeco06",
+    		"south": "missing_pieces:blocks/Stonebrickdeco06",
+    		"west": "missing_pieces:blocks/Stonebrickdeco06",
+    		"particle": "missing_pieces:blocks/Stonebrickdeco06"
+	    }
+}

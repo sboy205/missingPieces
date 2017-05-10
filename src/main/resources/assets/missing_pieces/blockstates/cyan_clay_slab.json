@@ -1,0 +1,8 @@
+{
+"variants": {
+    "half=bottom,variant=false": { "model": "missing_pieces:cyan_clay_slab" },
+    "half=top,variant=false": { "model": "missing_pieces:cyan_clay_slab_upper" },
+    "half=bottom,variant=true": { "model": "missing_pieces:cyan_clay_slab" },
+    "half=top,variant=true": { "model": "missing_pieces:cyan_clay_slab_upper" }
+	}
+}

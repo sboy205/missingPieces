@@ -1,0 +1,8 @@
+{
+"parent": "missing_pieces:block/wedge_path_model_inner",
+"textures": {
+"top": "minecraft:blocks/grass_path_top",
+"bottom": "minecraft:blocks/dirt",
+"side": "minecraft:blocks/grass_path_side"
+}
+}

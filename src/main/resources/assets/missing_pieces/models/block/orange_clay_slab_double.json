@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+    "textures": {
+    		"down": "minecraft:blocks/hardened_clay_stained_orange",
+    		"up": "minecraft:blocks/hardened_clay_stained_orange",
+    		"north": "minecraft:blocks/hardened_clay_stained_orange",
+    		"east": "minecraft:blocks/hardened_clay_stained_orange",
+    		"south": "minecraft:blocks/hardened_clay_stained_orange",
+    		"west": "minecraft:blocks/hardened_clay_stained_orange",
+    		"particle": "minecraft:blocks/hardened_clay_stained_orange"
+	    }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "minecraft:blocks/stone_diorite_smooth",
+    		"bottom": "minecraft:blocks/stone_diorite_smooth",
+    		"rim": "minecraft:blocks/stone_diorite_smooth",
+    		"side": "minecraft:blocks/stone_diorite_smooth"
+	    }
+}

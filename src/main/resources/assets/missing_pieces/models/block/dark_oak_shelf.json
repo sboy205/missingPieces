@@ -1,0 +1,6 @@
+{
+  "parent": "missing_pieces:block/shelf_model",
+    "textures": {
+		    "normal": "blocks/planks_big_oak"
+    }
+}

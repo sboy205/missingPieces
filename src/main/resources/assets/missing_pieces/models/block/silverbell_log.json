@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/log_model",
+    "textures": {
+    		"top": "natura:blocks/logs/overworld/silverbell_log_top",
+    		"bottom": "natura:blocks/logs/overworld/silverbell_log_top",
+    		"rim": "missing_pieces:blocks/silverbell_rim",
+    		"side": "natura:blocks/logs/overworld/silverbell_log"
+	    }
+}

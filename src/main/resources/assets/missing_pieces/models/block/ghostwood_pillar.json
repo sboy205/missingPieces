@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "natura:blocks/planks/nether/ghostwood_planks",
+    		"bottom": "natura:blocks/planks/nether/ghostwood_planks",
+    		"rim": "missing_pieces:blocks/ghostwood_rim",
+    		"side": "natura:blocks/planks/nether/ghostwood_planks"
+	    }
+}

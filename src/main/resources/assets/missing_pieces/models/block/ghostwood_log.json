@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/log_model",
+    "textures": {
+    		"top": "natura:blocks/logs/nether/ghostwood_log_top",
+    		"bottom": "natura:blocks/logs/nether/ghostwood_log_top",
+    		"rim": "missing_pieces:blocks/ghostwood_rim",
+    		"side": "natura:blocks/logs/nether/ghostwood_log"
+	    }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "missing_pieces:block/chair_model",
+    "textures": {
+    		"back": "missing_pieces:blocks/Rainbow",
+    		"seat": "missing_pieces:blocks/Rainbow",
+			"legs": "missing_pieces:blocks/Rainbow"
+	    }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "mineralogy:blocks/andesite",
+    		"bottom": "mineralogy:blocks/andesite",
+    		"rim": "missing_pieces:blocks/andesite_rim",
+    		"side": "mineralogy:blocks/andesite"
+	    }
+}

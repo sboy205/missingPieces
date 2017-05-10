@@ -1,0 +1,9 @@
+{
+  "parent": "block/upper_slab",
+    "textures": {
+    		"bottom": "minecraft:blocks/hardened_clay_stained_cyan",
+    		"top": "minecraft:blocks/hardened_clay_stained_cyan",
+    		"side": "minecraft:blocks/hardened_clay_stained_cyan",
+    		"particle": "minecraft:blocks/hardened_clay_stained_cyan"
+	    }
+}

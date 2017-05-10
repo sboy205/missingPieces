@@ -1,0 +1,9 @@
+{
+  "parent": "block/half_slab",
+    "textures": {
+    		"bottom": "mineralogy:blocks/shale",
+    		"top": "mineralogy:blocks/shale",
+    		"side": "mineralogy:blocks/shale",
+    		"particle": "mineralogy:blocks/shale"
+	    }
+}

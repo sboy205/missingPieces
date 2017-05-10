@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "mineralogy:blocks/limestone",
+    		"bottom": "mineralogy:blocks/limestone",
+    		"rim": "missing_pieces:blocks/limestone_rim",
+    		"side": "mineralogy:blocks/limestone"
+	    }
+}

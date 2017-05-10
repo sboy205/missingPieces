@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "mineralogy:blocks/basalt",
+    		"bottom": "mineralogy:blocks/basalt",
+    		"rim": "missing_pieces:blocks/basalt_rim",
+    		"side": "mineralogy:blocks/basalt"
+	    }
+}

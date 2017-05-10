@@ -1,0 +1,6 @@
+{
+  "parent": "missing_pieces:block/amaranth_log",
+  "textures": {
+      "rim": "missing_pieces:blocks/amaranth_rim"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "natura:blocks/planks/overworld/tiger_planks",
+    		"bottom": "natura:blocks/planks/overworld/tiger_planks",
+    		"rim": "missing_pieces:blocks/tiger_rim",
+    		"side": "natura:blocks/planks/overworld/tiger_planks"
+	    }
+}

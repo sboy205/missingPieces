@@ -1,0 +1,9 @@
+{
+  "parent": "block/upper_slab",
+    "textures": {
+    		"bottom": "minecraft:blocks/planks_birch",
+    		"top": "minecraft:blocks/planks_birch",
+    		"side": "minecraft:blocks/planks_birch",
+    		"particle": "minecraft:blocks/planks_birch"
+	    }
+}

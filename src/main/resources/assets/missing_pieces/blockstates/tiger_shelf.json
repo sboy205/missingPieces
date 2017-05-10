@@ -1,0 +1,8 @@
+{
+"variants": {
+    "facing=north": { "model": "missing_pieces:tiger_shelf" },
+    "facing=east":  { "model": "missing_pieces:tiger_shelf", "y": 90  },
+    "facing=south": { "model": "missing_pieces:tiger_shelf", "y": 180 },
+    "facing=west":  { "model": "missing_pieces:tiger_shelf", "y": 270 }
+	}
+}

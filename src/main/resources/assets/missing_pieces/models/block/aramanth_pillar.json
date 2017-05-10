@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "natura:blocks/aramanth_planks",
+    		"bottom": "natura:blocks/aramanth_planks",
+    		"rim": "missing_pieces:blocks/aramanth_rim",
+    		"side": "natura:blocks/aramanth_planks"
+	    }
+}

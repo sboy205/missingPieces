@@ -1,0 +1,8 @@
+{
+  "parent": "missing_pieces:block/chair_model",
+    "textures": {
+            "back": "blocks/planks_acacia",
+            "legs": "blocks/planks_acacia",
+            "seat": "blocks/planks_acacia"
+    }
+}

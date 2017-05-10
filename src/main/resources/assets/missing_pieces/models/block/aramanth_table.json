@@ -1,0 +1,7 @@
+{
+  "parent": "missing_pieces:block/table_model",
+    "textures": {
+    		"top": "natura:blocks/aramanth_planks",
+			"legs": "natura:blocks/aramanth_planks"
+	    }
+}

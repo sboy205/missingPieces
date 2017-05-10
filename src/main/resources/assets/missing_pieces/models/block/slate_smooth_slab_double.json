@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+    "textures": {
+    		"down": "mineralogy:blocks/slate_smooth",
+    		"up": "mineralogy:blocks/slate_smooth",
+    		"north": "mineralogy:blocks/slate_smooth",
+    		"east": "mineralogy:blocks/slate_smooth",
+    		"south": "mineralogy:blocks/slate_smooth",
+    		"west": "mineralogy:blocks/slate_smooth",
+    		"particle": "mineralogy:blocks/slate_smooth"
+	    }
+}

@@ -1,0 +1,6 @@
+{
+"parent": "missing_pieces:block/candelabra_model_ceiling",
+"textures": {
+        "wood": "natura:blocks/planks/overworld/eucalyptus_planks"
+	}
+}

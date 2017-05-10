@@ -1,0 +1,8 @@
+{
+"parent": "missing_pieces:block/wedge_model_inner",
+"textures": {
+"top": "natura:blocks/planks/overworld/maple_planks",
+"bottom": "natura:blocks/planks/overworld/maple_planks",
+"side": "natura:blocks/planks/overworld/maple_planks"
+}
+}

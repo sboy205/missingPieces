@@ -1,0 +1,6 @@
+{
+  "parent": "missing_pieces:block/darkwood_log",
+  "textures": {
+      "rim": "missing_pieces:blocks/darkwood_rim"
+  }
+}

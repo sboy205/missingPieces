@@ -1,0 +1,6 @@
+{
+  "parent": "missing_pieces:block/acacia_log",
+  "textures": {
+	"rim": "missing_pieces:blocks/acacia_rim"
+  }
+}

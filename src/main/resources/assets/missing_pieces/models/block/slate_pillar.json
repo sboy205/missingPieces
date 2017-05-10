@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "mineralogy:blocks/slate",
+    		"bottom": "mineralogy:blocks/slate",
+    		"rim": "missing_pieces:blocks/slate_rim",
+    		"side": "mineralogy:blocks/slate"
+	    }
+}

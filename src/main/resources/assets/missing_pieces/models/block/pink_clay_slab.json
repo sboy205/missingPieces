@@ -1,0 +1,9 @@
+{
+  "parent": "block/half_slab",
+    "textures": {
+    		"bottom": "minecraft:blocks/hardened_clay_stained_pink",
+    		"top": "minecraft:blocks/hardened_clay_stained_pink",
+    		"side": "minecraft:blocks/hardened_clay_stained_pink",
+    		"particle": "minecraft:blocks/hardened_clay_stained_pink"
+	    }
+}

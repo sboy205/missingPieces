@@ -1,0 +1,6 @@
+{
+"parent": "missing_pieces:block/lamp_model_side",
+"textures": {
+        "wood": "natura:blocks/planks/nether/ghostwood_planks"
+	}
+}

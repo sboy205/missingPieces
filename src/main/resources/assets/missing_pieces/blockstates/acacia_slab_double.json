@@ -1,0 +1,6 @@
+{
+"variants": {
+    "variant=false": { "model": "missing_pieces:acacia_slab_double" },
+    "variant=true": { "model": "missing_pieces:acacia_slab_double" }
+	}
+}

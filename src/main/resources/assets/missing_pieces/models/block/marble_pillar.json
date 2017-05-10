@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "mineralogy:blocks/marble",
+    		"bottom": "mineralogy:blocks/marble",
+    		"rim": "missing_pieces:blocks/marble_rim",
+    		"side": "mineralogy:blocks/marble"
+	    }
+}

@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "missing_pieces:blocks/mbe01_block_simple_face0",
+        "up": "missing_pieces:blocks/mbe01_block_simple_face1",
+        "north": "missing_pieces:blocks/mbe01_block_simple_face2",
+        "east": "missing_pieces:blocks/mbe01_block_simple_face5",
+        "south": "missing_pieces:blocks/mbe01_block_simple_face3",
+        "west": "missing_pieces:blocks/mbe01_block_simple_face4",
+        "particle": "blocks/lapis_block"
+    }
+}

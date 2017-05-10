@@ -1,0 +1,15 @@
+[
+{
+  "modid": "missing_pieces",
+  "name": "Missing Pieces",
+  "description": "Some blocks I wanted in the game.",
+  "version": "4.1.0",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["sboy205"],
+  "credits": "Thanks to the Forge and FML guys, The Grey Ghost for pulling together minecraft by Examples, Mr Crayfish for his model creator ",
+  "logoFile": "",
+  "screenshots": []
+}
+]

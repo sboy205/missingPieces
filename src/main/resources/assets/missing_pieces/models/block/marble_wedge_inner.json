@@ -1,0 +1,8 @@
+{
+"parent": "missing_pieces:block/wedge_model_inner",
+"textures": {
+"top": "mineralogy:blocks/marble",
+"bottom": "mineralogy:blocks/marble",
+"side": "mineralogy:blocks/marble"
+}
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "minecraft:blocks/nether_brick",
+    		"bottom": "minecraft:blocks/nether_brick",
+    		"rim": "minecraft:blocks/nether_brick",
+    		"side": "minecraft:blocks/nether_brick"
+	    }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "missing_pieces:block/chair_model",
+    "textures": {
+    		"back": "natura:blocks/planks/overworld/redwood_planks",
+    		"seat": "natura:blocks/planks/overworld/redwood_planks",
+			"legs": "natura:blocks/planks/overworld/redwood_planks"
+	    }
+}

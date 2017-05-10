@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "mineralogy:blocks/pegmatite_smooth",
+    		"bottom": "mineralogy:blocks/pegmatite_smooth",
+    		"rim": "missing_pieces:blocks/pegmatite_smooth_rim",
+    		"side": "mineralogy:blocks/pegmatite_smooth"
+	    }
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "mineralogy:blocks/dolomite",
+    		"bottom": "mineralogy:blocks/dolomite",
+    		"rim": "missing_pieces:blocks/dolomite_rim",
+    		"side": "mineralogy:blocks/dolomite"
+	    }
+}

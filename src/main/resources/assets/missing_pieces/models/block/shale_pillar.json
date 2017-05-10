@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "mineralogy:blocks/shale",
+    		"bottom": "mineralogy:blocks/shale",
+    		"rim": "missing_pieces:blocks/shale_rim",
+    		"side": "mineralogy:blocks/shale"
+	    }
+}

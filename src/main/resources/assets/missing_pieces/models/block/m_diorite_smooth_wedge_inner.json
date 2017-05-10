@@ -1,0 +1,8 @@
+{
+"parent": "missing_pieces:block/wedge_model_inner",
+"textures": {
+"top": "mineralogy:blocks/diorite_smooth",
+"bottom": "mineralogy:blocks/diorite_smooth",
+"side": "mineralogy:blocks/diorite_smooth"
+}
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "missing_pieces:block/stonebrick_pillar",
+  "textures": {
+      "rim": "missing_pieces:blocks/stonebrick_rim"
+  }
+}

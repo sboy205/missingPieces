@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+    "textures": {
+    		"down": "mineralogy:blocks/schist",
+    		"up": "mineralogy:blocks/schist",
+    		"north": "mineralogy:blocks/schist",
+    		"east": "mineralogy:blocks/schist",
+    		"south": "mineralogy:blocks/schist",
+    		"west": "mineralogy:blocks/schist",
+    		"particle": "mineralogy:blocks/schist"
+	    }
+}

@@ -1,0 +1,8 @@
+{
+"parent": "missing_pieces:block/wedge_model_inner",
+"textures": {
+"top": "minecraft:blocks/planks_spruce",
+"bottom": "minecraft:blocks/planks_spruce",
+"side": "minecraft:blocks/planks_spruce"
+}
+}

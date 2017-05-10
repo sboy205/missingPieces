@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "minecraft:blocks/quartz_block_side",
+    		"bottom": "minecraft:blocks/quartz_block_side",
+    		"rim": "missing_pieces:blocks/white",
+    		"side": "minecraft:blocks/quartz_block_side"
+	    }
+}

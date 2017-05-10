@@ -1,0 +1,6 @@
+{
+"variants": {
+    "variant=false": { "model": "missing_pieces:shale_slab_double" },
+    "variant=true": { "model": "missing_pieces:shale_slab_double" }
+	}
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "minecraft:blocks/planks_birch",
+    		"bottom": "minecraft:blocks/planks_birch",
+    		"rim": "missing_pieces:blocks/birch_rim",
+    		"side": "minecraft:blocks/planks_birch"
+	    }
+}

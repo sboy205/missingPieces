@@ -1,0 +1,9 @@
+{
+  "parent": "block/half_slab",
+    "textures": {
+    		"bottom": "mineralogy:blocks/chert",
+    		"top": "mineralogy:blocks/chert",
+    		"side": "mineralogy:blocks/chert",
+    		"particle": "mineralogy:blocks/chert"
+	    }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "missing_pieces:block/table_model",
+    "textures": {
+    		"top": "missing_pieces:blocks/Rainbow",
+			"legs": "missing_pieces:blocks/Rainbow"
+	    }
+}

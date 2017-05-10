@@ -1,0 +1,6 @@
+{
+"parent": "missing_pieces:block/candelabra_model_down",
+"textures": {
+        "wood": "basemetals:blocks/adamantine_block"
+	}
+}

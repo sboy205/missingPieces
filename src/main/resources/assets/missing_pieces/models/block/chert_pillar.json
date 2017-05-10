@@ -1,0 +1,9 @@
+{
+  "parent": "missing_pieces:block/pillar_model",
+    "textures": {
+    		"top": "mineralogy:blocks/chert",
+    		"bottom": "mineralogy:blocks/chert",
+    		"rim": "missing_pieces:blocks/chert_rim",
+    		"side": "mineralogy:blocks/chert"
+	    }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "missing_pieces:block/eucalyptus_log",
+  "textures": {
+      "rim": "missing_pieces:blocks/eucalyptus_rim"
+  }
+}

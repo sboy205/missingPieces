@@ -1,0 +1,8 @@
+{
+"parent": "missing_pieces:block/wedge_model_inner",
+"textures": {
+"top": "minecraft:blocks/hardened_clay_stained_gray",
+"bottom": "minecraft:blocks/hardened_clay_stained_gray",
+"side": "minecraft:blocks/hardened_clay_stained_gray"
+}
+}

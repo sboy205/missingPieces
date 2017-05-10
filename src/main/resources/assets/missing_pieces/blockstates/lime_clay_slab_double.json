@@ -1,0 +1,6 @@
+{
+"variants": {
+    "variant=false": { "model": "missing_pieces:lime_clay_slab_double" },
+    "variant=true": { "model": "missing_pieces:lime_clay_slab_double" }
+	}
+}
