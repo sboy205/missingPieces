@@ -1769,9 +1769,13 @@ public class Blocks {
 		if(enabled) {
 			//System.out.println("register slab:" + name_half + " : " + name_double);;
 
-			GameRegistry.registerBlock(slab_half, ItemBlockSlab.class, name_half, slab_half, slab_double,false);
+			GameRegistry.register(slab_half.setRegistryName(name_half));
+			//GameRegistry.registerBlock(slab_half, ItemBlockSlab.class, name_half, slab_half, slab_double,false);
 
-			GameRegistry.registerBlock(slab_double, ItemBlockSlab.class , name_double, slab_half, slab_double,true);
+			GameRegistry.register(new ItemSlab(slab_half, slab_half, slab_double).setRegistryName(name_half));
+			//GameRegistry.registerBlock(slab_double, ItemBlockSlab.class , name_double, slab_half, slab_double,true);
+			GameRegistry.register(slab_double.setRegistryName(name_double));
+			
 			OreDictionary.registerOre(slab_half.getOredictName(),slab_half);
 			switch(sType){
 			case PATT_1:
