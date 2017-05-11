@@ -42,13 +42,13 @@ import net.minecraft.item.ItemBoat;
  * Date: 5/9/2017
  *
  */
-public class BlockChair extends Block 
+public class BlockChair extends MpBlock 
 {
   public static final PropertyDirection PROPERTYFACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
   public BlockChair(Material mType)
   {
-    super(mType);
+	super(mType, 0.5F, "axe", 1);
     this.setCreativeTab(CreativeTabs.DECORATIONS);   // the block will appear on the Blocks tab in creative
     this.setHardness(0.5F);
     

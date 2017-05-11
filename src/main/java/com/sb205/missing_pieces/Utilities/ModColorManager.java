@@ -73,7 +73,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  			@Override
  			public int getColorFromItemstack(ItemStack stack, int tintIndex)
             {
-                IBlockState iblockstate = ((ItemBlock)stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
+                IBlockState iblockstate = ((ItemBlock)stack.getItem()).getBlock().getDefaultState();
                 return blockColors.colorMultiplier(iblockstate, (IBlockAccess)null, (BlockPos)null, tintIndex);
             }
 

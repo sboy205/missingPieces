@@ -10,6 +10,8 @@ import com.sb205.missing_pieces.MpBlocks.BlockLamp;
 import com.sb205.missing_pieces.MpBlocks.BlockPillar;
 import com.sb205.missing_pieces.MpBlocks.BlockTable;
 import com.sb205.missing_pieces.MpBlocks.BlockWedge;
+import com.sb205.missing_pieces.MpBlocks.MpBlock;
+import com.sb205.missing_pieces.MpBlocks.MpBlockSlab;
 import com.sb205.missing_pieces.MpBlocks.MpBlockSlab_half;
 import com.sb205.missing_pieces.MpBlocks.MpBlockStairs;
 import com.sb205.missing_pieces.MpItems.ItemBlockSlab;
@@ -27,6 +29,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -1061,40 +1064,40 @@ public class Blocks {
 
 		stone_patt1_slab = createHalfSlab("stone_patt1_slab", Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT1.ordinal()], "pickaxe", 1);
 		stone_patt1_slab_double = createDoubleSlab("stone_patt1_slab_double",  Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT1.ordinal()], "pickaxe", 1);
-		registerSlab(stone_patt1_slab, "stone_patt1_slab", stone_patt1_slab_double, "stone_patt1_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_NORM, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT1.ordinal()]);
+		registerSlab(stone_patt1_slab, "stone_patt1_slab", stone_patt1_slab_double, "stone_patt1_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_1, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT1.ordinal()]);
 		stone_patt2_slab = createHalfSlab("stone_patt2_slab", Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT2.ordinal()], "pickaxe", 1);
 		stone_patt2_slab_double = createDoubleSlab("stone_patt2_slab_double",  Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT2.ordinal()], "pickaxe", 1);
-		registerSlab(stone_patt2_slab, "stone_patt2_slab", stone_patt2_slab_double, "stone_patt2_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_NORM, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT2.ordinal()]);
+		registerSlab(stone_patt2_slab, "stone_patt2_slab", stone_patt2_slab_double, "stone_patt2_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_2, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT2.ordinal()]);
 		stone_patt3_slab = createHalfSlab("stone_patt3_slab", Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT3.ordinal()], "pickaxe", 1);
 		stone_patt3_slab_double = createDoubleSlab("stone_patt3_slab_double",  Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT3.ordinal()], "pickaxe", 1);
-		registerSlab(stone_patt3_slab, "stone_patt3_slab", stone_patt3_slab_double, "stone_patt3_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_NORM, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT3.ordinal()]);
+		registerSlab(stone_patt3_slab, "stone_patt3_slab", stone_patt3_slab_double, "stone_patt3_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_3, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT3.ordinal()]);
 		stone_patt4_slab = createHalfSlab("stone_patt4_slab", Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT4.ordinal()], "pickaxe", 1);
 		stone_patt4_slab_double = createDoubleSlab("stone_patt4_slab_double",  Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT4.ordinal()], "pickaxe", 1);
-		registerSlab(stone_patt4_slab, "stone_patt4_slab", stone_patt4_slab_double, "stone_patt4_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_NORM, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT4.ordinal()]);
+		registerSlab(stone_patt4_slab, "stone_patt4_slab", stone_patt4_slab_double, "stone_patt4_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_4, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT4.ordinal()]);
 		stone_patt5_slab = createHalfSlab("stone_patt5_slab", Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT5.ordinal()], "pickaxe", 1);
 		stone_patt5_slab_double = createDoubleSlab("stone_patt5_slab_double",  Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT5.ordinal()], "pickaxe", 1);
-		registerSlab(stone_patt5_slab, "stone_patt5_slab", stone_patt5_slab_double, "stone_patt5_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_NORM, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT5.ordinal()]);
+		registerSlab(stone_patt5_slab, "stone_patt5_slab", stone_patt5_slab_double, "stone_patt5_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_5, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT5.ordinal()]);
 		stone_patt6_slab = createHalfSlab("stone_patt6_slab", Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT6.ordinal()], "pickaxe", 1);
 		stone_patt6_slab_double = createDoubleSlab("stone_patt6_slab_double",  Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT6.ordinal()], "pickaxe", 1);
-		registerSlab(stone_patt6_slab, "stone_patt6_slab", stone_patt6_slab_double, "stone_patt6_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_NORM, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT6.ordinal()]);
+		registerSlab(stone_patt6_slab, "stone_patt6_slab", stone_patt6_slab_double, "stone_patt6_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_6, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT6.ordinal()]);
 		stone_patt7_slab = createHalfSlab("stone_patt7_slab", Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT7.ordinal()], "pickaxe", 1);
 		stone_patt7_slab_double = createDoubleSlab("stone_patt7_slab_double",  Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT7.ordinal()], "pickaxe", 1);
-		registerSlab(stone_patt7_slab, "stone_patt7_slab", stone_patt7_slab_double, "stone_patt7_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_NORM, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT7.ordinal()]);
+		registerSlab(stone_patt7_slab, "stone_patt7_slab", stone_patt7_slab_double, "stone_patt7_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_7, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT7.ordinal()]);
 		stone_patt8_slab = createHalfSlab("stone_patt8_slab", Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT8.ordinal()], "pickaxe", 1);
 		stone_patt8_slab_double = createDoubleSlab("stone_patt8_slab_double",  Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT8.ordinal()], "pickaxe", 1);
-		registerSlab(stone_patt8_slab, "stone_patt8_slab", stone_patt8_slab_double, "stone_patt8_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_NORM, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT8.ordinal()]);
+		registerSlab(stone_patt8_slab, "stone_patt8_slab", stone_patt8_slab_double, "stone_patt8_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_8, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT8.ordinal()]);
 		stone_patt9_slab = createHalfSlab("stone_patt9_slab", Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT9.ordinal()], "pickaxe", 1);
 		stone_patt9_slab_double = createDoubleSlab("stone_patt9_slab_double",  Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT9.ordinal()], "pickaxe", 1);
-		registerSlab(stone_patt9_slab, "stone_patt9_slab", stone_patt9_slab_double, "stone_patt9_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_NORM, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT9.ordinal()]);
+		registerSlab(stone_patt9_slab, "stone_patt9_slab", stone_patt9_slab_double, "stone_patt9_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_9, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT9.ordinal()]);
 		stone_patt10_slab = createHalfSlab("stone_patt10_slab", Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT10.ordinal()], "pickaxe", 1);
 		stone_patt10_slab_double = createDoubleSlab("stone_patt10_slab_double",  Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT10.ordinal()], "pickaxe", 1);
-		registerSlab(stone_patt10_slab, "stone_patt10_slab", stone_patt10_slab_double, "stone_patt10_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_NORM, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT10.ordinal()]);
+		registerSlab(stone_patt10_slab, "stone_patt10_slab", stone_patt10_slab_double, "stone_patt10_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_10, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT10.ordinal()]);
 		stone_patt11_slab = createHalfSlab("stone_patt11_slab", Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT11.ordinal()], "pickaxe", 1);
 		stone_patt11_slab_double = createDoubleSlab("stone_patt11_slab_double",  Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT11.ordinal()], "pickaxe", 1);
-		registerSlab(stone_patt11_slab, "stone_patt11_slab", stone_patt11_slab_double, "stone_patt11_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_NORM, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT11.ordinal()]);
+		registerSlab(stone_patt11_slab, "stone_patt11_slab", stone_patt11_slab_double, "stone_patt11_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_11, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT11.ordinal()]);
 		stone_patt12_slab = createHalfSlab("stone_patt12_slab", Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT12.ordinal()], "pickaxe", 1);
 		stone_patt12_slab_double = createDoubleSlab("stone_patt12_slab_double",  Material.ROCK, 2.0F, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT12.ordinal()], "pickaxe", 1);
-		registerSlab(stone_patt12_slab, "stone_patt12_slab", stone_patt12_slab_double, "stone_patt12_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_NORM, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT12.ordinal()]);
+		registerSlab(stone_patt12_slab, "stone_patt12_slab", stone_patt12_slab_double, "stone_patt12_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_12, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT12.ordinal()]);
 
 	};
 	public static void initClientOnly(){
@@ -1288,50 +1291,50 @@ public class Blocks {
 			System.out.println("\nNo Natura\n");
 		}
 
-		registerItem(acacia_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ACACIA.ordinal()]);
-		registerItem(birch_wedge,		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BIRCH.ordinal()]);
-		registerItem(dark_oak_wedge,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DARK_OAK.ordinal()]);
-		registerItem(jungle_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_JUNGLE.ordinal()]);
-		registerItem(oak_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_OAK.ordinal()]);
-		registerItem(spruce_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SPRUCE.ordinal()]);
-		registerItem(obsidian_wedge,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_OBSIDIAN.ordinal()]);
-		registerItem(quartz_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_QUARTZ.ordinal()]);
-		registerItem(stone_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_STONE.ordinal()]);
-		registerItem(stonebrick_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_STONEBRICK.ordinal()]);
-		registerItem(purpur_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PURPUR.ordinal()]);
-		registerItem(cobblestone_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_COBBLESTONE.ordinal()]);
-		registerItem(p_granite_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_GRANITE.ordinal()]);
-		registerItem(p_andesite_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_ANDESITE.ordinal()]);
-		registerItem(p_diorite_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_DIORITE.ordinal()]);
-		registerItem(granite_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRANITE.ordinal()]);
-		registerItem(andesite_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ANDESITE.ordinal()]);
-		registerItem(diorite_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DIORITE.ordinal()]);
-		registerItem(sandstone_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SANDSTONE.ordinal()]);
-		registerItem(red_sandstone_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RED_SANDSTONE.ordinal()]);
-		registerItem(nether_brick_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_NETHER_BRICK.ordinal()]);
+		registerWedge(acacia_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ACACIA.ordinal()]);
+		registerWedge(birch_wedge,		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BIRCH.ordinal()]);
+		registerWedge(dark_oak_wedge,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DARK_OAK.ordinal()]);
+		registerWedge(jungle_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_JUNGLE.ordinal()]);
+		registerWedge(oak_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_OAK.ordinal()]);
+		registerWedge(spruce_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SPRUCE.ordinal()]);
+		registerWedge(obsidian_wedge,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_OBSIDIAN.ordinal()]);
+		registerWedge(quartz_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_QUARTZ.ordinal()]);
+		registerWedge(stone_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_STONE.ordinal()]);
+		registerWedge(stonebrick_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_STONEBRICK.ordinal()]);
+		registerWedge(purpur_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PURPUR.ordinal()]);
+		registerWedge(cobblestone_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_COBBLESTONE.ordinal()]);
+		registerWedge(p_granite_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_GRANITE.ordinal()]);
+		registerWedge(p_andesite_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_ANDESITE.ordinal()]);
+		registerWedge(p_diorite_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_DIORITE.ordinal()]);
+		registerWedge(granite_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRANITE.ordinal()]);
+		registerWedge(andesite_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ANDESITE.ordinal()]);
+		registerWedge(diorite_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DIORITE.ordinal()]);
+		registerWedge(sandstone_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SANDSTONE.ordinal()]);
+		registerWedge(red_sandstone_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RED_SANDSTONE.ordinal()]);
+		registerWedge(nether_brick_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_NETHER_BRICK.ordinal()]);
 
-		registerItem(end_stone_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_END_STONE.ordinal()]);
-		registerItem(black_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BLACK_CLAY.ordinal()]);
-		registerItem(blue_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BLUE_CLAY.ordinal()]);
-		registerItem(brown_clay_wedge,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BROWN_CLAY.ordinal()]);
-		registerItem(cyan_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CYAN_CLAY.ordinal()]);
-		registerItem(gray_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRAY_CLAY.ordinal()]);
-		registerItem(green_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GREEN_CLAY.ordinal()]);
-		registerItem(light_blue_clay_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIGHT_BLUE_CLAY.ordinal()]);
-		registerItem(light_gray_clay_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIGHT_GRAY_CLAY.ordinal()]);
-		registerItem(lime_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIME_CLAY.ordinal()]);
-		registerItem(magenta_clay_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MAGENTA_CLAY.ordinal()]);
-		registerItem(orange_clay_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ORANGE_CLAY.ordinal()]);
-		registerItem(pink_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PINK_CLAY.ordinal()]);
-		registerItem(purple_clay_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PURPLE_CLAY.ordinal()]);
-		registerItem(red_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RED_CLAY.ordinal()]);
-		registerItem(white_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_WHITE_CLAY.ordinal()]);
-		registerItem(yellow_clay_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_YELLOW_CLAY.ordinal()]);
-		registerItem(dirt_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DIRT.ordinal()]);
-		registerItem(grass_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRASS.ordinal()]);
-		registerItem(grass_path_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRASS_PATH.ordinal()]);
-		registerItem(glass_wedge,	 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GLASS.ordinal()]);
-		registerItem(hay_wedge,		 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_HAY.ordinal()]);
+		registerWedge(end_stone_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_END_STONE.ordinal()]);
+		registerWedge(black_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BLACK_CLAY.ordinal()]);
+		registerWedge(blue_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BLUE_CLAY.ordinal()]);
+		registerWedge(brown_clay_wedge,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BROWN_CLAY.ordinal()]);
+		registerWedge(cyan_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CYAN_CLAY.ordinal()]);
+		registerWedge(gray_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRAY_CLAY.ordinal()]);
+		registerWedge(green_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GREEN_CLAY.ordinal()]);
+		registerWedge(light_blue_clay_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIGHT_BLUE_CLAY.ordinal()]);
+		registerWedge(light_gray_clay_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIGHT_GRAY_CLAY.ordinal()]);
+		registerWedge(lime_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIME_CLAY.ordinal()]);
+		registerWedge(magenta_clay_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MAGENTA_CLAY.ordinal()]);
+		registerWedge(orange_clay_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ORANGE_CLAY.ordinal()]);
+		registerWedge(pink_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PINK_CLAY.ordinal()]);
+		registerWedge(purple_clay_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PURPLE_CLAY.ordinal()]);
+		registerWedge(red_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RED_CLAY.ordinal()]);
+		registerWedge(white_clay_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_WHITE_CLAY.ordinal()]);
+		registerWedge(yellow_clay_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_YELLOW_CLAY.ordinal()]);
+		registerWedge(dirt_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DIRT.ordinal()]);
+		registerWedge(grass_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRASS.ordinal()]);
+		registerWedge(grass_path_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRASS_PATH.ordinal()]);
+		registerWedge(glass_wedge,	 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GLASS.ordinal()]);
+		registerWedge(hay_wedge,		 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_HAY.ordinal()]);
 		
 		// mineralogy Pillars
 		if (Loader.isModLoaded("mineralogy")) {
@@ -1339,40 +1342,40 @@ public class Blocks {
 				//System.out.println("\nLoaded mineralogy\n");
 
 
-				registerItem(amphibolite_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMPHIBOLITE.ordinal()]);
-				registerItem(amphibolite_smooth_wedge,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMPHIBOLITE_SMOOTH.ordinal()]);
-				registerItem(m_andesite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_ANDESITE.ordinal()]);
-				registerItem(m_andesite_smooth_wedge,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_ANDESITE_SMOOTH.ordinal()]);
-				registerItem(basalt_wedge,			 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BASALT.ordinal()]);
-				registerItem(basalt_smooth_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BASALT_SMOOTH.ordinal()]);
-				registerItem(chert_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CHERT.ordinal()]);
-				registerItem(conglomerate_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CONGLOMERATE.ordinal()]);
-				registerItem(conglomerate_smooth_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CONGLOMERATE_SMOOTH.ordinal()]);
-				registerItem(m_diorite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_DIORITE.ordinal()]);
-				registerItem(m_diorite_smooth_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_DIORITE_SMOOTH.ordinal()]);
-				registerItem(dolomite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DOLOMITE.ordinal()]);
-				registerItem(dolomite_smooth_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DOLOMITE_SMOOTH.ordinal()]);
-				registerItem(gneiss_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GNEISS.ordinal()]);
-				registerItem(gneiss_smooth_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GNEISS_SMOOTH.ordinal()]);
-				registerItem(m_granite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_GRANITE.ordinal()]);
-				registerItem(m_granite_smooth_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_GRANITE_SMOOTH.ordinal()]);
-				registerItem(limestone_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIMESTONE.ordinal()]);
-				registerItem(limestone_smooth_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIMESTONE_SMOOTH.ordinal()]);
-				registerItem(pumice_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PUMICE.ordinal()]);
-				registerItem(marble_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MARBLE.ordinal()]);
-				registerItem(marble_smooth_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MARBLE_SMOOTH.ordinal()]);
-				registerItem(pegmatite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PEGMATITE.ordinal()]);
-				registerItem(pegmatite_smooth_wedge,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PEGMATITE_SMOOTH.ordinal()]);
-				registerItem(phyllite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PHYLLITE.ordinal()]);
-				registerItem(phyllite_smooth_wedge,		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PHYLLITE_SMOOTH.ordinal()]);
-				registerItem(rhyolite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RHYOLITE.ordinal()]);
-				registerItem(rhyolite_smooth_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RHYOLITE_SMOOTH.ordinal()]);
-				registerItem(schist_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SCHIST.ordinal()]);
-				registerItem(schist_smooth_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SCHIST_SMOOTH.ordinal()]);
-				registerItem(shale_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SHALE.ordinal()]);
-				registerItem(shale_smooth_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SHALE_SMOOTH.ordinal()]);
-				registerItem(slate_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SLATE.ordinal()]);
-				registerItem(slate_smooth_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SLATE_SMOOTH.ordinal()]);
+				registerWedge(amphibolite_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMPHIBOLITE.ordinal()]);
+				registerWedge(amphibolite_smooth_wedge,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMPHIBOLITE_SMOOTH.ordinal()]);
+				registerWedge(m_andesite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_ANDESITE.ordinal()]);
+				registerWedge(m_andesite_smooth_wedge,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_ANDESITE_SMOOTH.ordinal()]);
+				registerWedge(basalt_wedge,			 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BASALT.ordinal()]);
+				registerWedge(basalt_smooth_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BASALT_SMOOTH.ordinal()]);
+				registerWedge(chert_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CHERT.ordinal()]);
+				registerWedge(conglomerate_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CONGLOMERATE.ordinal()]);
+				registerWedge(conglomerate_smooth_wedge, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CONGLOMERATE_SMOOTH.ordinal()]);
+				registerWedge(m_diorite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_DIORITE.ordinal()]);
+				registerWedge(m_diorite_smooth_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_DIORITE_SMOOTH.ordinal()]);
+				registerWedge(dolomite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DOLOMITE.ordinal()]);
+				registerWedge(dolomite_smooth_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DOLOMITE_SMOOTH.ordinal()]);
+				registerWedge(gneiss_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GNEISS.ordinal()]);
+				registerWedge(gneiss_smooth_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GNEISS_SMOOTH.ordinal()]);
+				registerWedge(m_granite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_GRANITE.ordinal()]);
+				registerWedge(m_granite_smooth_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_GRANITE_SMOOTH.ordinal()]);
+				registerWedge(limestone_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIMESTONE.ordinal()]);
+				registerWedge(limestone_smooth_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIMESTONE_SMOOTH.ordinal()]);
+				registerWedge(pumice_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PUMICE.ordinal()]);
+				registerWedge(marble_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MARBLE.ordinal()]);
+				registerWedge(marble_smooth_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MARBLE_SMOOTH.ordinal()]);
+				registerWedge(pegmatite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PEGMATITE.ordinal()]);
+				registerWedge(pegmatite_smooth_wedge,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PEGMATITE_SMOOTH.ordinal()]);
+				registerWedge(phyllite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PHYLLITE.ordinal()]);
+				registerWedge(phyllite_smooth_wedge,		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PHYLLITE_SMOOTH.ordinal()]);
+				registerWedge(rhyolite_wedge, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RHYOLITE.ordinal()]);
+				registerWedge(rhyolite_smooth_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RHYOLITE_SMOOTH.ordinal()]);
+				registerWedge(schist_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SCHIST.ordinal()]);
+				registerWedge(schist_smooth_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SCHIST_SMOOTH.ordinal()]);
+				registerWedge(shale_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SHALE.ordinal()]);
+				registerWedge(shale_smooth_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SHALE_SMOOTH.ordinal()]);
+				registerWedge(slate_wedge, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SLATE.ordinal()]);
+				registerWedge(slate_smooth_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SLATE_SMOOTH.ordinal()]);
 			}
 			catch (Exception e) {
 				System.out.println("Could not load mineralogy");
@@ -1382,18 +1385,18 @@ public class Blocks {
 		if (Loader.isModLoaded("natura")) {
 			try {
 				// Natura wedge
-				registerItem(amaranth_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMARANTH.ordinal()]);
-				registerItem(darkwood_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DARKWOOD.ordinal()]);
-				registerItem(eucalyptus_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_EUCALYPTUS.ordinal()]);
-				registerItem(fusewood_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_FUSEWOOD.ordinal()]);
-				registerItem(ghostwood_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GHOSTWOOD.ordinal()]);
-				registerItem(hopseed_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_HOPSEED.ordinal()]);
-				registerItem(maple_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MAPLE.ordinal()]);
-				registerItem(redwood_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_REDWOOD.ordinal()]);
-				registerItem(sakura_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SAKURA.ordinal()]);
-				registerItem(silverbell_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SILVERBELL.ordinal()]);
-				registerItem(tiger_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_TIGER.ordinal()]);
-				registerItem(willow_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_WILLOW.ordinal()]);
+				registerWedge(amaranth_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMARANTH.ordinal()]);
+				registerWedge(darkwood_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DARKWOOD.ordinal()]);
+				registerWedge(eucalyptus_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_EUCALYPTUS.ordinal()]);
+				registerWedge(fusewood_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_FUSEWOOD.ordinal()]);
+				registerWedge(ghostwood_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GHOSTWOOD.ordinal()]);
+				registerWedge(hopseed_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_HOPSEED.ordinal()]);
+				registerWedge(maple_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MAPLE.ordinal()]);
+				registerWedge(redwood_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_REDWOOD.ordinal()]);
+				registerWedge(sakura_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SAKURA.ordinal()]);
+				registerWedge(silverbell_wedge, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SILVERBELL.ordinal()]);
+				registerWedge(tiger_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_TIGER.ordinal()]);
+				registerWedge(willow_wedge, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_WILLOW.ordinal()]);
 
 				System.out.println("\nRegistered natura wedges\n");
 			}
@@ -1539,30 +1542,30 @@ public class Blocks {
 
 		//registerItem(rainbow_slab, true);
 		//registerItem(rainbow_slab_double, true);
-		registerItem(stone_patt1_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT1.ordinal()]);
-		registerItem(stone_patt1_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT1.ordinal()]);
-		registerItem(stone_patt2_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT2.ordinal()]);
-		registerItem(stone_patt2_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT2.ordinal()]);
-		registerItem(stone_patt3_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT3.ordinal()]);
-		registerItem(stone_patt3_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT3.ordinal()]);
-		registerItem(stone_patt4_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT4.ordinal()]);
-		registerItem(stone_patt4_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT4.ordinal()]);
-		registerItem(stone_patt5_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT5.ordinal()]);
-		registerItem(stone_patt5_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT5.ordinal()]);
-		registerItem(stone_patt6_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT6.ordinal()]);
-		registerItem(stone_patt6_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT6.ordinal()]);
-		registerItem(stone_patt7_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT7.ordinal()]);
-		registerItem(stone_patt7_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT7.ordinal()]);
-		registerItem(stone_patt8_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT8.ordinal()]);
-		registerItem(stone_patt8_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT8.ordinal()]);
-		registerItem(stone_patt9_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT9.ordinal()]);
-		registerItem(stone_patt9_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT9.ordinal()]);
-		registerItem(stone_patt10_slab, 		MpConfiguration.BlockEnable[ConfigInfo.SLABPATT10.ordinal()]);
-		registerItem(stone_patt10_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT10.ordinal()]);
-		registerItem(stone_patt11_slab,			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT11.ordinal()]);
-		registerItem(stone_patt11_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT11.ordinal()]);
-		registerItem(stone_patt12_slab, 		MpConfiguration.BlockEnable[ConfigInfo.SLABPATT12.ordinal()]);
-		registerItem(stone_patt12_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT12.ordinal()]);
+		registerSlab(stone_patt1_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT1.ordinal()]);
+		registerSlab(stone_patt1_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT1.ordinal()]);
+		registerSlab(stone_patt2_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT2.ordinal()]);
+		registerSlab(stone_patt2_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT2.ordinal()]);
+		registerSlab(stone_patt3_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT3.ordinal()]);
+		registerSlab(stone_patt3_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT3.ordinal()]);
+		registerSlab(stone_patt4_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT4.ordinal()]);
+		registerSlab(stone_patt4_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT4.ordinal()]);
+		registerSlab(stone_patt5_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT5.ordinal()]);
+		registerSlab(stone_patt5_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT5.ordinal()]);
+		registerSlab(stone_patt6_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT6.ordinal()]);
+		registerSlab(stone_patt6_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT6.ordinal()]);
+		registerSlab(stone_patt7_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT7.ordinal()]);
+		registerSlab(stone_patt7_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT7.ordinal()]);
+		registerSlab(stone_patt8_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT8.ordinal()]);
+		registerSlab(stone_patt8_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT8.ordinal()]);
+		registerSlab(stone_patt9_slab, 			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT9.ordinal()]);
+		registerSlab(stone_patt9_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT9.ordinal()]);
+		registerSlab(stone_patt10_slab, 		MpConfiguration.BlockEnable[ConfigInfo.SLABPATT10.ordinal()]);
+		registerSlab(stone_patt10_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT10.ordinal()]);
+		registerSlab(stone_patt11_slab,			MpConfiguration.BlockEnable[ConfigInfo.SLABPATT11.ordinal()]);
+		registerSlab(stone_patt11_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT11.ordinal()]);
+		registerSlab(stone_patt12_slab, 		MpConfiguration.BlockEnable[ConfigInfo.SLABPATT12.ordinal()]);
+		registerSlab(stone_patt12_slab_double, 	MpConfiguration.BlockEnable[ConfigInfo.SLABPATT12.ordinal()]);
 
 		/*
 		registerItem(rainbow_stairs, true);
@@ -1586,10 +1589,12 @@ public class Blocks {
 		BlockCandelabra candelabra = null;
 		if(enabled) {
 			candelabra = (BlockCandelabra)(new BlockCandelabra(mType).setUnlocalizedName(name));
-			GameRegistry.registerBlock(candelabra, name);
+			GameRegistry.register(candelabra.setRegistryName(name));
+			//GameRegistry.registerBlock(candelabra, name);
+			GameRegistry.register(new ItemBlock(candelabra).setRegistryName(candelabra.getRegistryName()));
 
-			OreDictionary.registerOre(candelabra.getOredictName(),candelabra);
-			OreDictionary.registerOre("candelabra",candelabra); //generic
+			//OreDictionary.registerOre(candelabra.getOredictName(),candelabra);
+			//OreDictionary.registerOre("candelabra",candelabra); //generic
 			if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) { // can't enable recipe if no spindle
 
 				GameRegistry.addRecipe(new ItemStack(candelabra, 2),
@@ -1609,11 +1614,10 @@ public class Blocks {
 
 		BlockLamp lamp = null;
 		if(enabled) {
-
 			lamp = (BlockLamp)(new BlockLamp(mType).setUnlocalizedName(name));
-			GameRegistry.registerBlock(lamp, name);
-			OreDictionary.registerOre(lamp.getOredictName(),lamp);
-			OreDictionary.registerOre("lamp",lamp); //generic
+			GameRegistry.register(lamp.setRegistryName(name));
+			GameRegistry.register(new ItemBlock(lamp).setRegistryName(lamp.getRegistryName()));
+
 
 			if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) { // can't enable recipe if no spindle
 
@@ -1637,10 +1641,9 @@ public class Blocks {
 		if(enabled) {
 
 
-			pillar = (BlockPillar)(new BlockPillar(mType, mHardness, mHarvest, harvestLevel).setUnlocalizedName(name));
-			GameRegistry.registerBlock(pillar, name);
-			OreDictionary.registerOre(pillar.getOredictName(),pillar);
-			OreDictionary.registerOre("pillar",pillar); //generic
+			pillar = (BlockPillar)new BlockPillar(mType, mHardness, mHarvest, harvestLevel).setUnlocalizedName(name);
+			GameRegistry.register(pillar.setRegistryName(name));
+			GameRegistry.register(new ItemBlock(pillar).setRegistryName(pillar.getRegistryName()));
 
 			GameRegistry.addRecipe(new ItemStack(pillar, 3),
 					" A ",
@@ -1658,9 +1661,8 @@ public class Blocks {
 
 
 			stairs = (MpBlockStairs)(new MpBlockStairs(mHardness, mHarvest, harvestLevel).setUnlocalizedName(name));
-			GameRegistry.registerBlock(stairs, name);
-			OreDictionary.registerOre(stairs.getOredictName(),stairs);
-			OreDictionary.registerOre("stairs",stairs); //generic
+			GameRegistry.register(stairs.setRegistryName(name));
+			GameRegistry.register(new ItemBlock(stairs).setRegistryName(stairs.getRegistryName()));
 
 			GameRegistry.addRecipe(new ItemStack(stairs, 3),
 					"A  ",
@@ -1678,9 +1680,9 @@ public class Blocks {
 		BlockChair chair = null;
 		if(enabled) {
 			chair = (BlockChair) new BlockChair(mType).setUnlocalizedName(name);
-			GameRegistry.registerBlock(chair, name);
-			OreDictionary.registerOre(chair.getOredictName(),chair);
-			OreDictionary.registerOre("chair",chair); //generic
+			chair = (BlockChair) new BlockChair(mType).setUnlocalizedName(name);
+			GameRegistry.register(chair.setRegistryName(name));
+			GameRegistry.register(new ItemBlock(chair).setRegistryName(chair.getRegistryName()));
 
 			if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
 
@@ -1702,9 +1704,9 @@ public class Blocks {
 			if(enabled) {
 
 				table = (BlockTable)(new BlockTable(mType).setUnlocalizedName(name));
-				GameRegistry.registerBlock(table, name);
-				OreDictionary.registerOre(table.getOredictName(),table);
-				OreDictionary.registerOre("table",table); //generic
+				table = (BlockTable)(new BlockTable(mType).setUnlocalizedName(name));
+				GameRegistry.register(table.setRegistryName(name));
+				GameRegistry.register(new ItemBlock(table).setRegistryName(table.getRegistryName()));
 
 				if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
 					GameRegistry.addRecipe(new ItemStack(table, 2),
@@ -1729,9 +1731,8 @@ public class Blocks {
 
 			// each instance of your block should have a name that is unique within your mod.  use lower case.
 			wedge = (BlockWedge)(new BlockWedge(mType, mHardness, mHarvest, harvestLevel).setUnlocalizedName(name));
-			GameRegistry.registerBlock(wedge, name);
-			OreDictionary.registerOre(wedge.getOredictName(),wedge);
-			OreDictionary.registerOre("wedge",wedge); //generic
+			GameRegistry.register(wedge.setRegistryName(name));
+			GameRegistry.register(new ItemBlock(wedge).setRegistryName(wedge.getRegistryName()));
 
 			GameRegistry.addRecipe(new ItemStack(wedge, MpConfiguration.ConfigValue[ConfigInfo.WEDGE_QTY.ordinal()]),
 					"   ",
@@ -1905,14 +1906,48 @@ public class Blocks {
 	}
 
 
-	public static void registerItem(Block block, Boolean enabled){
+	public static void registerItem(MpBlock block, Boolean enabled){
 		final int DEFAULT_ITEM_SUBTYPE = 0;
 		if(enabled) { 
 			String name = block.getUnlocalizedName().substring(5);
 			//System.out.println("register item " + name);
-			Item item = GameRegistry.findItem("missing_pieces", name);
 			ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation("missing_pieces:"+name, "inventory");
-			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, DEFAULT_ITEM_SUBTYPE, itemModelResourceLocation);
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), DEFAULT_ITEM_SUBTYPE, itemModelResourceLocation);
+
+			ItemStack stack = new ItemStack(block,1,0);
+			OreDictionary.registerOre(block.getOredictName(), stack);
+
+		}
+	}
+	
+	public static void registerWedge(BlockWedge block, Boolean enabled){
+		final int DEFAULT_ITEM_SUBTYPE = 0;
+		if(enabled) { 
+			String name = block.getUnlocalizedName().substring(5);
+			//System.out.println("register item " + name);
+
+			ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation("missing_pieces:"+name, "inventory");
+			//GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), DEFAULT_ITEM_SUBTYPE, itemModelResourceLocation);
+
+			ItemStack stack = new ItemStack(block,1,0);
+			OreDictionary.registerOre(block.getOredictName(), stack);
+
+		}
+	}
+
+	public static void registerSlab(MpBlockSlab block, Boolean enabled){
+		final int DEFAULT_ITEM_SUBTYPE = 0;
+		if(enabled) { 
+			String name = block.getUnlocalizedName().substring(5);
+			//System.out.println("register item " + name);
+
+			ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation("missing_pieces:"+name, "inventory");
+			//GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), DEFAULT_ITEM_SUBTYPE, itemModelResourceLocation);
+
+			//ItemStack stack = new ItemStack(block,1,2);
+			//OreDictionary.registerOre(block.getOredictName(), stack);
 
 		}
 	}

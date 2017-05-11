@@ -34,10 +34,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  *
  */
 
-public class BlockLamp extends Block {
+public class BlockLamp extends MpBlock {
 
 	public BlockLamp(Material mat) {
-	    super(mat);
+	    super(mat, 0.5F, "axe", 1);
+
 	    this.setCreativeTab(CreativeTabs.DECORATIONS);   // the block will appear on the Blocks tab in creative
 	    this.setLightLevel(1.0F);					// This causes lamp to give light.
 	    this.setHardness(0.5F);

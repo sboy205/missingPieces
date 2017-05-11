@@ -15,6 +15,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Loader;
@@ -99,27 +100,27 @@ public class TileEntities {
 	public static void initClientOnly()
 	{
 
-		registerShelf("acacia_shelf", MpConfiguration.BlockEnable[ConfigInfo.SHELF_ACACIA.ordinal()]);
-		registerShelf("birch_shelf", MpConfiguration.BlockEnable[ConfigInfo.SHELF_BIRCH.ordinal()]);
-		registerShelf("dark_oak_shelf", MpConfiguration.BlockEnable[ConfigInfo.SHELF_DARK_OAK.ordinal()]);
-		registerShelf("jungle_shelf", MpConfiguration.BlockEnable[ConfigInfo.SHELF_JUNGLE.ordinal()]);
-		registerShelf("oak_shelf", MpConfiguration.BlockEnable[ConfigInfo.SHELF_OAK.ordinal()]);
-		registerShelf("spruce_shelf", MpConfiguration.BlockEnable[ConfigInfo.SHELF_SPRUCE.ordinal()]);
+		registerShelf(acaciaShelf,"acacia_shelf", MpConfiguration.BlockEnable[ConfigInfo.SHELF_ACACIA.ordinal()]);
+		registerShelf(birchShelf,"birch_shelf", MpConfiguration.BlockEnable[ConfigInfo.SHELF_BIRCH.ordinal()]);
+		registerShelf(darkOakShelf,"dark_oak_shelf", MpConfiguration.BlockEnable[ConfigInfo.SHELF_DARK_OAK.ordinal()]);
+		registerShelf(jungleShelf,"jungle_shelf", MpConfiguration.BlockEnable[ConfigInfo.SHELF_JUNGLE.ordinal()]);
+		registerShelf(oakShelf,"oak_shelf", MpConfiguration.BlockEnable[ConfigInfo.SHELF_OAK.ordinal()]);
+		registerShelf(spruceShelf,"spruce_shelf", MpConfiguration.BlockEnable[ConfigInfo.SHELF_SPRUCE.ordinal()]);
 		if (Loader.isModLoaded("natura")) {
 			try {
 				// Natura shelves
-				registerShelf("amaranth_shelf",	MpConfiguration.BlockEnable[ConfigInfo.SHELF_AMARANTH.ordinal()]);
-				registerShelf("darkwood_shelf",	MpConfiguration.BlockEnable[ConfigInfo.SHELF_DARKWOOD.ordinal()]);
-				registerShelf("eucalyptus_shelf",MpConfiguration.BlockEnable[ConfigInfo.SHELF_EUCALYPTUS.ordinal()]);
-				registerShelf("fusewood_shelf",	MpConfiguration.BlockEnable[ConfigInfo.SHELF_FUSEWOOD.ordinal()]);
-				registerShelf("ghostwood_shelf",MpConfiguration.BlockEnable[ConfigInfo.SHELF_GHOSTWOOD.ordinal()]);
-				registerShelf("hopseed_shelf",	 MpConfiguration.BlockEnable[ConfigInfo.SHELF_HOPSEED.ordinal()]);
-				registerShelf("maple_shelf",	MpConfiguration.BlockEnable[ConfigInfo.SHELF_MAPLE.ordinal()]);
-				registerShelf("redwood_shelf",	MpConfiguration.BlockEnable[ConfigInfo.SHELF_REDWOOD.ordinal()]);
-				registerShelf("sakura_shelf",	MpConfiguration.BlockEnable[ConfigInfo.SHELF_SAKURA.ordinal()]);
-				registerShelf("silverbell_shelf",MpConfiguration.BlockEnable[ConfigInfo.SHELF_SILVERBELL.ordinal()]);
-				registerShelf("tiger_shelf",	 MpConfiguration.BlockEnable[ConfigInfo.SHELF_TIGER.ordinal()]);
-				registerShelf("willow_shelf",	 MpConfiguration.BlockEnable[ConfigInfo.SHELF_WILLOW.ordinal()]);
+				registerShelf(amaranthShelf,"amaranth_shelf",	MpConfiguration.BlockEnable[ConfigInfo.SHELF_AMARANTH.ordinal()]);
+				registerShelf(darkwoodShelf,"darkwood_shelf",	MpConfiguration.BlockEnable[ConfigInfo.SHELF_DARKWOOD.ordinal()]);
+				registerShelf(eucalyptusShelf,"eucalyptus_shelf",MpConfiguration.BlockEnable[ConfigInfo.SHELF_EUCALYPTUS.ordinal()]);
+				registerShelf(fusewoodShelf,"fusewood_shelf",	MpConfiguration.BlockEnable[ConfigInfo.SHELF_FUSEWOOD.ordinal()]);
+				registerShelf(ghostwoodShelf,"ghostwood_shelf",MpConfiguration.BlockEnable[ConfigInfo.SHELF_GHOSTWOOD.ordinal()]);
+				registerShelf(hopseedShelf,"hopseed_shelf",	 MpConfiguration.BlockEnable[ConfigInfo.SHELF_HOPSEED.ordinal()]);
+				registerShelf(mapleShelf,"maple_shelf",	MpConfiguration.BlockEnable[ConfigInfo.SHELF_MAPLE.ordinal()]);
+				registerShelf(redwoodShelf,"redwood_shelf",	MpConfiguration.BlockEnable[ConfigInfo.SHELF_REDWOOD.ordinal()]);
+				registerShelf(sakuraShelf,"sakura_shelf",	MpConfiguration.BlockEnable[ConfigInfo.SHELF_SAKURA.ordinal()]);
+				registerShelf(silverbellShelf,"silverbell_shelf",MpConfiguration.BlockEnable[ConfigInfo.SHELF_SILVERBELL.ordinal()]);
+				registerShelf(tigerShelf,"tiger_shelf",	 MpConfiguration.BlockEnable[ConfigInfo.SHELF_TIGER.ordinal()]);
+				registerShelf(willowShelf,"willow_shelf",	 MpConfiguration.BlockEnable[ConfigInfo.SHELF_WILLOW.ordinal()]);
 
 				System.out.println("\nLoaded natura shelves\n");
 			}
@@ -145,12 +146,13 @@ public class TileEntities {
 		  
 		  if(enabled) {
 
-		    blockShelf = (BlockShelf)(new BlockShelf(mType, hardness).setUnlocalizedName(name));
-		    GameRegistry.registerBlock(blockShelf, name);
+			    blockShelf = (BlockShelf)(new BlockShelf(mType, hardness).setUnlocalizedName(name));
+			    GameRegistry.register(blockShelf.setRegistryName(name));
+				GameRegistry.register(new ItemBlock(blockShelf).setRegistryName(blockShelf.getRegistryName()));
 
-			GameRegistry.registerTileEntity(TileEntityShelf.class, name);
+				GameRegistry.registerTileEntity(TileEntityShelf.class, name);
 			
-		    GameRegistry.addRecipe(new ItemStack(blockShelf, 3),
+				GameRegistry.addRecipe(new ItemStack(blockShelf, 3),
 		        	" A ",
 		        	"ABA",
 		        	" A ",
@@ -165,13 +167,12 @@ public class TileEntities {
 
 	}
 	
-	private static void registerShelf(String name, boolean enabled){
+	private static void registerShelf(BlockShelf block, String name, boolean enabled){
 		final int DEFAULT_ITEM_SUBTYPE = 0;
 		if(enabled) { 
 
-			Item itemBlockShelf = GameRegistry.findItem("missing_pieces", name);
 			ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation("missing_pieces:"+name, "inventory");
-			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(itemBlockShelf, DEFAULT_ITEM_SUBTYPE, itemModelResourceLocation);
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), DEFAULT_ITEM_SUBTYPE, itemModelResourceLocation);
 		}
 
 	}

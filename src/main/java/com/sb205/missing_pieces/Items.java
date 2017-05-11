@@ -43,7 +43,7 @@ public class Items {
 		if(enabled) {
 			//System.out.println("create Spindle");
 		    spindle = (ItemSpindle)(new ItemSpindle().setUnlocalizedName(name));
-		    GameRegistry.registerItem(spindle, name);
+			GameRegistry.register(spindle.setRegistryName(name));
 		    OreDictionary.registerOre("MaterialSpindle", spindle);
 		    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spindle, 4),
 		        	"A",

@@ -32,7 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Date: 5/9/2017
  *
  */
-public class BlockPillar extends Block 
+public class BlockPillar extends MpBlock 
 {
   
   public static final PropertyDirection PROPERTYFACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
@@ -40,7 +40,8 @@ public class BlockPillar extends Block
 
   public BlockPillar(Material mType, Float matHardness,	String toolClass, int toolLevel)
   {
-    super(mType);
+	super(mType, matHardness, toolClass, toolLevel);
+
     this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);   // the block will appear on the Blocks tab in creative
     this.setHardness(matHardness);
     this.setHarvestLevel(toolClass, toolLevel);

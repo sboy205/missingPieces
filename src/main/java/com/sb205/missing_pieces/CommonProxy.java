@@ -50,7 +50,6 @@ public abstract class CommonProxy {
   {
 	  
 	  com.sb205.missing_pieces.Config.StartupCommon.postInitCommon();
-	  com.sb205.missing_pieces.Shelf.StartupCommon.postInitCommon();
 	  MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
   }
 

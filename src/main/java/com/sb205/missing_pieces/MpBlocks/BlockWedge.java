@@ -43,7 +43,7 @@ public class BlockWedge extends  BlockStairs {
 	 *
 	 */
 	public BlockWedge(Material mType, Float matHardness,	String toolClass, int toolLevel){
-		super(Blocks.STONE_STAIRS.getDefaultState());
+		super(Blocks.STONE_STAIRS.getDefaultState() );
 	    this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);   // the block will appear on the Blocks tab in creative
 	    this.useNeighborBrightness = true;
 	    this.setHardness(matHardness);
@@ -58,10 +58,10 @@ public class BlockWedge extends  BlockStairs {
    	 	if((this == com.sb205.missing_pieces.Blocks.grass_path_wedge)||
    	 			(this == com.sb205.missing_pieces.Blocks.grass_wedge)) {
    	 		// Only grass wedge and grass path wedge are silk harvestable.
-   	 		System.out.println("canSilkHarvest called - true");
+   	 		//System.out.println("canSilkHarvest called - true");
 			return true;
    	 	} else {
-   	 		System.out.println("canSilkHarvest called - false");
+   	 		//System.out.println("canSilkHarvest called - false");
    	 		return false;
    	 	}
 	}
@@ -480,14 +480,6 @@ public class BlockWedge extends  BlockStairs {
     }
 
 	
-	  public String getOredictName()
-	  {
-		  	// convert string modid_object_type to objectType
-		  	String name = this.getUnlocalizedName().substring(5);
-		  	String parts[] = name.split("_");
-			String firstLetter = parts[1].substring(0,1);
-		  return parts[0]+":"+firstLetter.toUpperCase(Locale.ENGLISH)+":"+parts[1].substring(1);
-	  }
 
 	  // render using a BakedModel (mbe01_block_simple.json --> mbe01_block_simple_model.json)
 	  // not strictly required because the default (super method) is 3.
@@ -536,4 +528,26 @@ public class BlockWedge extends  BlockStairs {
 	    {
 	        return BlockRenderLayer.CUTOUT_MIPPED;
 	    }
+	    
+		  public String getOredictName()
+		  {
+			  	// convert string modid_object_type to objectType
+			  	String name = this.getUnlocalizedName().substring(5);
+			  	String parts[] = name.split("_");
+			  	String firstLetter0 = parts[0].substring(0,1);
+			  	String firstLetter1 = parts[1].substring(0,1);
+				if (parts.length ==3){
+					return parts[2]+firstLetter0.toUpperCase(Locale.ENGLISH)+parts[0].substring(1)+firstLetter1.toUpperCase(Locale.ENGLISH)+parts[1].substring(1);
+				} else if (parts.length == 4){
+						String firstLetter2 = parts[2].substring(0,1);
+						return parts[3]+firstLetter0.toUpperCase(Locale.ENGLISH)+parts[0].substring(1)+
+										firstLetter1.toUpperCase(Locale.ENGLISH)+parts[1].substring(1)+
+										firstLetter2.toUpperCase(Locale.ENGLISH)+parts[2].substring(1);
+				} else {
+					// must be 2 parts
+					return parts[1]+firstLetter0.toUpperCase(Locale.ENGLISH)+parts[0].substring(1);	
+				}
+			  
+		  }
+
 }

@@ -24,12 +24,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Date: 5/9/2017
  *
  */
-public class BlockTable extends Block
+public class BlockTable extends MpBlock
 {
 
   public BlockTable(Material mType)
   {
-    super(mType);
+	super(mType, 0.5F, "axe", 1);
     this.setCreativeTab(CreativeTabs.DECORATIONS);   // the block will appear on the Decorations tab in creative
     this.setHardness(0.5F);
 

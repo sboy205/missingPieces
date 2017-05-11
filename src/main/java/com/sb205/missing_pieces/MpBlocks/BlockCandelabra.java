@@ -28,10 +28,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCandelabra extends Block {
+public class BlockCandelabra extends MpBlock {
 
 	public BlockCandelabra(Material material) {
-	    super(material);
+	    super(material, 0.5F, "axe", 1);
 	    this.setCreativeTab(CreativeTabs.DECORATIONS);   // the block will appear on the Blocks tab in creative
 	    this.setLightLevel(1.0F);
 	    this.setHardness(0.5F);

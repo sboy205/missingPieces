@@ -49,7 +49,6 @@ public class ClientOnlyProxy extends CommonProxy
     super.postInit();
 
     com.sb205.missing_pieces.Config.StartupClientOnly.postInitClientOnly();
-    com.sb205.missing_pieces.Shelf.StartupClientOnly.postInitClientOnly();
 
   }
 
