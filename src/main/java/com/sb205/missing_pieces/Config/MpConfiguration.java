@@ -89,7 +89,7 @@ public class MpConfiguration {
     }
     public  enum ConfigInfo {
 		//		Name					Category				Mod Type 			Enable/Disable
-		WEDGE_QTY("Wedge Quantity", CATEGORY_NAME_WEDGES, ModType.MOD_CONFIG_VALUE, 3, 3, 6),
+		WEDGE_QTY("Wedge_Quantity", 	CATEGORY_NAME_WEDGES, 	ModType.MOD_CONFIG_VALUE, "Number of Wedges per recipe [3] - 6", 3, 3, 6),
 		MISC_SPINDLE("Spindle",			CATEGORY_NAME_MISC,		ModType.MOD_MISSING_PIECES,	MISC_DEFAULT_VALUE),
 
 		// ---- Logs ----
@@ -456,6 +456,7 @@ public class MpConfiguration {
     	
     	private String configName;
 		private String configCat;
+		private String configComment;
 		private Boolean enabled;
 		private ModType mod;
 		private int defInt;
@@ -468,10 +469,11 @@ public class MpConfiguration {
 			enabled = enable;
 			mod = modType;
 		}
-		private ConfigInfo( String name, String category, ModType modType, int defValue, int minValue, int maxValue){
+		private ConfigInfo( String name, String category, ModType modType, String comment, int defValue, int minValue, int maxValue){
 			configName = name;
 			configCat = category;
 			mod = modType;
+			configComment = comment;
 			defInt = defValue;
 			minInt = minValue;
 			maxInt = maxValue;
@@ -482,6 +484,9 @@ public class MpConfiguration {
 		}
 		public String getCategory() {
 			return configCat;
+		}
+		public String getComment() {
+			return configComment;
 		}
 		public Boolean getEnable() {
 			return enabled;
@@ -502,7 +507,7 @@ public class MpConfiguration {
 	private static int configQty = ConfigInfo.values().length;
 	public static Boolean[] BlockEnable = new Boolean[configQty];
 	public static Property[] ConfigProperty = new Property[configQty];
-	public static int[] ConfigValue = new int[1];
+	public static int[] ConfigValue = new int[configQty];
   
   public static void init() {
   /*
@@ -511,7 +516,7 @@ public class MpConfiguration {
    * Loader.instance().getConfigDir() returns the default config directory and you specify
    * 	the name of the config file, together this works similar to the old getSuggestedConfigurationFile() function
    */
-    File configFile = new File(Loader.instance().getConfigDir(), "MisingPieces-4.1.cfg");
+    File configFile = new File(Loader.instance().getConfigDir(), "MisingPieces-4.2.cfg");
     //initialize your configuration object with your configuration file values
     config = new Configuration(configFile);
 
@@ -632,10 +637,10 @@ public class MpConfiguration {
 	    	//System.out.println("Config "+item.getName()+" which is number "+item.ordinal()+" in the list.");
 	    	ConfigProperty[item.ordinal()] = config.get(item.getCategory(), item.getName(), item.getEnable());
 	    	ConfigProperty[item.ordinal()].setLanguageKey("tile."+item.getName()+".name").setRequiresMcRestart(true);
-    	} else
+    	} else if ( item.getMod() == ModType.MOD_CONFIG_VALUE)
     	{
 
-    		ConfigProperty[item.ordinal()] = config.get(item.getCategory(), item.getName(), item.getDefInt(), "Number of wedges per recipe.", item.getMin(), item.getMax() );
+    		ConfigProperty[item.ordinal()] = config.get(item.getCategory(), item.getName(), item.getDefInt(), item.getComment(), item.getMin(), item.getMax() );
 	    	ConfigProperty[item.ordinal()].setLanguageKey("tile."+item.getName()+".name").setRequiresMcRestart(true);
 
     	}
@@ -669,7 +674,7 @@ public class MpConfiguration {
 
 	      	//System.out.println("Enabling "+item.getName()+" which is number "+item.ordinal()+" in the list.");
 	      	BlockEnable[item.ordinal()] = ConfigProperty[item.ordinal()].getBoolean();
-      	} else {
+      	} else if (item.getMod() == ModType.MOD_CONFIG_VALUE){
 	      	ConfigValue[item.ordinal()] = ConfigProperty[item.ordinal()].getInt();
 
       	}
@@ -696,7 +701,7 @@ public class MpConfiguration {
 
 	      	//System.out.println("Enabling "+item.getName()+" which is number "+item.ordinal()+" in the list.");
 	      	ConfigProperty[item.ordinal()].set(BlockEnable[item.ordinal()]);
-    	} else {
+    	} else if (item.getMod() == ModType.MOD_CONFIG_VALUE){
 	      	ConfigProperty[item.ordinal()].set(ConfigValue[item.ordinal()]);
 
     	}

@@ -168,14 +168,6 @@ public class BlockPillar extends MpBlock
     		  					maxX,  maxY, maxZ);
     
   }
-  public String getOredictName()
-  {
-	  	// convert string modid_object_type to objectType
-	  	String name = this.getUnlocalizedName().substring(5);
-	  	String parts[] = name.split("_");
-		String firstLetter = parts[1].substring(0,1);
-	  return parts[0]+":"+firstLetter.toUpperCase(Locale.ENGLISH)+":"+parts[1].substring(1);
-  }
 
   @SideOnly(Side.CLIENT)
   public BlockRenderLayer getBlockLayer()

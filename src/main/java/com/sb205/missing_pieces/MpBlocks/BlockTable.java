@@ -34,14 +34,6 @@ public class BlockTable extends MpBlock
     this.setHardness(0.5F);
 
   }
-  public String getOredictName()
-  {
-	  	// convert string modid_object_type to objectType
-	  	String name = this.getUnlocalizedName().substring(5);
-	  	String parts[] = name.split("_");
-		String firstLetter = parts[1].substring(0,1);
-	  return parts[0]+":"+firstLetter.toUpperCase(Locale.ENGLISH)+":"+parts[1].substring(1);
-  }
 
   @SideOnly(Side.CLIENT)
   public BlockRenderLayer getBlockLayer()

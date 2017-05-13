@@ -134,15 +134,6 @@ public class BlockChair extends MpBlock
   }
 
 
-  public String getOredictName()
-  {
-	  	// convert string modid_object_type to objectType
-	  	String name = this.getUnlocalizedName().substring(5);
-	  	String parts[] = name.split("_");
-		String firstLetter = parts[1].substring(0,1);
-	  return parts[0]+":"+firstLetter.toUpperCase(Locale.ENGLISH)+":"+parts[1].substring(1);
-  }
-
   // the block will render in the SOLID layer.  See http://greyminecraftcoder.blogspot.co.at/2014/12/block-rendering-18.html for more information.
   @SideOnly(Side.CLIENT)
   public BlockRenderLayer getBlockLayer()
