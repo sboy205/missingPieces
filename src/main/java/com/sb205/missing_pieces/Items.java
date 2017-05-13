@@ -70,7 +70,7 @@ public class Items {
 
 		if(enabled) { 
 			// Take "item." off name to get actual name.
-			System.out.println("register Item: " + item);
+			//System.out.println("register Item: " + item);
 			String name = item.getUnlocalizedName().substring(5);
 		    ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation("missing_pieces:"+name, "inventory");
 		    Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, DEFAULT_ITEM_SUBTYPE, itemModelResourceLocation);
