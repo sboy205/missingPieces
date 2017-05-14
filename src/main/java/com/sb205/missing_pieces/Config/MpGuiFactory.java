@@ -702,7 +702,7 @@ public class MpGuiFactory implements IModGuiFactory
 				Configuration configuration = MpConfiguration.getConfig();
 				ConfigElement cat_general = new ConfigElement(configuration.getCategory(MpConfiguration.CATEGORY_NAME_MINERAL_WEDGES));
 				List<IConfigElement> propertiesOnThisScreen = cat_general.getChildElements();
-				String windowTitle = I18n.format("gui.configuration.misc");
+				String windowTitle = I18n.format("gui.configuration.mineralwedges");
 
 				return new GuiConfig(this.owningScreen, propertiesOnThisScreen,
 						this.owningScreen.modID,
@@ -736,7 +736,7 @@ public class MpGuiFactory implements IModGuiFactory
 			Configuration configuration = MpConfiguration.getConfig();
 			ConfigElement cat_general = new ConfigElement(configuration.getCategory(MpConfiguration.CATEGORY_NAME_MINERAL_PILLARS));
 			List<IConfigElement> propertiesOnThisScreen = cat_general.getChildElements();
-			String windowTitle = I18n.format("gui.configuration.misc");
+			String windowTitle = I18n.format("gui.configuration.mineralpillars");
 
 			return new GuiConfig(this.owningScreen, propertiesOnThisScreen,
 					this.owningScreen.modID,
