@@ -43,7 +43,7 @@ public class BlockCandelabra extends MpBlock {
 	  // when the block is placed, set the appropriate facing direction based on which way the player is looking
 	  // the colour of block is contained in meta, it corresponds to the values we used for getSubBlocks
 	  @Override
-	  public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing blockFaceClickedOn, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+	  public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing blockFaceClickedOn, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	  {
 		    // find the quadrant the player is facing
 	    EnumFacing enumfacing = EnumFacing.NORTH;

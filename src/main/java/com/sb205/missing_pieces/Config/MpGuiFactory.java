@@ -10,6 +10,7 @@ import net.minecraftforge.fml.client.config.DummyConfigElement.DummyCategoryElem
 import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.GuiConfigEntries;
 import net.minecraftforge.fml.client.config.GuiConfigEntries.CategoryEntry;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.client.config.IConfigElement;
 
 import java.util.ArrayList;
@@ -64,7 +65,8 @@ public class MpGuiFactory implements IModGuiFactory
 		private static List<IConfigElement> getConfigElements() 
 		{
 			List<IConfigElement> list = new ArrayList<IConfigElement>();
-			//Add the two buttons that will go to each config category edit screen
+			//Add the two buttons that will go to each config category edit screen    
+
 			list.add(new DummyCategoryElement("wedgesCfg", 			"gui.configuration.wedges", 		CategoryEntryWedges.class));
 			list.add(new DummyCategoryElement("pillarsCfg", 		"gui.configuration.pillars", 		CategoryEntryPillars.class));
 			list.add(new DummyCategoryElement("LampsCfg", 			"gui.configuration.lamps", 			CategoryEntryLamps.class));

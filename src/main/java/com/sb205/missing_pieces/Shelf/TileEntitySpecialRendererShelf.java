@@ -30,9 +30,9 @@ import com.sb205.missing_pieces.Utilities.UsefulFunctions;
 import java.awt.*;
 
 /**
- * User: sboy205
- * Date: 5/9/2017
- *
+ * User: The Grey Ghost
+ * Date: 12/01/2015
+ * The base model is drawn by the block model, not this class.
  */
 public class TileEntitySpecialRendererShelf extends TileEntitySpecialRenderer
 {
@@ -51,10 +51,10 @@ public class TileEntitySpecialRendererShelf extends TileEntitySpecialRenderer
    */
   @Override
   public void renderTileEntityAt(TileEntity tileEntity, double relativeX, double relativeY, double relativeZ, float partialTicks, int blockDamageProgress) {
-		 EntityItem entityTemp1 = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
-		 EntityItem entityTemp2 = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
-		 EntityItem entityTemp3 = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
-		 EntityItem entityTemp4 = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
+		 EntityItem entityTemp1 = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D);
+		 EntityItem entityTemp2 = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D);
+		 EntityItem entityTemp3 = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D);
+		 EntityItem entityTemp4 = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D);
 
 	if (!(tileEntity instanceof TileEntityShelf)) return; // should never happen
     TileEntityShelf tileEntityShelf = (TileEntityShelf) tileEntity;
@@ -63,7 +63,7 @@ public class TileEntitySpecialRendererShelf extends TileEntitySpecialRenderer
     ItemStack item2 = tileEntityShelf.getStackInSlot(2);
     ItemStack item3 = tileEntityShelf.getStackInSlot(3);
     ItemRenderer renderTool = Minecraft.getMinecraft().getItemRenderer();
-    EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
+    EntityPlayerSP player = Minecraft.getMinecraft().player;
     
     try {
         // save the transformation matrix and the rendering attributes, so that we can restore them after rendering.  This
@@ -114,6 +114,82 @@ public class TileEntitySpecialRendererShelf extends TileEntitySpecialRenderer
         GL11.glPopAttrib();
         GL11.glPopMatrix();
       }
+    /*
+    try {
+      // save the transformation matrix and the rendering attributes, so that we can restore them after rendering.  This
+      //   prevents us disrupting any vanilla TESR that render after ours.
+      //  using try..finally is not essential but helps make it more robust in case of exceptions
+      GL11.glPushMatrix();
+      GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
+      //GL11.glTranslatef((float) relativeX+0.50F, (float) relativeY+0.0F, (float) relativeZ+0.50F); 
+
+      //GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F); 
+      
+      int meta = tileEntityShelf.getBlockMetadata();
+      EnumFacing facing = EnumFacing.getHorizontal(meta);
+      int angle = 0; // EnumFacing.SOUTH
+		if(facing == EnumFacing.EAST)
+		{
+			angle = 90;
+		}
+		if(facing == EnumFacing.NORTH)
+		{
+			angle = 180;
+		}
+		if(facing == EnumFacing.WEST)
+		{
+			angle = 270;
+		}
+
+      //GL11.glRotatef(angle, 0.0F, 1.0F, 0.0F); 
+      //GL11.glScalef(0.25F, 0.25F, 0.25F);
+      //GL11.glTranslatef(0.9F, 2.65F, 0.60F); 
+        GL11.glTranslatef((float) relativeX+0.50F, (float) relativeY+0.0F, (float) relativeZ+0.50F); 
+		GL11.glRotatef(angle, 0F, 1F, 0F); 
+
+      if(item0 != null) {
+    	  //System.out.println("item0");
+
+			//GL11.glTranslatef((float) posX + 0.5F + xOffset, (float) posY + 0.05F, (float) posZ + 0.3F + zOffset); 
+ 			//GL11.glRotatef(180, 0, 1, 1); 
+ 			entityTemp1.setEntityItemStack(item0);
+ 			entityTemp1.hoverStart=0;
+ 			//entityTemp1.setPositionAndRotation(x, y, z, yaw, pitch);
+ 			Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityTemp1, 0.25D, 0.310D, 0.15D,  0.0F, 0.0F, true);  
+ 		    //renderTool.renderItem(null, item0, TransformType.NONE);
+
+    	  //renderTool.renderItem(livingEntity, item0, TransformType.NONE);
+      } 
+      //GL11.glTranslatef(-1.75F, 0.0F, 0.0F); 
+      if(item1 != null) {
+			entityTemp2.setEntityItemStack(item1);
+ 			entityTemp2.hoverStart=0;
+ 			Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityTemp2, -0.25D, 0.310D, 0.15D,  0.0F, 0.0F, true);  
+
+    	  //renderTool.renderItem(livingEntity, item1, TransformType.NONE);
+      } 
+      //GL11.glTranslatef(1.75F, -1.87F, 0.0F); 
+      if(item2 != null) {
+			entityTemp3.setEntityItemStack(item2);
+ 			entityTemp3.hoverStart=0;
+ 			Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityTemp3, 0.25D,  -0.160D, 0.15D,  0.0F, 0.0F, true);  
+
+    	  //renderTool.renderItem(livingEntity, item2, TransformType.NONE);
+      } 
+     // GL11.glTranslatef(-1.75F, 0.0F, 0.0F); 
+      if(item3 != null) {
+			entityTemp4.setEntityItemStack(item3);
+ 			entityTemp4.hoverStart=0;
+ 			Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityTemp4,-0.25D, -0.160D, 0.15D,  0.0F, 0.0F, true);  
+
+    	  //renderTool.renderItem(livingEntity, item3, TransformType.NONE);
+      } 
+
+    } finally {
+      GL11.glPopAttrib();
+      GL11.glPopMatrix();
+    }
+    */
   }
 
 

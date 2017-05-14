@@ -72,7 +72,7 @@ public class BlockChair extends MpBlock
 
   // when the block is placed, set the appropriate facing direction based on which way the player is looking
   @Override
-  public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing blockFaceClickedOn, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+  public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing blockFaceClickedOn, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
   {
 	    // find the quadrant the player is facing
     EnumFacing enumfacing = (placer == null) ? EnumFacing.NORTH : EnumFacing.fromAngle(placer.rotationYaw);
@@ -82,7 +82,7 @@ public class BlockChair extends MpBlock
   
   // Make Chair mountable
 	@Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		//System.out.println("Sitting in Chair x:" + pos.getX() + " y:" + pos.getY()  + " z:" + pos.getZ());
 		return MountableUtil.MountBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, (double)(7/16.0));
@@ -103,14 +103,14 @@ public class BlockChair extends MpBlock
   	super.harvestBlock(worldIn, player, pos, state, te, stack);
   	//System.out.println("Harvest Chair");
   }
-
+/*
   @Override
   public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World worldIn, BlockPos pos)
   {
       return getAxisAlignedBBFromFacing(pos);
       //return new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ);
   }
-
+*/
   @Override
   @SideOnly(Side.CLIENT)
   public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)

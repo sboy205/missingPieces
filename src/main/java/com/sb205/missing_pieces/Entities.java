@@ -6,6 +6,7 @@ import com.sb205.missing_pieces.Utilities.BlockInfo.BlockType;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -18,7 +19,9 @@ public class Entities {
 
 	public static void preInitCommon(){
 		// Register mountable entity for chairs
-	    EntityRegistry.registerModEntity(EntityMountableObject.class, 	"MountableObject", 	MpEntityId++, MissingPieces.instance, 80, 3, false);
+		ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation("missing_pieces:"+"MountableObject", "inventory");
+
+	    EntityRegistry.registerModEntity(itemModelResourceLocation, EntityMountableObject.class, "MountableObject", MpEntityId++, MissingPieces.instance, 80, 3, false);
 	};
 
 

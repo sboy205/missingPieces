@@ -56,6 +56,7 @@ public class TileEntities {
 		jungleShelf = 	createShelf("jungle_shelf", 	BlockType.BT_PLANK_JUNGLE, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_JUNGLE.ordinal()]);
 		oakShelf = 		createShelf("oak_shelf", 		BlockType.BT_PLANK_OAK, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_OAK.ordinal()]);
 		spruceShelf = 	createShelf("spruce_shelf",		BlockType.BT_PLANK_SPRUCE, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_SPRUCE.ordinal()]);
+		GameRegistry.registerTileEntityWithAlternatives(TileEntityShelf.class, "acaia_shelf","birch_shelf","dark_oak_shelf", "jungle_shelf","oak_shelf","spruce_shelf");
 		if (Loader.isModLoaded("natura")) {
 			try {
 				// Natura shelves
@@ -151,7 +152,7 @@ public class TileEntities {
 			    GameRegistry.register(blockShelf.setRegistryName(name));
 				GameRegistry.register(new ItemBlock(blockShelf).setRegistryName(blockShelf.getRegistryName()));
 
-				GameRegistry.registerTileEntity(TileEntityShelf.class, name);
+				//GameRegistry.registerTileEntity(TileEntityShelf.class, name);
 			
 				GameRegistry.addRecipe(new ItemStack(blockShelf, 3),
 		        	" A ",
@@ -159,11 +160,11 @@ public class TileEntities {
 		        	" A ",
 		        	'A', BlockInfo.blockType2Stack(ingredientA),
 		        	'B', BlockInfo.blockType2Stack(BlockType.BT_CHEST)
-		    );
+			);
+			NetworkRegistry.INSTANCE.registerGuiHandler(MissingPieces.instance, GuiHandlerRegistry.getInstance());
+			GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandlerShelf(), GuiHandlerShelf.getGuiID());
 		  }
 
-		  NetworkRegistry.INSTANCE.registerGuiHandler(MissingPieces.instance, GuiHandlerRegistry.getInstance());
-		  GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandlerShelf(), GuiHandlerShelf.getGuiID());
 		  return blockShelf;
 
 	}

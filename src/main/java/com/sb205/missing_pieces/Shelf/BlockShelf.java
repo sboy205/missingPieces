@@ -1,8 +1,11 @@
 package com.sb205.missing_pieces.Shelf;
 
 import java.awt.Color;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
+
+import javax.annotation.Nullable;
 
 import com.sb205.missing_pieces.MissingPieces;
 import com.sb205.missing_pieces.Config.MpConfiguration;
@@ -28,7 +31,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -46,11 +48,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 
 /**
- * User: sboy205
- * Date: 5/9/2017
+ * User: brandon3055
+ * Date: 06/01/2015
  *
+ * BlockInventoryBasic is a simple inventory capable of storing 9 item stacks. The block itself doesn't do much more
+ * then any regular block except create a tile entity when placed, open a gui when right clicked and drop tne
+ * inventory's contents when harvested. The actual storage is handled by the tile entity.
  */
-
 public class BlockShelf extends BlockContainer implements ITileEntityProvider
 {
 	public BlockShelf(Material mType, Float matHardness)
@@ -58,9 +62,9 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 		super(mType);
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);     // the block will appear on the Blocks tab.
 	    this.setHardness(matHardness);
-	    //System.out.println("new shelf");
+
 	}
-	
+
 	  // Our block has a property:
 	  // 1) PROPERTYFACING for which way the sign points (east, west, north, south).  EnumFacing is as standard used by vanilla for a number of blocks.
 	  public static final PropertyDirection PROPERTYFACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
@@ -68,7 +72,7 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 			//		Name					Ingredient					Material		Enable/Disable
 			ACACIA("acacia_shelf",		BlockType.BT_PLANK_ACACIA,	Material.WOOD,	MpConfiguration.BlockEnable[ConfigInfo.SHELF_ACACIA.ordinal()]),
 			BIRCH("birch_shelf",		BlockType.BT_PLANK_BIRCH, 	Material.WOOD,	MpConfiguration.BlockEnable[ConfigInfo.SHELF_BIRCH.ordinal()]),
-			DARK_OAK("dark_oak_shelf", 	BlockType.BT_PLANK_DARK_OAK, Material.WOOD, MpConfiguration.BlockEnable[ConfigInfo.SHELF_DARK_OAK.ordinal()]),
+			DARK_OAK("dark_oak_shelf", 	BlockType.BT_PLANK_DARK_OAK,Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_DARK_OAK.ordinal()]),
 			JUNGLE("jungle_shelf", 		BlockType.BT_PLANK_JUNGLE, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_JUNGLE.ordinal()]),
 			OAK("oak_shelf", 			BlockType.BT_PLANK_OAK, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_OAK.ordinal()]),
 			SPRUCE("spruce_shelf", 		BlockType.BT_PLANK_SPRUCE, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_SPRUCE.ordinal()]);
@@ -92,6 +96,11 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 
 		};
 
+	  // getStateFromMeta, getMetaFromState are used to interconvert between the block's property values and
+	  //   the stored metadata (which must be an integer in the range 0 - 15 inclusive)
+	  // The property is encode as:
+	  // - lower two bits = facing direction (i.e. 0, 1, 2, 3)
+	  // - upper two bits = colour (i.e. 0, 4, 8, 12)
 	  @Override
 	  public IBlockState getStateFromMeta(int meta)
 	  {
@@ -107,7 +116,15 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 	    int facingbits = facing.getHorizontalIndex();
 	    return facingbits;
 	  }
-	  
+	  public EnumFacing getFacingFromState(IBlockState state)
+	  {
+	    EnumFacing facing = (EnumFacing)state.getValue(PROPERTYFACING);
+
+	    return facing;
+	  }
+
+	  // necessary to define which properties your blocks use
+	  // will also affect the variants listed in the blockstates model file
 	  @Override
 	  protected BlockStateContainer createBlockState()
 	  {
@@ -119,7 +136,6 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 	// Should return a new instance of the tile entity for the block
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		//System.out.println("Created New tile Entity");
 		return new TileEntityShelf();
 	}
 
@@ -127,22 +143,55 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 	  @Override
 	  public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 	    super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
-	    
-	    //System.out.println("block placedBy");
+
 	    TileEntity tileentity = worldIn.getTileEntity(pos);
 	    if (tileentity instanceof TileEntityShelf) { // prevent a crash if not the right type, or is null
 	    	TileEntityShelf tileEntityInventoryBasic = (TileEntityShelf)tileentity;
 
 	    }
 	  }
-	  
 	  @Override
-	  	public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World worldIn, BlockPos pos)
+	    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	    {
-		    EnumFacing enumfacing = EnumFacing.getHorizontal(getMetaFromState(state));
-		    return getAxisAlignedBBFromFacing(enumfacing);
+	        return getAxisAlignedBBFromFacing(getFacingFromState(state));
+	    }
+/*
+	    @Deprecated
+	    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
+	    {
+	        addCollisionBoxToList(pos, entityBox, collidingBoxes, state.getCollisionBoundingBox(worldIn, pos));
 	    }
 
+	 
+	    protected static void addCollisionBoxToList(BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable AxisAlignedBB blockBox)
+	    {
+	        if (blockBox != NULL_AABB)
+	        {
+	            AxisAlignedBB axisalignedbb = blockBox.offset(pos);
+
+	            if (entityBox.intersectsWith(axisalignedbb))
+	            {
+	                collidingBoxes.add(axisalignedbb);
+	            }
+	        }
+	    }
+*/
+	  //@Override
+	  //	public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World worldIn, BlockPos pos)
+	  //  {
+		//    EnumFacing enumfacing = EnumFacing.getHorizontal(getMetaFromState(state));
+		//    return getAxisAlignedBBFromFacing(enumfacing, pos);
+		    //return new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ);
+	   // }
+/*
+	  @Override//
+	    @SideOnly(Side.CLIENT)
+	    public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+	    {
+		    EnumFacing enumfacing = EnumFacing.getHorizontal(getMetaFromState(worldIn.getBlockState(pos)));
+		    return getAxisAlignedBBFromFacing(enumfacing, pos);
+	    }
+*/	  
 	  private AxisAlignedBB getAxisAlignedBBFromFacing(EnumFacing facing)
 	  {
 		  	double minX, minY, minZ;
@@ -188,12 +237,12 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 		  
 	  }
 	  
+	  // when the block is placed, set the appropriate facing direction based on which way the player is looking
+	  // the colour of block is contained in meta, it corresponds to the values we used for getSubBlocks
 	  @Override
-	  public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing blockFaceClickedOn, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+	  public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing blockFaceClickedOn, float hitZ, float hitY, float hitX, int meta, EntityLivingBase placer)
 	  {
 		    // find the quadrant the player is facing
-		//System.out.println("block placed");
-
 	    EnumFacing enumfacing = (placer == null) ? EnumFacing.NORTH : EnumFacing.fromAngle(placer.rotationYaw);
 
 	    return this.getDefaultState().withProperty(PROPERTYFACING, enumfacing);
@@ -202,17 +251,16 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 	// Called when the block is right clicked
 	// In this block it is used to open the blocks gui when right clicked by a player
 	@Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)  {
-	    //System.out.println("block Activated");
-
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float hitZ, float hitY, float hitX) {
 		// Uses the gui handler registered to your mod to open the gui for the given gui id
 		// open on the server side only  (not sure why you shouldn't open client side too... vanilla doesn't, so we better not either)
 		final float SHELF_FRONT = 0.5F; // coordinate of front of shelf... half a block.
 		if (worldIn.isRemote) return true;
+		ItemStack airStack = new ItemStack(Blocks.AIR,1);
 		IInventory inventory = worldIn.getTileEntity(pos) instanceof IInventory ? (IInventory)worldIn.getTileEntity(pos) : null;
 		float eyeHeight = playerIn.getEyeHeight();
-	    	double actualY, actualZ, actualX, delta;
-	    	/*
+	    double actualY, actualZ, actualX, delta;
+	    	/* BlockChest
 			System.out.println("player eye height is: " + eyeHeight);
 			System.out.println("shelf position y: " + pos.getY());
 			System.out.println("shelf position x: " + pos.getX());
@@ -226,114 +274,90 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 			*/
 			//System.out.println("player has: " + playerIn.getCurrentEquippedItem().toString() + " In his hand" );
 		    EnumFacing enumfacing = EnumFacing.getHorizontal(getMetaFromState(state));
-		    int selectedSlot = 0; 
+		    int selectedSlot = 0;
+		    if (worldIn.isRemote)
+	        {
+	            return true;
+	        }
+	        
 		    switch(enumfacing){
 		    default:
 		    case NORTH:
-		    	delta = (hitZ-SHELF_FRONT)/playerIn.getLookVec().zCoord;
+		    	//delta = (hitZ-SHELF_FRONT)/playerIn.getLookVec().zCoord;
+		    	delta = (hitX-SHELF_FRONT)/playerIn.getLookVec().zCoord;
 		    	actualY = hitY-delta*playerIn.getLookVec().yCoord;
-		    	actualX = hitX-delta*playerIn.getLookVec().xCoord;
+		    	actualX = hitZ;//-delta*playerIn.getLookVec().xCoord;
 		    	//System.out.println("north: actualY: " + actualY + " actualX:" + actualX);
-
-		    	if(actualY > 0.5F) {
-		    		if (actualX > 0.5F) {
-		    			selectedSlot = 1;
-		    		} else {
-		    			selectedSlot = 0;
-		    		}	
-		    	} else {
-		    		if (actualX > 0.5F) {
-		    			selectedSlot = 3;
-		    		} else {
-		    			selectedSlot = 2;
-		    		}
-		    	}
 		    	//System.out.println("north");
 		    	break;
 		    	
 		    case EAST:
 		    	delta = (SHELF_FRONT-hitX)/playerIn.getLookVec().xCoord;
-		    	actualY = hitY;
-		    	actualZ = hitZ;
-		    	//System.out.println("east: actualY: " + actualY + " actualZ:" + actualZ);
+		    	actualY = hitY;//-delta*playerIn.getLookVec().yCoord;
+		    	actualX = hitX;//-delta*playerIn.getLookVec().zCoord;
+		    	//System.out.println("east: actualY: " + actualY + " actualX:" + actualX);
 
-		    	if(actualY > 0.5F) {
-		    		if (actualZ > 0.5F) {
-		    			selectedSlot = 1;
-		    		} else {
-		    			selectedSlot = 0;
-		    		}	
-		    	} else {
-		    		if (actualZ > 0.5F) {
-		    			selectedSlot = 3;
-		    		} else {
-		    			selectedSlot = 2;
-		    		}
-		    	}
 		    	//System.out.println("east");
 		    	break;
 		    	
 		    case SOUTH:
-		    	delta = (hitZ-SHELF_FRONT)/playerIn.getLookVec().zCoord;
+		    	//delta = (hitZ-SHELF_FRONT)/playerIn.getLookVec().zCoord;
+		    	delta = (hitX-SHELF_FRONT)/playerIn.getLookVec().zCoord;
 		    	actualY = hitY-delta*playerIn.getLookVec().yCoord;
-		    	actualX = hitX-delta*playerIn.getLookVec().xCoord;
+		    	actualX = 1.0F-hitZ;//-delta*playerIn.getLookVec().xCoord;
 		    	//System.out.println("south: actualY: " + actualY + " actualX:" + actualX);
 
-		    	if(actualY > 0.5F) {
-		    		if (actualX < 0.5F) {
-		    			selectedSlot = 1;
-		    		} else {
-		    			selectedSlot = 0;
-		    		}	
-		    	} else {
-		    		if (actualX < 0.5F) {
-		    			selectedSlot = 3;
-		    		} else {
-		    			selectedSlot = 2;
-		    		}
-		    	}
 		    	//System.out.println("south");
 		    	break;
 
 		    case WEST:
 		    	delta = (hitX-SHELF_FRONT)/playerIn.getLookVec().xCoord;
-		    	actualY = hitY;
-		    	actualZ = hitZ;
-		    	//System.out.println("west: actualY: " + actualY + " actualZ:" + actualZ);
-		    	if(actualY > 0.5F) {
-		    		if (actualZ < 0.5F) {
-		    			selectedSlot = 1;
-		    		} else {
-		    			selectedSlot = 0;
-		    		}	
-		    	} else {
-		    		if (actualZ < 0.5F) {
-		    			selectedSlot = 3;
-		    		} else {
-		    			selectedSlot = 2;
-		    		}
-		    	}
+		    	actualY = hitY;//-delta*playerIn.getLookVec().yCoord;
+		    	actualX = 1.0F-hitX;//-delta*playerIn.getLookVec().zCoord;
+		    	//System.out.println("west: actualY: " + actualY + " actualX:" + actualX);
 		    	//System.out.println("west");
 		    	break;
 
 		    }
-			if (((playerIn.getHeldItemMainhand() == null) && ( inventory.getStackInSlot(selectedSlot) == null)) || (inventory == null)) {
+
+		    //System.out.println("selected slot is: " + selectedSlot);
+		    //System.out.println("Hit x: " + hitX + "  Hit Y: " + hitY + " hitZ: "+ hitZ);
+		    if( actualY > 0.5F) {
+		    	if( actualX < 0.5F){
+		    		selectedSlot = 0;
+		    	} else {
+		    		selectedSlot = 1;
+		    	}
+		    } else {
+		    	if( actualX < 0.5F){
+		    		selectedSlot = 2;
+		    	} else {
+		    		selectedSlot = 3;
+		    	}
+		    }
+		    //System.out.println("New selected slot is: " + selectedSlot);
+		    if ((inventory == null) || (inventory.getStackInSlot(selectedSlot) == null) ||
+		        ((playerIn.getHeldItemMainhand().getItem()==airStack.getItem()) && ( inventory.getStackInSlot(selectedSlot).getItem()==airStack.getItem())) ) 
+		    {
+		    	
 				playerIn.openGui(MissingPieces.instance, GuiHandlerShelf.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
-			} else if ((playerIn.getHeldItemMainhand() == null) && ( inventory.getStackInSlot(selectedSlot) != null)) {
+				
+			} else if ((playerIn.getHeldItemMainhand().getItem() == airStack.getItem()) && ( !(inventory.getStackInSlot(selectedSlot).getItem() == airStack.getItem()) )) {
 				// Take the slot and put in player's hand.
 				playerIn.setHeldItem(EnumHand.MAIN_HAND, inventory.getStackInSlot(selectedSlot)); 
-				inventory.setInventorySlotContents(selectedSlot, null);
+				inventory.setInventorySlotContents(selectedSlot, airStack);
 				worldIn.notifyBlockUpdate(pos, state, state, 3);  
 
 			} else 
 				//System.out.println("Selected slot is:" + selectedSlot) ;
 				//Add to inventory.
-				if(inventory.getStackInSlot(selectedSlot) == null){
+				if((inventory.getStackInSlot(selectedSlot)!= null) &&(inventory.getStackInSlot(selectedSlot).getItem() == airStack.getItem() )){
 					inventory.setInventorySlotContents(selectedSlot,playerIn.getHeldItemMainhand());
-					playerIn.setHeldItem(EnumHand.MAIN_HAND, null);
+					playerIn.setHeldItem(EnumHand.MAIN_HAND, airStack);
 					worldIn.notifyBlockUpdate(pos, state, state, 3);  
 				} else {
 					// just open the gui
+					System.out.println("guiID: " + GuiHandlerShelf.getGuiID());
 					playerIn.openGui(MissingPieces.instance, GuiHandlerShelf.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
 
 				}
@@ -367,7 +391,7 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 					item.motionZ = motionZ * multiplier;
 
 					// Spawn the item in the world
-					worldIn.spawnEntityInWorld(item);
+					worldIn.spawnEntity(item);
 				}
 			}
 
@@ -383,24 +407,13 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 		  	// convert string modid_object_type to objectType
 		  	String name = this.getUnlocalizedName().substring(5);
 		  	String parts[] = name.split("_");
-		  	String firstLetter0 = parts[0].substring(0,1);
-		  	String firstLetter1 = parts[1].substring(0,1);
-			if (parts.length ==3){
-				return parts[2]+firstLetter0.toUpperCase(Locale.ENGLISH)+parts[0].substring(1)+firstLetter1.toUpperCase(Locale.ENGLISH)+parts[1].substring(1);
-			} else if (parts.length == 4){
-					String firstLetter2 = parts[2].substring(0,1);
-					return parts[3]+firstLetter0.toUpperCase(Locale.ENGLISH)+parts[0].substring(1)+
-									firstLetter1.toUpperCase(Locale.ENGLISH)+parts[1].substring(1)+
-									firstLetter2.toUpperCase(Locale.ENGLISH)+parts[2].substring(1);
-			} else {
-				// must be 2 parts
-				return parts[1]+firstLetter0.toUpperCase(Locale.ENGLISH)+parts[0].substring(1);	
-			}
-		  
+			String firstLetter = parts[1].substring(0,1);
+		  return parts[0]+":"+firstLetter.toUpperCase(Locale.ENGLISH)+":"+parts[1].substring(1);
 	  }
 
 	//---------------------------------------------------------
 
+	// the block will render in the SOLID layer.  See http://greyminecraftcoder.blogspot.co.at/2014/12/block-rendering-18.html for more information.
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer()
 	{
@@ -421,72 +434,12 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
-	  @Override
-	    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	    {
-	        return getAxisAlignedBBFromFacing(getFacingFromState(state));
-	    }
-	  public EnumFacing getFacingFromState(IBlockState state)
-	  {
-	    EnumFacing facing = (EnumFacing)state.getValue(PROPERTYFACING);
 
-	    return facing;
-	  }
-  
+	// render using a BakedModel
+	// not strictly required because the default (super method) is 3.
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
 		return EnumBlockRenderType.MODEL;
 	}
 
-    public IBlockState correctFacing(World worldIn, BlockPos pos, IBlockState state)
-    {
-        EnumFacing enumfacing = null;
-//System.out.println("correcting facing");
-        for (EnumFacing enumfacing1 : EnumFacing.Plane.HORIZONTAL)
-        {
-            IBlockState iblockstate = worldIn.getBlockState(pos.offset(enumfacing1));
-
-            if (iblockstate.getBlock() == this)
-            {
-                return state;
-            }
-
-            if (iblockstate.isFullBlock())
-            {
-                if (enumfacing != null)
-                {
-                    enumfacing = null;
-                    break;
-                }
-
-                enumfacing = enumfacing1;
-            }
-        }
-
-        if (enumfacing != null)
-        {
-            return state.withProperty(PROPERTYFACING, enumfacing.getOpposite());
-        }
-        else
-        {
-            EnumFacing enumfacing2 = (EnumFacing)state.getValue(PROPERTYFACING);
-
-            if (worldIn.getBlockState(pos.offset(enumfacing2)).isFullBlock())
-            {
-                enumfacing2 = enumfacing2.getOpposite();
-            }
-
-            if (worldIn.getBlockState(pos.offset(enumfacing2)).isFullBlock())
-            {
-                enumfacing2 = enumfacing2.rotateY();
-            }
-
-            if (worldIn.getBlockState(pos.offset(enumfacing2)).isFullBlock())
-            {
-                enumfacing2 = enumfacing2.getOpposite();
-            }
-
-            return state.withProperty(PROPERTYFACING, enumfacing2);
-        }
-    }
 }

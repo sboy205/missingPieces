@@ -53,21 +53,21 @@ public class EntityMountableObject extends Entity {
 	@Override
 	public void onEntityUpdate()
 	{
-		if (!this.worldObj.isRemote && !this.firstUpdate) // allow time to mount
+		if (!this.world.isRemote && !this.firstUpdate) // allow time to mount
 		{
-			if ( this.worldObj.isAirBlock(new BlockPos(blockPosX, blockPosY, blockPosZ)))
+			if ( this.world.isAirBlock(new BlockPos(blockPosX, blockPosY, blockPosZ)))
 			{
 				// Kill entity when chair is destroyed
 				//System.out.println("killing chair air x:"+blockPosX+" y:"+blockPosY+" z:"+blockPosZ);
 				this.setDead();
-				worldObj.updateComparatorOutputLevel(getPosition(), worldObj.getBlockState(getPosition()).getBlock());
+				world.updateComparatorOutputLevel(getPosition(), world.getBlockState(getPosition()).getBlock());
 			}
 			if ( !this.isBeingRidden()  )
 			{
 				// Kill entity when dismounted
 				//System.out.println("killing chair no passenger x:"+blockPosX+" y:"+blockPosY+" z:"+blockPosZ);
 				this.setDead();
-				worldObj.updateComparatorOutputLevel(getPosition(), worldObj.getBlockState(getPosition()).getBlock());
+				world.updateComparatorOutputLevel(getPosition(), world.getBlockState(getPosition()).getBlock());
 			}
 			if( this.getRidingEntity() != null && this.getRidingEntity().isSneaking() ){
 				this.removePassenger(this.getRidingEntity());

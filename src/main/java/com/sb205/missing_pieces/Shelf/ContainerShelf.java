@@ -7,9 +7,12 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 /**
- * User: sboy205
- * Date: 5/9/2017
+ * User: brandon3055
+ * Date: 06/01/2015
  *
+ * The container is used to link the client side gui to the server side inventory and it is where
+ * you add the slots to your gui. It can also be used to sync server side data with the client but
+ * that will be covered in a later tutorial
  */
 public class ContainerShelf extends Container {
 
@@ -78,7 +81,7 @@ public class ContainerShelf extends Container {
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return tileEntityShelf.isUseableByPlayer(player);
+		return tileEntityShelf.isUsableByPlayer(player);
 	}
 
 	// This is where you specify what happens when a player shift clicks a slot in the gui
@@ -113,13 +116,13 @@ public class ContainerShelf extends Container {
 		}
 
 		// If stack size == 0 (the entire stack was moved) set slot contents to null
-		if (sourceStack.stackSize == 0) {
-			sourceSlot.putStack(null);
-		} else {
-			sourceSlot.onSlotChanged();
-		}
+		//if (sourceStack.stackSize == 0) {
+		//	sourceSlot.putStack(null);
+		//} else {
+		//	sourceSlot.onSlotChanged();
+		//}
 
-		sourceSlot.onPickupFromSlot(player, sourceStack);
+		//sourceSlot.onPickupFromSlot(player, sourceStack);
 		return copyOfSourceStack;
 	}
 
