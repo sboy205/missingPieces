@@ -75,6 +75,7 @@ public class MpGuiFactory implements IModGuiFactory
 			list.add(new DummyCategoryElement("ChairsCfg", 			"gui.configuration.chairs", 		CategoryEntryChairs.class));
 			list.add(new DummyCategoryElement("SlabsCfg", 			"gui.configuration.slabs", 			CategoryEntrySlabs.class));
 			list.add(new DummyCategoryElement("ShelvesCfg", 		"gui.configuration.shelves", 		CategoryEntryShelves.class));
+	    	list.add(new DummyCategoryElement("MiscCfg", 			"gui.configuration.misc", 			CategoryEntryMisc.class));
 		    if (Loader.isModLoaded("mineralogy")) {
 		    	list.add(new DummyCategoryElement("MineralWedgeCfg", 	"gui.configuration.mineralwedges", 	CategoryEntryMineralWedges.class));
 		    	list.add(new DummyCategoryElement("MineralpillarCfg", 	"gui.configuration.mineralpillars", CategoryEntryMineralPillars.class));
@@ -82,7 +83,6 @@ public class MpGuiFactory implements IModGuiFactory
 		    if (Loader.isModLoaded("basemetals")) {
 		    	list.add(new DummyCategoryElement("BaseLampsCfg", 		"gui.configuration.baselamps", 		CategoryEntryBaseLamps.class));
 		    	list.add(new DummyCategoryElement("BaseCandelabrasCfg", "gui.configuration.basecandelabras", CategoryEntryBaseCandelabras.class));
-		    	list.add(new DummyCategoryElement("MiscCfg", 			"gui.configuration.misc", 			CategoryEntryMisc.class));
 		    }
 		    if (Loader.isModLoaded("natura")) {
 		    	list.add(new DummyCategoryElement("naturaWedgesCfg", 	"gui.configuration.naturawedges", 		CategoryEntryNaturaWedges.class));
