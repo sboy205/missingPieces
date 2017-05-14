@@ -379,5 +379,9 @@ gui.configuration.naturacandelabras.tooltip=Enable/Disable Natura Candelabras
 gui.configuration.naturacandelabras=Natura Candelabras
 gui.configuration.naturashelves=Natura Shelves
 gui.configuration.naturashelves.tooltip=Enable/Disable Natura Shelves
+gui.configuration.naturashelves=Mineralogy Wedges
+gui.configuration.naturashelves.tooltip=Enable/Disable Mineralogy Wedges
+gui.configuration.naturashelves=Mineralogy Pillars
+gui.configuration.naturashelves.tooltip=Enable/Disable Mineralogy Pillars
 
 
