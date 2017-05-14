@@ -65,7 +65,7 @@ public class MpGuiFactory implements IModGuiFactory
 		private static List<IConfigElement> getConfigElements() 
 		{
 			List<IConfigElement> list = new ArrayList<IConfigElement>();
-			//Add the two buttons that will go to each config category edit screen    
+			//Add the two buttons that will go to each config category edit screen
 
 			list.add(new DummyCategoryElement("wedgesCfg", 			"gui.configuration.wedges", 		CategoryEntryWedges.class));
 			list.add(new DummyCategoryElement("pillarsCfg", 		"gui.configuration.pillars", 		CategoryEntryPillars.class));
@@ -75,17 +75,25 @@ public class MpGuiFactory implements IModGuiFactory
 			list.add(new DummyCategoryElement("ChairsCfg", 			"gui.configuration.chairs", 		CategoryEntryChairs.class));
 			list.add(new DummyCategoryElement("SlabsCfg", 			"gui.configuration.slabs", 			CategoryEntrySlabs.class));
 			list.add(new DummyCategoryElement("ShelvesCfg", 		"gui.configuration.shelves", 		CategoryEntryShelves.class));
-			list.add(new DummyCategoryElement("BaseLampsCfg", 		"gui.configuration.baselamps", 		CategoryEntryBaseLamps.class));
-			list.add(new DummyCategoryElement("BaseCandelabrasCfg", "gui.configuration.basecandelabras", CategoryEntryBaseCandelabras.class));
-			list.add(new DummyCategoryElement("MiscCfg", 			"gui.configuration.misc", 			CategoryEntryMisc.class));
-			list.add(new DummyCategoryElement("naturaWedgesCfg", 	"gui.configuration.naturawedges", 		CategoryEntryNaturaWedges.class));
-			list.add(new DummyCategoryElement("naturaPillarsCfg", 	"gui.configuration.naturapillars", 		CategoryEntryNaturaPillars.class));
-			list.add(new DummyCategoryElement("naturaLampsCfg", 	"gui.configuration.naturalamps", 		CategoryEntryNaturaLamps.class));
-			list.add(new DummyCategoryElement("naturaCandelabrasCfg","gui.configuration.naturacandelabras", CategoryEntryNaturaCandelabras.class));
-			list.add(new DummyCategoryElement("naturaTablesCfg", 	"gui.configuration.naturatables", 		CategoryEntryNaturaTables.class));
-			list.add(new DummyCategoryElement("naturaChairsCfg", 	"gui.configuration.naturachairs", 		CategoryEntryNaturaChairs.class));
-			list.add(new DummyCategoryElement("naturaShelvesCfg", 	"gui.configuration.naturashelves", 		CategoryEntryNaturaShelves.class));
-			return list;
+	    	list.add(new DummyCategoryElement("MiscCfg", 			"gui.configuration.misc", 			CategoryEntryMisc.class));
+		    if (Loader.isModLoaded("mineralogy")) {
+		    	list.add(new DummyCategoryElement("MineralWedgeCfg", 	"gui.configuration.mineralwedges", 	CategoryEntryMineralWedges.class));
+		    	list.add(new DummyCategoryElement("MineralpillarCfg", 	"gui.configuration.mineralpillars", CategoryEntryMineralPillars.class));
+		    }
+		    if (Loader.isModLoaded("basemetals")) {
+		    	list.add(new DummyCategoryElement("BaseLampsCfg", 		"gui.configuration.baselamps", 		CategoryEntryBaseLamps.class));
+		    	list.add(new DummyCategoryElement("BaseCandelabrasCfg", "gui.configuration.basecandelabras", CategoryEntryBaseCandelabras.class));
+		    }
+		    if (Loader.isModLoaded("natura")) {
+		    	list.add(new DummyCategoryElement("naturaWedgesCfg", 	"gui.configuration.naturawedges", 		CategoryEntryNaturaWedges.class));
+		    	list.add(new DummyCategoryElement("naturaPillarsCfg", 	"gui.configuration.naturapillars", 		CategoryEntryNaturaPillars.class));
+		    	list.add(new DummyCategoryElement("naturaLampsCfg", 	"gui.configuration.naturalamps", 		CategoryEntryNaturaLamps.class));
+		    	list.add(new DummyCategoryElement("naturaCandelabrasCfg","gui.configuration.naturacandelabras", CategoryEntryNaturaCandelabras.class));
+		    	list.add(new DummyCategoryElement("naturaTablesCfg", 	"gui.configuration.naturatables", 		CategoryEntryNaturaTables.class));
+		    	list.add(new DummyCategoryElement("naturaChairsCfg", 	"gui.configuration.naturachairs", 		CategoryEntryNaturaChairs.class));
+		    	list.add(new DummyCategoryElement("naturaShelvesCfg", 	"gui.configuration.naturashelves", 		CategoryEntryNaturaShelves.class));
+		    }
+		    return list;
 		}
 		
 		public static class CategoryEntryWedges extends CategoryEntry
@@ -674,7 +682,73 @@ public class MpGuiFactory implements IModGuiFactory
 				// how it works, look into the definitions of the called functions and objects
 			}
 		}
+		public static class CategoryEntryMineralWedges extends CategoryEntry
+		{
+			public CategoryEntryMineralWedges(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop)
+			{
+				super(owningScreen, owningEntryList, prop);
+			}
+			
+			@Override
+			protected GuiScreen buildChildScreen() 
+			{
+				//The following GuiConfig object specifies the configID of the object and thus will force-save
+				// when closed.
+				//Parent GuiConfig object's entryList will also be refreshed to reflect the changes.
+				// --see GuiFactory of Forge for more info
+				//Additionally, Forge best practices say to put the path to the config file for the category as
+				// the title for the category config screen
 
+				Configuration configuration = MpConfiguration.getConfig();
+				ConfigElement cat_general = new ConfigElement(configuration.getCategory(MpConfiguration.CATEGORY_NAME_MINERAL_WEDGES));
+				List<IConfigElement> propertiesOnThisScreen = cat_general.getChildElements();
+				String windowTitle = I18n.format("gui.configuration.misc");
+
+				return new GuiConfig(this.owningScreen, propertiesOnThisScreen,
+						this.owningScreen.modID,
+						MpConfiguration.CATEGORY_NAME_MINERAL_WEDGES,
+						this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart,
+						this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
+						windowTitle);
+				//this is a complicated object that specifies the category's gui screen, to better understand
+				// how it works, look into the definitions of the called functions and objects
+			}
+		}
+
+	}
+	public static class CategoryEntryMineralPillars extends CategoryEntry
+	{
+		public CategoryEntryMineralPillars(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement prop)
+		{
+			super(owningScreen, owningEntryList, prop);
+		}
+		
+		@Override
+		protected GuiScreen buildChildScreen() 
+		{
+			//The following GuiConfig object specifies the configID of the object and thus will force-save
+			// when closed.
+			//Parent GuiConfig object's entryList will also be refreshed to reflect the changes.
+			// --see GuiFactory of Forge for more info
+			//Additionally, Forge best practices say to put the path to the config file for the category as
+			// the title for the category config screen
+
+			Configuration configuration = MpConfiguration.getConfig();
+			ConfigElement cat_general = new ConfigElement(configuration.getCategory(MpConfiguration.CATEGORY_NAME_MINERAL_PILLARS));
+			List<IConfigElement> propertiesOnThisScreen = cat_general.getChildElements();
+			String windowTitle = I18n.format("gui.configuration.misc");
+
+			return new GuiConfig(this.owningScreen, propertiesOnThisScreen,
+					this.owningScreen.modID,
+					MpConfiguration.CATEGORY_NAME_MINERAL_PILLARS,
+					this.configElement.requiresWorldRestart() || this.owningScreen.allRequireWorldRestart,
+					this.configElement.requiresMcRestart() || this.owningScreen.allRequireMcRestart,
+					windowTitle);
+			//this is a complicated object that specifies the category's gui screen, to better understand
+			// how it works, look into the definitions of the called functions and objects
+		}
 	}
 
 }
+
+
