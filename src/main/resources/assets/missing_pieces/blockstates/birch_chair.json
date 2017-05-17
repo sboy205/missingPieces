@@ -1,8 +1,20 @@
 {
 "variants": {
-    "facing=north": { "model": "missing_pieces:birch_chair" },
-    "facing=east": { "model": "missing_pieces:birch_chair", "y": 90 },
-    "facing=south": { "model": "missing_pieces:birch_chair", "y": 180 },
-    "facing=west": { "model": "missing_pieces:birch_chair", "y": 270 }
+    "facing=north,type=spindle": { "model": "missing_pieces:birch_chair" },
+    "facing=east,type=spindle": { "model": "missing_pieces:birch_chair", "y": 90 },
+    "facing=south,type=spindle": { "model": "missing_pieces:birch_chair", "y": 180 },
+    "facing=west,type=spindle": { "model": "missing_pieces:birch_chair", "y": 270 },
+    "facing=north,type=adirondack": { "model": "missing_pieces:birch_chair" },
+    "facing=east,type=adirondack": { "model": "missing_pieces:birch_chair", "y": 90 },
+    "facing=south,type=adirondack": { "model": "missing_pieces:birch_chair", "y": 180 },
+    "facing=west,type=adirondack": { "model": "missing_pieces:birch_chair", "y": 270 },
+    "facing=north,type=straight": { "model": "missing_pieces:birch_chair" },
+    "facing=east,type=straight": { "model": "missing_pieces:birch_chair", "y": 90 },
+    "facing=south,type=straight": { "model": "missing_pieces:birch_chair", "y": 180 },
+    "facing=west,type=straight": { "model": "missing_pieces:birch_chair", "y": 270 },
+    "facing=north,type=padded": { "model": "missing_pieces:birch_chair" },
+    "facing=east,type=padded": { "model": "missing_pieces:birch_chair", "y": 90 },
+    "facing=south,type=padded": { "model": "missing_pieces:birch_chair", "y": 180 },
+    "facing=west,type=padded": { "model": "missing_pieces:birch_chair", "y": 270 }
 	}
 }

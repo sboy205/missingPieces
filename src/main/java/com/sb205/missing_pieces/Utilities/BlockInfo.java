@@ -85,6 +85,19 @@ public class BlockInfo {
 	public static final int NATURA_TYPE_BLOODWOOD = 1;
 	public static final int NATURA_TYPE_DARKWOOD = 2;
 	public static final int NATURA_TYPE_FUSEWOOD = 3;
+	public static final int NATURA_TYPE_MAPLE_LOG = 0;
+	public static final int NATURA_TYPE_SILVERBELL_LOG = 1;
+	public static final int NATURA_TYPE_AMARANTH_LOG = 2;
+	public static final int NATURA_TYPE_TIGER_LOG = 3;
+	public static final int NATURA_TYPE_WILLOW_LOG = 0;
+	public static final int NATURA_TYPE_EUCALYPTUS_LOG = 1;
+	public static final int NATURA_TYPE_HOPSEED_LOG = 2; 
+	public static final int NATURA_TYPE_SAKURA_LOG = 3;
+	public static final int NATURA_TYPE_REDWOOD_LOG = 1;
+	public static final int NATURA_TYPE_GHOSTWOOD_LOG = 0;
+	public static final int NATURA_TYPE_DARKWOOD_LOG = 1;
+	public static final int NATURA_TYPE_FUSEWOOD_LOG = 2;
+	public static final int NATURA_TYPE_BLOODWOOD_LOG = 1;
 	// used to interface from my mod to this class.
 	// identifies alll the needed blocks for recipies.
 	public enum BlockType {
@@ -116,6 +129,9 @@ public class BlockInfo {
 		BT_INGOT_GOLD,
 		BT_INGOT_IRON,
 		BT_ITEM_SPINDLE,
+		BT_ITEM_FLAT_SPINDLE,
+		BT_ITEM_PADDED_SPINDLE,
+		BT_ITEM_BENT_SPINDLE,
 		BT_GLASS_PANE,
 		BT_GLASS_BLOCK,
 		BT_TORCH, 
@@ -209,7 +225,20 @@ public class BlockInfo {
 		BT_PLANK_SAKURA,
 		BT_PLANK_SILVERBELL,
 		BT_PLANK_TIGER,
-		BT_PLANK_WILLOW;	
+		BT_PLANK_WILLOW,
+		BT_WOOD_AMARANTH,
+		BT_WOOD_DARKWOOD,
+		BT_WOOD_EUCALYPTUS,
+		BT_WOOD_FUSEWOOD,
+		BT_WOOD_GHOSTWOOD,
+		BT_WOOD_HOPSEED,		
+		BT_WOOD_BLOODWOOD,
+		BT_WOOD_MAPLE,
+		BT_WOOD_REDWOOD,
+		BT_WOOD_SAKURA,
+		BT_WOOD_SILVERBELL,
+		BT_WOOD_TIGER,
+		BT_WOOD_WILLOW;	
 		
 	}
 
@@ -346,6 +375,15 @@ public class BlockInfo {
     		break;
     	case BT_ITEM_SPINDLE:
     		myStack = new ItemStack(com.sb205.missing_pieces.Items.item_spindle,1);
+    		break;
+    	case BT_ITEM_FLAT_SPINDLE:
+    		myStack = new ItemStack(com.sb205.missing_pieces.Items.item_flat_spindle,1);
+    		break;
+    	case BT_ITEM_PADDED_SPINDLE:
+    		myStack = new ItemStack(com.sb205.missing_pieces.Items.item_padded_spindle,1);
+    		break;
+    	case BT_ITEM_BENT_SPINDLE:
+    		myStack = new ItemStack(com.sb205.missing_pieces.Items.item_bent_spindle,1);
     		break;
     	case BT_GLASS_PANE:
     		myStack = new ItemStack(Blocks.GLASS_PANE,1);
@@ -505,19 +543,19 @@ public class BlockInfo {
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:andesite"),1);
     		break;
     	case BT_M_ANDESITE_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_andesite"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:andesite_smooth"),1);
     		break;
     	case BT_AMPHIBOLITE:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:amphibolite"),1);
     		break;
     	case BT_AMPHIBOLITE_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_amphibolite"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:amphibolite_smooth"),1);
     		break;
     	case BT_BASALT:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:basalt"),1);
     		break;
     	case BT_BASALT_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_basalt"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:basalt_smooth"),1);
     		break;
     	case BT_CHERT:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:chert"),1);
@@ -526,49 +564,55 @@ public class BlockInfo {
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:conglomerate"),1);
     		break;
     	case BT_CONGLOMERATE_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_conglomerate"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:conglomerate_smooth"),1);
     		break;
     	case BT_M_DIORITE:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:diorite"),1);
     		break;
     	case BT_M_DIORITE_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_diorite"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:diorite_smooth"),1);
     		break;
     	case BT_DOLOMITE:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:dolomite"),1);
     		break;
     	case BT_DOLOMITE_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_dolomite"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:dolomite_smooth"),1);
     		break;
     	case BT_GNEISS:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:gneiss"),1);
     		break;
     	case BT_GNEISS_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_gneiss"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:gneiss_smooth"),1);
+    		break;
+    	case BT_M_GRANITE:
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:granite"),1);
+    		break;
+    	case BT_M_GRANITE_SMOOTH:
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:granite_smooth"),1);
     		break;
     	case BT_LIMESTONE:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:limestone"),1);
     		break;
     	case BT_LIMESTONE_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_limestone"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:limestone_smooth"),1);
     		break;
     	case BT_MARBLE_SMOOTH:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:marble"),1);
     		break;
     	case BT_MARBLE:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_marble"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:marble_smooth"),1);
     		break;
     	case BT_PEGMATITE:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:pegmatite"),1);
     		break;
     	case BT_PEGMATITE_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_pegmatite"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:pegmatite_smooth"),1);
     		break;
     	case BT_PHYLLITE:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:phyllite"),1);
     		break;
     	case BT_PHYLLITE_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_phyllite"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:phyllite_smooth"),1);
     		break;
     	case BT_PUMICE:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:pumice"),1);
@@ -577,25 +621,25 @@ public class BlockInfo {
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:rhyolite"),1);
     		break;
     	case BT_RHYOLITE_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_rhyolite"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:rhyolite_smooth"),1);
     		break;
     	case BT_SCHIST:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:schist"),1);
     		break;
     	case BT_SCHIST_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_schist"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:schist_smooth"),1);
     		break;
     	case BT_SHALE:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:shale"),1);
     		break;
     	case BT_SHALE_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_shale"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:shale_smooth"),1);
     		break;
     	case BT_SLATE:
     		myStack = new ItemStack(Block.getBlockFromName("mineralogy:slate"),1);
     		break;
     	case BT_SLATE_SMOOTH:
-    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:smooth_slate"),1);
+    		myStack = new ItemStack(Block.getBlockFromName("mineralogy:slate_smooth"),1);
     		break;
     	case BT_PLANK_AMARANTH:
     		myStack = new ItemStack(Block.getBlockFromName("natura:overworld_planks"),1,NATURA_TYPE_AMARANTH);
@@ -637,6 +681,44 @@ public class BlockInfo {
     		break;
     	case BT_PLANK_WILLOW:	
     		myStack = new ItemStack(Block.getBlockFromName("natura:overworld_planks"),1, NATURA_TYPE_WILLOW);
+    		break;
+        case BT_WOOD_AMARANTH:
+    		myStack = new ItemStack(Block.getBlockFromName("natura:overworld_logs"),1,NATURA_TYPE_AMARANTH_LOG);
+    		break;
+
+    	case BT_WOOD_DARKWOOD:
+    		myStack = new ItemStack(Block.getBlockFromName("natura:nether_logs"),1,NATURA_TYPE_DARKWOOD_LOG);
+    		break;
+
+    	case BT_WOOD_EUCALYPTUS:
+    		myStack = new ItemStack(Block.getBlockFromName("natura:overworld_logs2"),1,NATURA_TYPE_EUCALYPTUS_LOG);
+    		break;
+    	case BT_WOOD_FUSEWOOD:
+    		myStack = new ItemStack(Block.getBlockFromName("natura:nether_logs"),1,NATURA_TYPE_FUSEWOOD_LOG);
+    		break;
+    	case BT_WOOD_GHOSTWOOD:
+    		myStack = new ItemStack(Block.getBlockFromName("natura:nether_logs"),1, NATURA_TYPE_GHOSTWOOD_LOG);
+    		break;
+    	case BT_WOOD_HOPSEED:
+    		myStack = new ItemStack(Block.getBlockFromName("natura:overworld_logs2"),1, NATURA_TYPE_HOPSEED_LOG);
+    		break;
+    	case BT_WOOD_MAPLE:
+    		myStack = new ItemStack(Block.getBlockFromName("natura:overworld_logs"),1, NATURA_TYPE_MAPLE_LOG);
+    		break;
+    	case BT_WOOD_REDWOOD:
+    		myStack = new ItemStack(Block.getBlockFromName("natura:redwood_logs"),1, NATURA_TYPE_REDWOOD_LOG);
+    		break;
+    	case BT_WOOD_SAKURA:
+    		myStack = new ItemStack(Block.getBlockFromName("natura:overworld_logs2"),1, NATURA_TYPE_SAKURA_LOG);
+    		break;
+    	case BT_WOOD_SILVERBELL:
+    		myStack = new ItemStack(Block.getBlockFromName("natura:overworld_logs"),1, NATURA_TYPE_SILVERBELL_LOG);
+    		break;
+    	case BT_WOOD_TIGER:
+    		myStack = new ItemStack(Block.getBlockFromName("natura:overworld_logs"),1, NATURA_TYPE_TIGER_LOG);
+    		break;
+    	case BT_WOOD_WILLOW:	
+    		myStack = new ItemStack(Block.getBlockFromName("natura:overworld_logs2"),1, NATURA_TYPE_WILLOW_LOG);
     		break;
 
     	case BT_NONE:
