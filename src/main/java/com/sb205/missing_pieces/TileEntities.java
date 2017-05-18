@@ -133,7 +133,6 @@ public class TileEntities {
 		} else {
 			System.out.println("\nNo Natura\n");
 		}
-
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShelf.class, new TileEntitySpecialRendererShelf());
 
 	}

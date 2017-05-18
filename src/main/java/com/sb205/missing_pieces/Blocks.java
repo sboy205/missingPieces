@@ -15,7 +15,6 @@ import com.sb205.missing_pieces.MpBlocks.MpBlockSlab;
 import com.sb205.missing_pieces.MpBlocks.MpBlockSlab_half;
 import com.sb205.missing_pieces.MpBlocks.MpBlockStairs;
 import com.sb205.missing_pieces.MpItems.ItemBlockSlab;
-import com.sb205.missing_pieces.Shelf.BlockShelf;
 import com.sb205.missing_pieces.MpBlocks.MpBlockSlab_double;
 import com.sb205.missing_pieces.Utilities.BlockInfo;
 import com.sb205.missing_pieces.Utilities.BlockInfo.BlockType;
@@ -855,18 +854,18 @@ public class Blocks {
 				tiger_pillar =	 	createPillar("tiger_pillar", 		BlockType.BT_PLANK_TIGER, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_TIGER.ordinal()],		"axe", 1);
 				willow_pillar =	 	createPillar("willow_pillar", 		BlockType.BT_PLANK_WILLOW, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_WILLOW.ordinal()],	"axe", 1);
 				//Natura Logs
-				amaranth_log =		createPillar("amaranth_log", 	BlockType.BT_PLANK_AMARANTH,	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_AMARANTH.ordinal()],	"axe", 1);
-				darkwood_log =		createPillar("darkwood_log", 	BlockType.BT_PLANK_DARKWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_DARKWOOD.ordinal()],	"axe", 1);
-				eucalyptus_log =	createPillar("eucalyptus_log", 	BlockType.BT_PLANK_EUCALYPTUS, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_EUCALYPTUS.ordinal()],"axe", 1);
-				fusewood_log =		createPillar("fusewood_log", 	BlockType.BT_PLANK_FUSEWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_FUSEWOOD.ordinal()],	"axe", 1);
-				ghostwood_log =		createPillar("ghostwood_log", 	BlockType.BT_PLANK_GHOSTWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_GHOSTWOOD.ordinal()],	"axe", 1);
-				hopseed_log =		createPillar("hopseed_log", 	BlockType.BT_PLANK_HOPSEED, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_HOPSEED.ordinal()],	"axe", 1);
-				maple_log =	 		createPillar("maple_log", 		BlockType.BT_PLANK_MAPLE, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_MAPLE.ordinal()],		"axe", 1);
-				redwood_log =		createPillar("redwood_log", 	BlockType.BT_PLANK_REDWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_REDWOOD.ordinal()],	"axe", 1);
-				sakura_log =	 	createPillar("sakura_log", 		BlockType.BT_PLANK_SAKURA, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_SAKURA.ordinal()],	"axe", 1);
-				silverbell_log =	createPillar("silverbell_log", 	BlockType.BT_PLANK_SILVERBELL, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_SILVERBELL.ordinal()],"axe", 1);
-				tiger_log =	 		createPillar("tiger_log", 		BlockType.BT_PLANK_TIGER, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_TIGER.ordinal()],		"axe", 1);
-				willow_log =	 	createPillar("willow_log", 		BlockType.BT_PLANK_WILLOW, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_WILLOW.ordinal()],	"axe", 1);
+				amaranth_log =		createPillar("amaranth_log", 	BlockType.BT_WOOD_AMARANTH,	    Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_AMARANTH.ordinal()],	"axe", 1);
+				darkwood_log =		createPillar("darkwood_log", 	BlockType.BT_WOOD_DARKWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_DARKWOOD.ordinal()],	"axe", 1);
+				eucalyptus_log =	createPillar("eucalyptus_log", 	BlockType.BT_WOOD_EUCALYPTUS, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_EUCALYPTUS.ordinal()],"axe", 1);
+				fusewood_log =		createPillar("fusewood_log", 	BlockType.BT_WOOD_FUSEWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_FUSEWOOD.ordinal()],	"axe", 1);
+				ghostwood_log =		createPillar("ghostwood_log", 	BlockType.BT_WOOD_GHOSTWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_GHOSTWOOD.ordinal()],	"axe", 1);
+				hopseed_log =		createPillar("hopseed_log", 	BlockType.BT_WOOD_HOPSEED, 	    Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_HOPSEED.ordinal()],	"axe", 1);
+				maple_log =	 		createPillar("maple_log", 		BlockType.BT_WOOD_MAPLE, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_MAPLE.ordinal()],		"axe", 1);
+				redwood_log =		createPillar("redwood_log", 	BlockType.BT_WOOD_REDWOOD, 	    Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_REDWOOD.ordinal()],	"axe", 1);
+				sakura_log =	 	createPillar("sakura_log", 		BlockType.BT_WOOD_SAKURA, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_SAKURA.ordinal()],	"axe", 1);
+				silverbell_log =	createPillar("silverbell_log", 	BlockType.BT_WOOD_SILVERBELL, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_SILVERBELL.ordinal()],"axe", 1);
+				tiger_log =	 		createPillar("tiger_log", 		BlockType.BT_WOOD_TIGER, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_TIGER.ordinal()],		"axe", 1);
+				willow_log =	 	createPillar("willow_log", 		BlockType.BT_WOOD_WILLOW, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_WILLOW.ordinal()],	"axe", 1);
 
 
 				System.out.println("\nLoaded natura pillars\n");
