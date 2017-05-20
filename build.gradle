@@ -12,7 +12,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 
 
-version = "1.11.2-4.2.0"
+version = "1.11.2-4.2.1"
 group = "com.sb205.missing_pieces" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "missing_pieces"
 
