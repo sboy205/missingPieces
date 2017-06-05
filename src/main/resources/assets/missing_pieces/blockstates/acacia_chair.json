@@ -1,20 +1,21 @@
 {
 "variants": {
-    "facing=north,type=padded": { "model": "missing_pieces:acacia_chair" },
-    "facing=east,type=padded": { "model": "missing_pieces:acacia_chair", "y": 90 },
-    "facing=south,type=padded": { "model": "missing_pieces:acacia_chair", "y": 180 },
-    "facing=west,type=padded": { "model": "missing_pieces:acacia_chair", "y": 270 },
-    "facing=north,type=straight": { "model": "missing_pieces:acacia_chair" },
-    "facing=east,type=straight": { "model": "missing_pieces:acacia_chair", "y": 90 },
-    "facing=south,type=straight": { "model": "missing_pieces:acacia_chair", "y": 180 },
-    "facing=west,type=straight": { "model": "missing_pieces:acacia_chair", "y": 270 },
+    "inventory": { "model": "missing_pieces:acacia_chair" },
+    "facing=north,type=padded": { "model": "missing_pieces:acacia_chair_padded" },
+    "facing=east,type=padded": { "model": "missing_pieces:acacia_chair_padded", "y": 90 },
+    "facing=south,type=padded": { "model": "missing_pieces:acacia_chair_padded", "y": 180 },
+    "facing=west,type=padded": { "model": "missing_pieces:acacia_chair_padded", "y": 270 },
+    "facing=north,type=straight": { "model": "missing_pieces:acacia_chair_straight" },
+    "facing=east,type=straight": { "model": "missing_pieces:acacia_chair_straight", "y": 90 },
+    "facing=south,type=straight": { "model": "missing_pieces:acacia_chair_straight", "y": 180 },
+    "facing=west,type=straight": { "model": "missing_pieces:acacia_chair_straight", "y": 270 },
     "facing=north,type=spindle": { "model": "missing_pieces:acacia_chair" },
     "facing=east,type=spindle": { "model": "missing_pieces:acacia_chair", "y": 90 },
     "facing=south,type=spindle": { "model": "missing_pieces:acacia_chair", "y": 180 },
     "facing=west,type=spindle": { "model": "missing_pieces:acacia_chair", "y": 270 },
-    "facing=north,type=adirondack": { "model": "missing_pieces:acacia_chair" },
-    "facing=east,type=adirondack": { "model": "missing_pieces:acacia_chair", "y": 90 },
-    "facing=south,type=adirondack": { "model": "missing_pieces:acacia_chair", "y": 180 },
-    "facing=west,type=adirondack": { "model": "missing_pieces:acacia_chair", "y": 270 }
+    "facing=north,type=adirondack": { "model": "missing_pieces:acacia_chair_adirondack" },
+    "facing=east,type=adirondack": { "model": "missing_pieces:acacia_chair_adirondack", "y": 90 },
+    "facing=south,type=adirondack": { "model": "missing_pieces:acacia_chair_adirondack", "y": 180 },
+    "facing=west,type=adirondack": { "model": "missing_pieces:acacia_chair_adirondack", "y": 270 }
 	}
 }

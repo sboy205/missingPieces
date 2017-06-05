@@ -1,5 +1,6 @@
 {
 "variants": {
+    "inventory": { "model": "missing_pieces:oak_chair" },
     "facing=north,type=spindle": { "model": "missing_pieces:oak_chair" },
     "facing=east,type=spindle": { "model": "missing_pieces:oak_chair", "y": 90 },
     "facing=south,type=spindle": { "model": "missing_pieces:oak_chair", "y": 180 },
