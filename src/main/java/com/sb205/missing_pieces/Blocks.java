@@ -1240,18 +1240,18 @@ public class Blocks {
 		if (Loader.isModLoaded("natura")) {
 			try {
 				// Natura chair
-				registerItem(amaranth_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_AMARANTH.ordinal()]);
-				registerItem(darkwood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_DARKWOOD.ordinal()]);
-				registerItem(eucalyptus_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_EUCALYPTUS.ordinal()]);
-				registerItem(fusewood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_FUSEWOOD.ordinal()]);
-				registerItem(ghostwood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_GHOSTWOOD.ordinal()]);
-				registerItem(hopseed_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_HOPSEED.ordinal()]);
-				registerItem(maple_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_MAPLE.ordinal()]);
-				registerItem(redwood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_REDWOOD.ordinal()]);
-				registerItem(sakura_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SAKURA.ordinal()]);
-				registerItem(silverbell_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SILVERBELL.ordinal()]);
-				registerItem(tiger_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_TIGER.ordinal()]);
-				registerItem(willow_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_WILLOW.ordinal()]);
+				registerChair(amaranth_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_AMARANTH.ordinal()]);
+				registerChair(darkwood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_DARKWOOD.ordinal()]);
+				registerChair(eucalyptus_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_EUCALYPTUS.ordinal()]);
+				registerChair(fusewood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_FUSEWOOD.ordinal()]);
+				registerChair(ghostwood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_GHOSTWOOD.ordinal()]);
+				registerChair(hopseed_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_HOPSEED.ordinal()]);
+				registerChair(maple_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_MAPLE.ordinal()]);
+				registerChair(redwood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_REDWOOD.ordinal()]);
+				registerChair(sakura_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SAKURA.ordinal()]);
+				registerChair(silverbell_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SILVERBELL.ordinal()]);
+				registerChair(tiger_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_TIGER.ordinal()]);
+				registerChair(willow_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_WILLOW.ordinal()]);
 
 				System.out.println("\nRegistered natura chairs\n");
 			}

@@ -99,7 +99,7 @@ public class Items {
 
 		    	break;
 		    case 4: // bent spindle
-			    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spindle, 4),
+			    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spindle, 3),
 			        	"S  ",
 			        	" S ",
 			        	" S ",
