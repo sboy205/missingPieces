@@ -1,21 +1,75 @@
 {
+"forge_marker": 1,
+"defaults": {
+    "textures": {
+        "back": "minecraft:blocks/planks_spruce",
+        "seat": "minecraft:blocks/planks_spruce",
+        "legs": "minecraft:blocks/planks_spruce"
+    }
+},
 "variants": {
-    "inventory": { "model": "missing_pieces:spruce_chair" },
-    "facing=north,type=spindle": { "model": "missing_pieces:spruce_chair" },
-    "facing=east,type=spindle": { "model": "missing_pieces:spruce_chair", "y": 90 },
-    "facing=south,type=spindle": { "model": "missing_pieces:spruce_chair", "y": 180 },
-    "facing=west,type=spindle": { "model": "missing_pieces:spruce_chair", "y": 270 },
-    "facing=north,type=adirondack": { "model": "missing_pieces:spruce_chair_adirondack" },
-    "facing=east,type=adirondack": { "model": "missing_pieces:spruce_chair_adirondack", "y": 90 },
-    "facing=south,type=adirondack": { "model": "missing_pieces:spruce_chair_adirondack", "y": 180 },
-    "facing=west,type=adirondack": { "model": "missing_pieces:spruce_chair_adirondack", "y": 270 },
-    "facing=north,type=straight": { "model": "missing_pieces:spruce_chair_straight" },
-    "facing=east,type=straight": { "model": "missing_pieces:spruce_chair_straight", "y": 90 },
-    "facing=south,type=straight": { "model": "missing_pieces:spruce_chair_straight", "y": 180 },
-    "facing=west,type=straight": { "model": "missing_pieces:spruce_chair_straight", "y": 270 },
-    "facing=north,type=padded": { "model": "missing_pieces:spruce_chair_padded" },
-    "facing=east,type=padded": { "model": "missing_pieces:spruce_chair_padded", "y": 90 },
-    "facing=south,type=padded": { "model": "missing_pieces:spruce_chair_padded", "y": 180 },
-    "facing=west,type=padded": { "model": "missing_pieces:spruce_chair_padded", "y": 270 }
+    "inventory": {   
+        "model": "missing_pieces:chair_model"
+    },
+    "facing=north,type=spindle": {   
+        "model": "missing_pieces:chair_model"
+    },
+    "facing=east,type=spindle": {    
+        "model": "missing_pieces:chair_model",
+        "y": 90 
+    },
+    "facing=south,type=spindle": {    
+        "model": "missing_pieces:chair_model",
+        "y": 180 
+    },
+    "facing=west,type=spindle": {    
+        "model": "missing_pieces:chair_model",
+        "y": 270 
+    },
+    "facing=north,type=adirondack": {     
+        "model": "missing_pieces:chair_adirondack_model"
+    },
+    "facing=east,type=adirondack": {      
+        "model": "missing_pieces:chair_adirondack_model",
+        "y": 90 
+    },
+    "facing=south,type=adirondack": {      
+        "model": "missing_pieces:chair_adirondack_model",
+        "y": 180 
+    },
+    "facing=west,type=adirondack": {      
+        "model": "missing_pieces:chair_adirondack_model",
+        "y": 270 
+    },
+    "facing=north,type=tall": {      
+        "model": "missing_pieces:chair_tall_model"
+    },
+    "facing=east,type=tall": {       
+        "model": "missing_pieces:chair_tall_model",
+        "y": 90 
+    },
+    "facing=south,type=tall": {       
+        "model": "missing_pieces:chair_tall_model",
+        "y": 180 
+    },
+    "facing=west,type=tall": {       
+        "model": "missing_pieces:chair_tall_model",
+        "y": 270 
+    },
+    "facing=north,type=straight": {       
+        "model": "missing_pieces:chair_straight_model"
+    },
+    "facing=east,type=straight": {        
+        "model": "missing_pieces:chair_straight_model",
+        "y": 90 
+    },
+    "facing=south,type=straight": {        
+        "model": "missing_pieces:chair_straight_model",
+        "y": 180 
+    },
+    "facing=west,type=straight": {        
+        "model": "missing_pieces:chair_straight_model",
+        "y": 270 
 	}
+}
 }

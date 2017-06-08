@@ -1703,6 +1703,33 @@ public class Blocks {
 					'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE)
 					);
 		}
+		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.STRAIGHT.getMeta()),
+					"  S",
+					" AA",
+					" SS",
+					'A', BlockInfo.blockType2Stack(ingredientA),
+					'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_FLAT_SPINDLE)
+					);
+		}
+		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.TALL.getMeta()),
+					"  S",
+					" AA",
+					" SS",
+					'A', BlockInfo.blockType2Stack(ingredientA),
+					'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_TALL_SPINDLE)
+					);
+		}
+		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.ADIRONDACK.getMeta()),
+					"  S",
+					" AA",
+					" SS",
+					'A', BlockInfo.blockType2Stack(ingredientA),
+					'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_BENT_SPINDLE)
+					);
+		}
 		return chair;
 	}
 
@@ -1957,17 +1984,17 @@ public class Blocks {
 				case ADIRONDACK:
 					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
 						spindleEnabled = true;
-						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE);
+						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_BENT_SPINDLE);
 						chairName = name + "_" + EnumChairTypes.ADIRONDACK.getName();
 
 					}
 
 					break;
-				case PADDED:
+				case TALL:
 					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
 						spindleEnabled = true;
-						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_PADDED_SPINDLE);
-						chairName = name + "_" +  EnumChairTypes.PADDED.getName();
+						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_TALL_SPINDLE);
+						chairName = name + "_" +  EnumChairTypes.TALL.getName();
 					}
 
 					break;

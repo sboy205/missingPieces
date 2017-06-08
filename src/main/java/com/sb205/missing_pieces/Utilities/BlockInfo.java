@@ -130,7 +130,7 @@ public class BlockInfo {
 		BT_INGOT_IRON,
 		BT_ITEM_SPINDLE,
 		BT_ITEM_FLAT_SPINDLE,
-		BT_ITEM_PADDED_SPINDLE,
+		BT_ITEM_TALL_SPINDLE,
 		BT_ITEM_BENT_SPINDLE,
 		BT_GLASS_PANE,
 		BT_GLASS_BLOCK,
@@ -379,8 +379,8 @@ public class BlockInfo {
     	case BT_ITEM_FLAT_SPINDLE:
     		myStack = new ItemStack(com.sb205.missing_pieces.Items.item_flat_spindle,1);
     		break;
-    	case BT_ITEM_PADDED_SPINDLE:
-    		myStack = new ItemStack(com.sb205.missing_pieces.Items.item_padded_spindle,1);
+    	case BT_ITEM_TALL_SPINDLE:
+    		myStack = new ItemStack(com.sb205.missing_pieces.Items.item_tall_spindle,1);
     		break;
     	case BT_ITEM_BENT_SPINDLE:
     		myStack = new ItemStack(com.sb205.missing_pieces.Items.item_bent_spindle,1);

@@ -23,7 +23,7 @@ public class Items {
 	// Declare all Items here.. only one spindle .. used to make tables and chairs
 	public static ItemSpindle item_spindle;
 	public static ItemSpindle item_flat_spindle;
-	public static ItemSpindle item_padded_spindle;
+	public static ItemSpindle item_tall_spindle;
 	public static ItemSpindle item_bent_spindle;
 
 
@@ -32,7 +32,7 @@ public class Items {
 	public static void preInitCommon() {
 		item_spindle = 			createSpindle("spindle",		1, MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] );
 		item_flat_spindle = 	createSpindle("flat_spindle",	2, MpConfiguration.BlockEnable[ConfigInfo.MISC_FLAT_SPINDLE.ordinal()] );
-		item_padded_spindle = 	createSpindle("padded_spindle",	3, MpConfiguration.BlockEnable[ConfigInfo.MISC_PADDED_SPINDLE.ordinal()] );
+		item_tall_spindle = 	createSpindle("tall_spindle",	3, MpConfiguration.BlockEnable[ConfigInfo.MISC_TALL_SPINDLE.ordinal()] );
 		item_bent_spindle = 	createSpindle("bent_spindle",	4, MpConfiguration.BlockEnable[ConfigInfo.MISC_BENT_SPINDLE.ordinal()] );
 
 	};
@@ -40,7 +40,7 @@ public class Items {
 	public static void initClientOnly(){
 		registerItem(item_spindle, 			MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] );
 		registerItem(item_flat_spindle, 	MpConfiguration.BlockEnable[ConfigInfo.MISC_FLAT_SPINDLE.ordinal()] );
-		registerItem(item_padded_spindle, 	MpConfiguration.BlockEnable[ConfigInfo.MISC_PADDED_SPINDLE.ordinal()] );
+		registerItem(item_tall_spindle, 	MpConfiguration.BlockEnable[ConfigInfo.MISC_TALL_SPINDLE.ordinal()] );
 		registerItem(item_bent_spindle, 	MpConfiguration.BlockEnable[ConfigInfo.MISC_BENT_SPINDLE.ordinal()] );
 
 	}
@@ -89,13 +89,12 @@ public class Items {
 				    ));
 
 		    	break;
-		    case 3: // padded spindle
-			    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spindle, 4),
-			        	"W",
+		    case 3: // tall spindle
+			    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spindle, 3),
 			        	"S",
-			        	"W",
-			        	'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE), 
-			    	    'W', net.minecraft.init.Blocks.WOOL
+			        	"S",
+			        	"S",
+			        	'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE) 
 				    ));
 
 		    	break;

@@ -82,7 +82,7 @@ public class BlockChair extends MpBlock
   {
 	    // find the quadrant the player is facing
     EnumFacing enumfacing = (placer == null) ? EnumFacing.NORTH : EnumFacing.fromAngle(placer.rotationYaw);
-    System.out.println("placing chair meta: " + meta);
+    //System.out.println("placing chair meta: " + meta);
     EnumChairTypes enumtype = EnumChairTypes.getType(meta);
     //System.out.println("Chair placed x:" + hitX + " y:" + hitY + " z:" + hitZ);
     return this.getDefaultState().withProperty(PROPERTYFACING, enumfacing).withProperty(CHAIR_TYPE,enumtype);
@@ -93,7 +93,24 @@ public class BlockChair extends MpBlock
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		//System.out.println("Sitting in Chair x:" + pos.getX() + " y:" + pos.getY()  + " z:" + pos.getZ());
-		return MountableUtil.MountBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, (double)(7/16.0));
+		double height = 7/16.0;
+	    EnumChairTypes chairType = (EnumChairTypes)state.getValue(CHAIR_TYPE);
+	    switch(chairType){
+	    case STRAIGHT:
+	    	height = 7/16.0;
+	    	break;
+	    case TALL:
+	    	height = 10/16.0;
+	    	break;
+	    case ADIRONDACK:
+	    	height = 6/16.0;
+	    	break;
+	    default:
+	    case SPINDLE:
+	    	height = 7/16.0;
+	    	break;
+	    }
+		return MountableUtil.MountBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, height);
 	}
 
   // necessary to define which properties your blocks use

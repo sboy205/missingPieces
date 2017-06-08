@@ -12,7 +12,7 @@ import net.minecraft.util.IStringSerializable;
 public enum EnumChairTypes implements IStringSerializable {
 	SPINDLE(0,0, "spindle"), 
 	STRAIGHT(1,4, "straight"), 
-	PADDED(2,8,  "padded"), 
+	TALL(2,8,  "tall"), 
 	ADIRONDACK(3,12, "adirondack");
 
 	private int index;
@@ -50,9 +50,9 @@ public enum EnumChairTypes implements IStringSerializable {
 		case STRAIGHT:
 			//System.out.println("Straight:" + STRAIGHT.meta);
 			return STRAIGHT.meta;
-		case PADDED:
+		case TALL:
 			//System.out.println("Padded:" + PADDED.meta);
-			return PADDED.meta;
+			return TALL.meta;
 		case ADIRONDACK:
 			//System.out.println("Adirondack:" + ADIRONDACK.meta);
 			return ADIRONDACK.meta;
