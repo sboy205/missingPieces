@@ -200,7 +200,9 @@ public class BlockChair extends MpBlock
    EnumChairTypes[] allTypes = EnumChairTypes.values();
    for (EnumChairTypes type : allTypes) {
 	   //System.out.println("subBlock: " + itemIn.getUnlocalizedName() + ":" + type.getName());
-     list.add(new ItemStack(itemIn, 1, type.getMeta()));
+     if( type.getEnabled() == true){
+    	 list.add(new ItemStack(itemIn, 1, type.getMeta()));
+     }
    }
  }
   @Override
