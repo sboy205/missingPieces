@@ -103,7 +103,7 @@ public class Items {
 			        	"S  ",
 			        	" S ",
 			        	" S ",
-			        	'A', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE)
+			        	'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE)
 				    ));
 
 		    	break;

@@ -1956,12 +1956,12 @@ public class Blocks {
 
 		}
 	}
-	
+
 	public static void registerChair(BlockChair chair_block, Boolean enabled){
 		final int DEFAULT_ITEM_SUBTYPE = 0;
-			String name = chair_block.getUnlocalizedName().substring(5);
+		String name = chair_block.getUnlocalizedName().substring(5);
 
-			System.out.println("register item " + name);
+		System.out.println("register item " + name);
 
 		ItemStack itemStack = null;
 		Boolean spindleEnabled = false;
@@ -1986,9 +1986,7 @@ public class Blocks {
 						spindleEnabled = true;
 						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_BENT_SPINDLE);
 						chairName = name + "_" + EnumChairTypes.ADIRONDACK.getName();
-
 					}
-
 					break;
 				case TALL:
 					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
@@ -1996,7 +1994,6 @@ public class Blocks {
 						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_TALL_SPINDLE);
 						chairName = name + "_" +  EnumChairTypes.TALL.getName();
 					}
-
 					break;
 				case STRAIGHT:
 					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
@@ -2010,22 +2007,9 @@ public class Blocks {
 					ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation("missing_pieces:"+name, "facing=north,type="+chairType.getName()); 
 					System.out.println("item location:" + itemModelResourceLocation.toString());
 					//System.out.println("ID:" + Item.getIdFromItem(Item.getItemFromBlock(blockChair)));
-					//Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(chair, chairType.getMeta(), itemModelResourceLocation);
 					Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(chair_block), chairType.getMeta(), itemModelResourceLocation);
 
-					//ItemStack stack = new ItemStack(chair,1,0);
-					//OreDictionary.registerOre(chair.getOredictName(), stack);
-/*
-					GameRegistry.addRecipe(new ItemStack(chair, 2, 3),
-							"  S",
-							" AA",
-							" SS",
-							'A', BlockInfo.blockType2Stack(ingredientA),
-							'S', itemStack
-							);
-*/
-					}
-
+				}
 			}
 		}
 	}

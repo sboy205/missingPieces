@@ -1,8 +1,75 @@
 {
+"forge_marker": 1,
+"defaults": {
+    "textures": {
+        "back": "natura:blocks/planks/overworld/willow_planks",
+        "seat": "natura:blocks/planks/overworld/willow_planks",
+        "legs": "natura:blocks/planks/overworld/willow_planks"
+    }
+},
 "variants": {
-    "facing=north": { "model": "missing_pieces:willow_chair" },
-    "facing=east": { "model": "missing_pieces:willow_chair", "y": 90 },
-    "facing=south": { "model": "missing_pieces:willow_chair", "y": 180 },
-    "facing=west": { "model": "missing_pieces:willow_chair", "y": 270 }
+    "inventory": {   
+        "model": "missing_pieces:chair_model"
+    },
+    "facing=north,type=spindle": {   
+        "model": "missing_pieces:chair_model"
+    },
+    "facing=east,type=spindle": {    
+        "model": "missing_pieces:chair_model",
+        "y": 90 
+    },
+    "facing=south,type=spindle": {    
+        "model": "missing_pieces:chair_model",
+        "y": 180 
+    },
+    "facing=west,type=spindle": {    
+        "model": "missing_pieces:chair_model",
+        "y": 270 
+    },
+    "facing=north,type=adirondack": {     
+        "model": "missing_pieces:chair_adirondack_model"
+    },
+    "facing=east,type=adirondack": {      
+        "model": "missing_pieces:chair_adirondack_model",
+        "y": 90 
+    },
+    "facing=south,type=adirondack": {      
+        "model": "missing_pieces:chair_adirondack_model",
+        "y": 180 
+    },
+    "facing=west,type=adirondack": {      
+        "model": "missing_pieces:chair_adirondack_model",
+        "y": 270 
+    },
+    "facing=north,type=tall": {      
+        "model": "missing_pieces:chair_tall_model"
+    },
+    "facing=east,type=tall": {       
+        "model": "missing_pieces:chair_tall_model",
+        "y": 90 
+    },
+    "facing=south,type=tall": {       
+        "model": "missing_pieces:chair_tall_model",
+        "y": 180 
+    },
+    "facing=west,type=tall": {       
+        "model": "missing_pieces:chair_tall_model",
+        "y": 270 
+    },
+    "facing=north,type=straight": {       
+        "model": "missing_pieces:chair_straight_model"
+    },
+    "facing=east,type=straight": {        
+        "model": "missing_pieces:chair_straight_model",
+        "y": 90 
+    },
+    "facing=south,type=straight": {        
+        "model": "missing_pieces:chair_straight_model",
+        "y": 180 
+    },
+    "facing=west,type=straight": {        
+        "model": "missing_pieces:chair_straight_model",
+        "y": 270 
 	}
+}
 }
