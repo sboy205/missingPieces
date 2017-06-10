@@ -176,6 +176,22 @@ public class BlockChair extends MpBlock
   public EnumBlockRenderType getRenderType(IBlockState state) {
     return EnumBlockRenderType.MODEL;
   }
+//create a list of the subBlocks available for this block, i.e. one for each colour
+ // ignores facings, because the facing is calculated when we place the item.
+ //  - used to populate items for the creative inventory
+ // - the "metadata" value of the block is set to the colours metadata
+ @Override
+ @SideOnly(Side.CLIENT)
+ public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
+ {
+   EnumChairTypes[] allTypes = EnumChairTypes.values();
+   for (EnumChairTypes type : allTypes) {
+	   //System.out.println("subBlock: " + itemIn.getUnlocalizedName() + ":" + type.getName());
+     if( type.getEnabled() == true){
+    	 list.add(new ItemStack(itemIn, 1, type.getMeta()));
+     }
+   }
+ }
   @Override
   public String getUnlocalizedName(){
 	  	IBlockState state = this.getDefaultState();

@@ -3,26 +3,33 @@
  */
 package com.sb205.missing_pieces.MpBlocks;
 
+
 import net.minecraft.util.IStringSerializable;
+
+import com.sb205.missing_pieces.Config.MpConfiguration;
+import com.sb205.missing_pieces.Config.MpConfiguration.ConfigInfo;
 
 /**
  * @author US980705
  *
  */
 public enum EnumChairTypes implements IStringSerializable {
-	SPINDLE(0,0, "spindle"), 
-	STRAIGHT(1,4, "straight"), 
-	TALL(2,8,  "tall"), 
-	ADIRONDACK(3,12, "adirondack");
+
+	SPINDLE(0,0, "spindle",MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()]), 
+	STRAIGHT(1,4, "straight", MpConfiguration.BlockEnable[ConfigInfo.MISC_FLAT_SPINDLE.ordinal()]), 
+	TALL(2,8,  "tall",MpConfiguration.BlockEnable[ConfigInfo.MISC_TALL_SPINDLE.ordinal() ]), 
+	ADIRONDACK(3,12, "adirondack",MpConfiguration.BlockEnable[ConfigInfo.MISC_BENT_SPINDLE.ordinal() ]);
 
 	private int index;
 	private String name;
 	private int meta;
+	private Boolean enabled;
 	
-	private EnumChairTypes(int indexIn, int metaIn, String nameIn){
+	private EnumChairTypes(int indexIn, int metaIn, String nameIn, Boolean enableIn){
 		this.index = indexIn;
 		this.name = nameIn;
 		this.meta = metaIn;
+		this.enabled = enableIn;
 	}
 	
 	static public EnumChairTypes getType( int meta){
@@ -68,6 +75,10 @@ public enum EnumChairTypes implements IStringSerializable {
 	}
 	static public int getMax(){
 		return 3;
+	}
+	
+	public Boolean getEnabled(){
+		return enabled;
 	}
 	
 	@Override

@@ -1695,7 +1695,7 @@ public class Blocks {
 
 		
 		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
-			GameRegistry.addRecipe(new ItemStack(chair, 2, 0),
+			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.SPINDLE.getMeta()),
 					"  S",
 					" AA",
 					" SS",
@@ -1703,7 +1703,7 @@ public class Blocks {
 					'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE)
 					);
 		}
-		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_FLAT_SPINDLE.ordinal()] ==true) {
 			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.STRAIGHT.getMeta()),
 					"  S",
 					" AA",
@@ -1712,7 +1712,7 @@ public class Blocks {
 					'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_FLAT_SPINDLE)
 					);
 		}
-		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_TALL_SPINDLE.ordinal()] ==true) {
 			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.TALL.getMeta()),
 					"  S",
 					" AA",
@@ -1721,7 +1721,7 @@ public class Blocks {
 					'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_TALL_SPINDLE)
 					);
 		}
-		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_BENT_SPINDLE.ordinal()] ==true) {
 			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.ADIRONDACK.getMeta()),
 					"  S",
 					" AA",
@@ -1962,7 +1962,6 @@ public class Blocks {
 
 		System.out.println("register item " + name);
 
-		Boolean spindleEnabled = false;
 		
 		for( EnumChairTypes chairType: EnumChairTypes.values()){
 
@@ -1977,18 +1976,24 @@ public class Blocks {
 					}
 					break;
 				case ADIRONDACK:
-					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+
+					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_BENT_SPINDLE.ordinal()] ==true) {
 						spindleEnabled = true;
+
 					}
 					break;
 				case TALL:
-					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+
+					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_TALL_SPINDLE.ordinal()] ==true) {
 						spindleEnabled = true;
+
 					}
 					break;
 				case STRAIGHT:
-					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+
+					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_FLAT_SPINDLE.ordinal()] ==true) {
 						spindleEnabled = true;
+
 					}
 					break;
 				}
