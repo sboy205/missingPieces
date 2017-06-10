@@ -88,9 +88,13 @@ public class MpConfiguration {
     		MOD_CONFIG_VALUE
     }
     public  enum ConfigInfo {
-		//		Name					Category				Mod Type 			Enable/Disable
-		WEDGE_QTY("Wedge_Quantity", 	CATEGORY_NAME_WEDGES, 	ModType.MOD_CONFIG_VALUE, "Number of Wedges per recipe [3] - 6", 3, 3, 6),
-		MISC_SPINDLE("Spindle",			CATEGORY_NAME_MISC,		ModType.MOD_MISSING_PIECES,	MISC_DEFAULT_VALUE),
+
+		//		Name						Category				Mod Type 			Enable/Disable
+		WEDGE_QTY("Wedge_Quantity", 		CATEGORY_NAME_WEDGES, 	ModType.MOD_CONFIG_VALUE, "Number of Wedges per recipe [3] - 6", 3, 3, 6),
+		MISC_SPINDLE("Spindle",				CATEGORY_NAME_MISC,		ModType.MOD_MISSING_PIECES,	MISC_DEFAULT_VALUE),
+		MISC_FLAT_SPINDLE("FlatSpindle",	CATEGORY_NAME_MISC,		ModType.MOD_MISSING_PIECES,	MISC_DEFAULT_VALUE),
+		MISC_TALL_SPINDLE("TallSpindle",    CATEGORY_NAME_MISC,		ModType.MOD_MISSING_PIECES,	MISC_DEFAULT_VALUE),
+		MISC_BENT_SPINDLE("BentSpindle",	CATEGORY_NAME_MISC,		ModType.MOD_MISSING_PIECES,	MISC_DEFAULT_VALUE),
 
 		// ---- Logs ----
 		LOG_ACACIA("acacia_log",			CATEGORY_NAME_PILLARS, ModType.MOD_MISSING_PIECES,	LOG_DEFAULT_VALUE	),

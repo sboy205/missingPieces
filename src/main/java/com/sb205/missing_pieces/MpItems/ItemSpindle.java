@@ -1,7 +1,11 @@
 package com.sb205.missing_pieces.MpItems;
 
+import java.util.Locale;
+
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

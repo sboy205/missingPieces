@@ -10,10 +10,12 @@ import com.sb205.missing_pieces.MpBlocks.BlockLamp;
 import com.sb205.missing_pieces.MpBlocks.BlockPillar;
 import com.sb205.missing_pieces.MpBlocks.BlockTable;
 import com.sb205.missing_pieces.MpBlocks.BlockWedge;
+import com.sb205.missing_pieces.MpBlocks.EnumChairTypes;
 import com.sb205.missing_pieces.MpBlocks.MpBlock;
 import com.sb205.missing_pieces.MpBlocks.MpBlockSlab;
 import com.sb205.missing_pieces.MpBlocks.MpBlockSlab_half;
 import com.sb205.missing_pieces.MpBlocks.MpBlockStairs;
+import com.sb205.missing_pieces.MpItems.ItemBlockChair;
 import com.sb205.missing_pieces.MpItems.ItemBlockSlab;
 import com.sb205.missing_pieces.MpBlocks.MpBlockSlab_double;
 import com.sb205.missing_pieces.Utilities.BlockInfo;
@@ -24,6 +26,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -35,6 +38,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -914,7 +918,7 @@ public class Blocks {
 				hopseed_table =		createTable("hopseed_table", 	BlockType.BT_PLANK_HOPSEED, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_HOPSEED.ordinal()]);
 				maple_table =	 	createTable("maple_table", 		BlockType.BT_PLANK_MAPLE, 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_MAPLE.ordinal()]);
 				redwood_table =		createTable("redwood_table", 	BlockType.BT_PLANK_REDWOOD, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_REDWOOD.ordinal()]);
-				sakura_table =	 	createTable("sakura_table", 	BlockType.BT_PLANK_SAKURA, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_SAKURA.ordinal()]);
+				sakura_table =	 	createTable("sakura_table", 	BlockType.BT_PLANK_SAKURA, 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_SAKURA.ordinal()]);
 				silverbell_table =	createTable("silverbell_table", BlockType.BT_PLANK_SILVERBELL, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_SILVERBELL.ordinal()]);
 				tiger_table =	 	createTable("tiger_table", 		BlockType.BT_PLANK_TIGER, 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_TIGER.ordinal()]);
 				willow_table =	 	createTable("willow_table", 	BlockType.BT_PLANK_WILLOW, 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_WILLOW.ordinal()]);
@@ -1226,27 +1230,28 @@ public class Blocks {
 			System.out.println("\nNo Natura\n");
 		}
 
-		registerItem(acacia_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_ACACIA.ordinal()]);
-		registerItem(birch_chair,		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_BIRCH.ordinal()]);
-		registerItem(dark_oak_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_DARK_OAK.ordinal()]);
-		registerItem(jungle_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_JUNGLE.ordinal()]);
-		registerItem(oak_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_OAK.ordinal()]);
-		registerItem(spruce_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SPRUCE.ordinal()]);
+		registerChair(acacia_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_ACACIA.ordinal()]);
+		registerChair(birch_chair,		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_BIRCH.ordinal()]);
+		registerChair(dark_oak_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_DARK_OAK.ordinal()]);
+		registerChair(jungle_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_JUNGLE.ordinal()]);
+		registerChair(oak_chair,		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_OAK.ordinal()]);
+		registerChair(spruce_chair,		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SPRUCE.ordinal()]);
+
 		if (Loader.isModLoaded("natura")) {
 			try {
 				// Natura chair
-				registerItem(amaranth_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_AMARANTH.ordinal()]);
-				registerItem(darkwood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_DARKWOOD.ordinal()]);
-				registerItem(eucalyptus_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_EUCALYPTUS.ordinal()]);
-				registerItem(fusewood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_FUSEWOOD.ordinal()]);
-				registerItem(ghostwood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_GHOSTWOOD.ordinal()]);
-				registerItem(hopseed_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_HOPSEED.ordinal()]);
-				registerItem(maple_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_MAPLE.ordinal()]);
-				registerItem(redwood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_REDWOOD.ordinal()]);
-				registerItem(sakura_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SAKURA.ordinal()]);
-				registerItem(silverbell_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SILVERBELL.ordinal()]);
-				registerItem(tiger_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_TIGER.ordinal()]);
-				registerItem(willow_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_WILLOW.ordinal()]);
+				registerChair(amaranth_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_AMARANTH.ordinal()]);
+				registerChair(darkwood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_DARKWOOD.ordinal()]);
+				registerChair(eucalyptus_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_EUCALYPTUS.ordinal()]);
+				registerChair(fusewood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_FUSEWOOD.ordinal()]);
+				registerChair(ghostwood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_GHOSTWOOD.ordinal()]);
+				registerChair(hopseed_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_HOPSEED.ordinal()]);
+				registerChair(maple_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_MAPLE.ordinal()]);
+				registerChair(redwood_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_REDWOOD.ordinal()]);
+				registerChair(sakura_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SAKURA.ordinal()]);
+				registerChair(silverbell_chair, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SILVERBELL.ordinal()]);
+				registerChair(tiger_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_TIGER.ordinal()]);
+				registerChair(willow_chair, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_WILLOW.ordinal()]);
 
 				System.out.println("\nRegistered natura chairs\n");
 			}
@@ -1675,27 +1680,60 @@ public class Blocks {
 
 
 	public static BlockChair createChair(String name, BlockType ingredientA, Material mType, Boolean enabled){
-
+		
 		BlockChair chair = null;
-		if(enabled) {
-			chair = (BlockChair) new BlockChair(mType).setUnlocalizedName(name);
-			chair = (BlockChair) new BlockChair(mType).setUnlocalizedName(name);
-			GameRegistry.register(chair.setRegistryName(name));
-			GameRegistry.register(new ItemBlock(chair).setRegistryName(chair.getRegistryName()));
+		chair = (BlockChair) new BlockChair(mType, EnumChairTypes.SPINDLE).setUnlocalizedName(name);
+		chair.setRegistryName(name);
+		GameRegistry.register(chair);
+		
+		System.out.println("creating chair: " + name);
+		
+		ItemBlockChair itemChair = (ItemBlockChair) new ItemBlockChair((Block) chair);
+		itemChair.setRegistryName(chair.getRegistryName());
+		
+		GameRegistry.register(itemChair);
 
-			if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
-
-				GameRegistry.addRecipe(new ItemStack(chair, 2),
-						"  S",
-						" AA",
-						" SS",
-						'A', BlockInfo.blockType2Stack(ingredientA),
-						'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE)
-						);
-			}
+		
+		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+			GameRegistry.addRecipe(new ItemStack(chair, 2, 0),
+					"  S",
+					" AA",
+					" SS",
+					'A', BlockInfo.blockType2Stack(ingredientA),
+					'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE)
+					);
+		}
+		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.STRAIGHT.getMeta()),
+					"  S",
+					" AA",
+					" SS",
+					'A', BlockInfo.blockType2Stack(ingredientA),
+					'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_FLAT_SPINDLE)
+					);
+		}
+		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.TALL.getMeta()),
+					"  S",
+					" AA",
+					" SS",
+					'A', BlockInfo.blockType2Stack(ingredientA),
+					'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_TALL_SPINDLE)
+					);
+		}
+		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.ADIRONDACK.getMeta()),
+					"  S",
+					" AA",
+					" SS",
+					'A', BlockInfo.blockType2Stack(ingredientA),
+					'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_BENT_SPINDLE)
+					);
 		}
 		return chair;
 	}
+
+
 	public static BlockTable createTable(String name, BlockType ingredientA, Material mType, Boolean enabled){
 
 		BlockTable table = null;
@@ -1918,7 +1956,64 @@ public class Blocks {
 
 		}
 	}
-	
+
+	public static void registerChair(BlockChair chair_block, Boolean enabled){
+		final int DEFAULT_ITEM_SUBTYPE = 0;
+		String name = chair_block.getUnlocalizedName().substring(5);
+
+		System.out.println("register item " + name);
+
+		ItemStack itemStack = null;
+		Boolean spindleEnabled = false;
+		String chairName = name;
+		
+		for( EnumChairTypes chairType: EnumChairTypes.values()){
+			chairName = name;
+
+			if(enabled) {
+
+				switch( chairType){
+				default:
+				case SPINDLE:
+					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+						spindleEnabled = true;
+						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE);
+						//name += "." + EnumChairTypes.SPINDLE.getName();  // don't use name for this one for backward compatibility with non-variant chairs.
+					}
+					break;
+				case ADIRONDACK:
+					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+						spindleEnabled = true;
+						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_BENT_SPINDLE);
+						chairName = name + "_" + EnumChairTypes.ADIRONDACK.getName();
+					}
+					break;
+				case TALL:
+					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+						spindleEnabled = true;
+						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_TALL_SPINDLE);
+						chairName = name + "_" +  EnumChairTypes.TALL.getName();
+					}
+					break;
+				case STRAIGHT:
+					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
+						spindleEnabled = true;
+						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_FLAT_SPINDLE);
+						chairName = name + "_" + EnumChairTypes.STRAIGHT.getName();
+					}
+					break;
+				}
+				if( spindleEnabled == true){
+					ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation("missing_pieces:"+name, "facing=north,type="+chairType.getName()); 
+					System.out.println("item location:" + itemModelResourceLocation.toString());
+					//System.out.println("ID:" + Item.getIdFromItem(Item.getItemFromBlock(blockChair)));
+					Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(chair_block), chairType.getMeta(), itemModelResourceLocation);
+
+				}
+			}
+		}
+	}
+
 	public static void registerWedge(BlockWedge block, Boolean enabled){
 		final int DEFAULT_ITEM_SUBTYPE = 0;
 		if(enabled) { 

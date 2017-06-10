@@ -9,11 +9,14 @@ import com.sb205.missing_pieces.MpEntities.EntityMountableObject;
 import com.sb205.missing_pieces.Utilities.BlockInfo;
 import com.sb205.missing_pieces.Utilities.MountableUtil;
 import com.sb205.missing_pieces.Utilities.BlockInfo.BlockType;
-
+import com.sb205.missing_pieces.MpBlocks.EnumChairTypes;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -23,6 +26,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmorStand;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -45,20 +49,24 @@ import net.minecraft.item.ItemBoat;
 public class BlockChair extends MpBlock 
 {
   public static final PropertyDirection PROPERTYFACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-
-  public BlockChair(Material mType)
+)
+  public static final PropertyEnum CHAIR_TYPE = PropertyEnum.create("type", EnumChairTypes.class);
+  
+  public BlockChair(Material mType, EnumChairTypes chairType)
   {
 	super(mType, 0.5F, "axe", 1);
     this.setCreativeTab(CreativeTabs.DECORATIONS);   // the block will appear on the Blocks tab in creative
     this.setHardness(0.5F);
-    
+    this.setDefaultState(this.blockState.getBaseState().withProperty(CHAIR_TYPE, chairType));
   }
 
   @Override
   public IBlockState getStateFromMeta(int meta)
   {
     EnumFacing facing = EnumFacing.getHorizontal(meta);
-    return this.getDefaultState().withProperty(PROPERTYFACING, facing);
+
+    EnumChairTypes chairType = EnumChairTypes.getType(meta);
+    return this.getDefaultState().withProperty(PROPERTYFACING, facing).withProperty(CHAIR_TYPE, chairType);
   }
 
   @Override
@@ -66,18 +74,22 @@ public class BlockChair extends MpBlock
   {
     EnumFacing facing = (EnumFacing)state.getValue(PROPERTYFACING);
 
-    int facingbits = facing.getHorizontalIndex();
+    EnumChairTypes chairType = (EnumChairTypes)state.getValue(CHAIR_TYPE);
+    int facingbits = facing.getHorizontalIndex()+chairType.getMeta();
     return facingbits;
   }
 
   // when the block is placed, set the appropriate facing direction based on which way the player is looking
   @Override
+
   public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing blockFaceClickedOn, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
   {
 	    // find the quadrant the player is facing
     EnumFacing enumfacing = (placer == null) ? EnumFacing.NORTH : EnumFacing.fromAngle(placer.rotationYaw);
+    //System.out.println("placing chair meta: " + meta);
+    EnumChairTypes enumtype = EnumChairTypes.getType(meta);
     //System.out.println("Chair placed x:" + hitX + " y:" + hitY + " z:" + hitZ);
-    return this.getDefaultState().withProperty(PROPERTYFACING, enumfacing);
+    return this.getDefaultState().withProperty(PROPERTYFACING, enumfacing).withProperty(CHAIR_TYPE,enumtype);
   }
   
   // Make Chair mountable
@@ -85,7 +97,24 @@ public class BlockChair extends MpBlock
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY)
 	{
 		//System.out.println("Sitting in Chair x:" + pos.getX() + " y:" + pos.getY()  + " z:" + pos.getZ());
-		return MountableUtil.MountBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, (double)(7/16.0));
+		double height = 7/16.0;
+	    EnumChairTypes chairType = (EnumChairTypes)state.getValue(CHAIR_TYPE);
+	    switch(chairType){
+	    case STRAIGHT:
+	    	height = 7/16.0;
+	    	break;
+	    case TALL:
+	    	height = 10/16.0;
+	    	break;
+	    case ADIRONDACK:
+	    	height = 6/16.0;
+	    	break;
+	    default:
+	    case SPINDLE:
+	    	height = 7/16.0;
+	    	break;
+	    }
+		return MountableUtil.MountBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, height);
 	}
 
   // necessary to define which properties your blocks use
@@ -93,7 +122,7 @@ public class BlockChair extends MpBlock
   @Override
   protected BlockStateContainer createBlockState()
   {
-    return new BlockStateContainer(this, new IProperty[] {PROPERTYFACING});
+    return new BlockStateContainer(this, new IProperty[] {PROPERTYFACING, CHAIR_TYPE});
   }
   
   @Override
@@ -164,5 +193,28 @@ public class BlockChair extends MpBlock
   public EnumBlockRenderType getRenderType(IBlockState state) {
     return EnumBlockRenderType.MODEL;
   }
-
+//create a list of the subBlocks available for this block, i.e. one for each colour
+ // ignores facings, because the facing is calculated when we place the item.
+ //  - used to populate items for the creative inventory
+ // - the "metadata" value of the block is set to the colours metadata
+ @Override
+ @SideOnly(Side.CLIENT)
+ public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
+ {
+   EnumChairTypes[] allTypes = EnumChairTypes.values();
+   for (EnumChairTypes type : allTypes) {
+	   //System.out.println("subBlock: " + itemIn.getUnlocalizedName() + ":" + type.getName());
+     list.add(new ItemStack(itemIn, 1, type.getMeta()));
+   }
+ }
+  @Override
+  public String getUnlocalizedName(){
+	  	IBlockState state = this.getDefaultState();
+	    EnumChairTypes chairType = (EnumChairTypes)state.getValue(CHAIR_TYPE);
+	    if (chairType == EnumChairTypes.SPINDLE){
+	    	return super.getUnlocalizedName();
+	    } else {
+	    	return super.getUnlocalizedName() + "_" + chairType.getName();	    	
+	    }
+  }
 }

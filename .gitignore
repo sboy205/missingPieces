@@ -21,3 +21,4 @@ build
 eclipse
 run
 /eclipse/.metadata/.plugins/org.eclipse.debug.ui/launchConfigurationHistory.xml
+/tmp_mods

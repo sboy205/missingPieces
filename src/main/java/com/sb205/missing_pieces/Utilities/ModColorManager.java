@@ -54,7 +54,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
         {
             public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
             {
-                return worldIn != null && pos != null ? BiomeColorHelper.getGrassColorAtPos(worldIn, pos) : ColorizerGrass.getGrassColor(0.5D, 1.0D);
+            	int retColor;
+            	if ((worldIn != null) && pos != null){
+            		retColor = BiomeColorHelper.getGrassColorAtPos(worldIn, pos);
+            		System.out.println("BiomeColor = " + retColor);
+            	} else {
+            		retColor = ColorizerGrass.getGrassColor(0.5D, 1.0D);
+            		//System.out.println("Default grass color = " + retColor);
+            	}
+                return retColor;
             }
         }, new Block[] {Blocks.grass_wedge});
  		

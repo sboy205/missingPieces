@@ -1,8 +1,0 @@
-{
-  "parent": "missing_pieces:block/chair_model",
-    "textures": {
-    		"back": "minecraft:blocks/planks_birch",
-    		"seat": "minecraft:blocks/planks_birch",
-			"legs": "minecraft:blocks/planks_birch"
-	    }
-}

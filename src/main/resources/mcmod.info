@@ -3,7 +3,7 @@
   "modid": "missing_pieces",
   "name": "Missing Pieces",
   "description": "Some blocks I wanted in the game.",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
