@@ -1958,17 +1958,13 @@ public class Blocks {
 	}
 
 	public static void registerChair(BlockChair chair_block, Boolean enabled){
-		final int DEFAULT_ITEM_SUBTYPE = 0;
 		String name = chair_block.getUnlocalizedName().substring(5);
 
 		System.out.println("register item " + name);
 
-		ItemStack itemStack = null;
 		Boolean spindleEnabled = false;
-		String chairName = name;
 		
 		for( EnumChairTypes chairType: EnumChairTypes.values()){
-			chairName = name;
 
 			if(enabled) {
 
@@ -1977,29 +1973,22 @@ public class Blocks {
 				case SPINDLE:
 					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
 						spindleEnabled = true;
-						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE);
 						//name += "." + EnumChairTypes.SPINDLE.getName();  // don't use name for this one for backward compatibility with non-variant chairs.
 					}
 					break;
 				case ADIRONDACK:
 					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
 						spindleEnabled = true;
-						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_BENT_SPINDLE);
-						chairName = name + "_" + EnumChairTypes.ADIRONDACK.getName();
 					}
 					break;
 				case TALL:
 					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
 						spindleEnabled = true;
-						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_TALL_SPINDLE);
-						chairName = name + "_" +  EnumChairTypes.TALL.getName();
 					}
 					break;
 				case STRAIGHT:
 					if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
 						spindleEnabled = true;
-						itemStack = BlockInfo.blockType2Stack(BlockType.BT_ITEM_FLAT_SPINDLE);
-						chairName = name + "_" + EnumChairTypes.STRAIGHT.getName();
 					}
 					break;
 				}

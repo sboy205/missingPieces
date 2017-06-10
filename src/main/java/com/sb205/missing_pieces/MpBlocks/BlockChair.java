@@ -1,46 +1,29 @@
 package com.sb205.missing_pieces.MpBlocks;
 
-import java.util.List;
-import java.util.Locale;
-
-import com.sb205.missing_pieces.Items;
-import com.sb205.missing_pieces.Config.MpConfiguration;
-import com.sb205.missing_pieces.MpEntities.EntityMountableObject;
-import com.sb205.missing_pieces.Utilities.BlockInfo;
 import com.sb205.missing_pieces.Utilities.MountableUtil;
-import com.sb205.missing_pieces.Utilities.BlockInfo.BlockType;
 import com.sb205.missing_pieces.MpBlocks.EnumChairTypes;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityBoat;
-import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmorStand;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraft.item.ItemBoat;
 /**
  * User: sboy205
  * Date: 5/9/2017
@@ -49,7 +32,7 @@ import net.minecraft.item.ItemBoat;
 public class BlockChair extends MpBlock 
 {
   public static final PropertyDirection PROPERTYFACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-)
+
   public static final PropertyEnum CHAIR_TYPE = PropertyEnum.create("type", EnumChairTypes.class);
   
   public BlockChair(Material mType, EnumChairTypes chairType)
@@ -193,20 +176,6 @@ public class BlockChair extends MpBlock
   public EnumBlockRenderType getRenderType(IBlockState state) {
     return EnumBlockRenderType.MODEL;
   }
-//create a list of the subBlocks available for this block, i.e. one for each colour
- // ignores facings, because the facing is calculated when we place the item.
- //  - used to populate items for the creative inventory
- // - the "metadata" value of the block is set to the colours metadata
- @Override
- @SideOnly(Side.CLIENT)
- public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
- {
-   EnumChairTypes[] allTypes = EnumChairTypes.values();
-   for (EnumChairTypes type : allTypes) {
-	   //System.out.println("subBlock: " + itemIn.getUnlocalizedName() + ":" + type.getName());
-     list.add(new ItemStack(itemIn, 1, type.getMeta()));
-   }
- }
   @Override
   public String getUnlocalizedName(){
 	  	IBlockState state = this.getDefaultState();
@@ -216,5 +185,18 @@ public class BlockChair extends MpBlock
 	    } else {
 	    	return super.getUnlocalizedName() + "_" + chairType.getName();	    	
 	    }
+  }
+  
+  /**
+   * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
+   */
+  @SideOnly(Side.CLIENT)
+  public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+  {
+	   EnumChairTypes[] allTypes = EnumChairTypes.values();
+	   for (EnumChairTypes type : allTypes) {
+		   //System.out.println("subBlock: " + itemIn.getUnlocalizedName() + ":" + type.getName());
+	     list.add(new ItemStack(itemIn, 1, type.getMeta()));
+	   }
   }
 }

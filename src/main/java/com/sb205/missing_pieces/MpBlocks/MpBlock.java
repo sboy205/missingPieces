@@ -1,10 +1,12 @@
 package com.sb205.missing_pieces.MpBlocks;
 
+import java.util.List;
 import java.util.Locale;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class MpBlock extends Block {
