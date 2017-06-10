@@ -28,9 +28,10 @@ import java.util.Arrays;
 import javax.annotation.Nullable;
 
 /**
- * User: sboy205
- * Date: 5/9/2017
+ * User: brandon3055
+ * Date: 06/01/2015
  *
+ * This is a simple tile entity implementing IInventory that can store 4 item stacks
  */
 public class TileEntityShelf extends TileEntity implements IInventory {
 	// Create and initialize the items variable that will store store the items
@@ -40,12 +41,9 @@ public class TileEntityShelf extends TileEntity implements IInventory {
 	/* The following are some IInventory methods you are required to override */
 	public TileEntityShelf(){
 		for(int slot = 0; slot < NUMBER_OF_SLOTS; slot++){
-			itemStacks[slot] = null; //new ItemStack(Blocks.AIR,1);
+			itemStacks[slot] = new ItemStack(Blocks.AIR,1);
 		}
 	}
-
-	/* The following are some IInventory methods you are required to override */
-
 	// Gets the number of slots in the inventory
 	@Override
 	public int getSizeInventory() {
@@ -68,16 +66,17 @@ public class TileEntityShelf extends TileEntity implements IInventory {
 	@Override
 	public ItemStack decrStackSize(int slotIndex, int count) {
 		ItemStack itemStackInSlot = getStackInSlot(slotIndex);
-		if (itemStackInSlot == null) return null;
+		if (itemStackInSlot == null) return new ItemStack(Blocks.AIR,1);
+		if (itemStackInSlot == new ItemStack(Blocks.AIR,1)) return itemStackInSlot;
 
 		ItemStack itemStackRemoved;
-		if (itemStackInSlot.stackSize <= count) {
+		if (itemStackInSlot.getCount() <= count) {
 			itemStackRemoved = itemStackInSlot;
-			setInventorySlotContents(slotIndex, null);
+			setInventorySlotContents(slotIndex, new ItemStack(Blocks.AIR,1));
 		} else {
 			itemStackRemoved = itemStackInSlot.splitStack(count);
-			if (itemStackInSlot.stackSize == 0) {
-				setInventorySlotContents(slotIndex, null);
+			if (itemStackInSlot.getCount() == 0) {
+				setInventorySlotContents(slotIndex, new ItemStack(Blocks.AIR,1));
 			}
 		}
 	  markDirty();
@@ -88,9 +87,9 @@ public class TileEntityShelf extends TileEntity implements IInventory {
 	@Override
 	public void setInventorySlotContents(int slotIndex, ItemStack itemstack) {
 		itemStacks[slotIndex] = itemstack;
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) {
-			itemstack.stackSize = getInventoryStackLimit();
-		}
+		//if (itemstack != null && itemstack.func_190916_E() > getInventoryStackLimit()) {
+	//		itemstack.func_190916_E() = getInventoryStackLimit();
+	//	}
 		//System.out.println("setInventoryContents: " + slotIndex + " " + itemstack);
 		markDirty();
 	}
@@ -107,8 +106,8 @@ public class TileEntityShelf extends TileEntity implements IInventory {
 	// 1) the world tileentity hasn't been replaced in the meantime, and
 	// 2) the player isn't too far away from the centre of the block
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		if (this.worldObj.getTileEntity(this.pos) != this) return false;
+	public boolean isUsableByPlayer(EntityPlayer player) {
+		if (this.world.getTileEntity(this.pos) != this) return false;
 		final double X_CENTRE_OFFSET = 0.5;
 		final double Y_CENTRE_OFFSET = 0.5;
 		final double Z_CENTRE_OFFSET = 0.5;
@@ -162,14 +161,14 @@ public class TileEntityShelf extends TileEntity implements IInventory {
 		
 		NBTTagList dataForAllSlots = parentNBTTagCompound.getTagList("Items", NBT_TYPE_COMPOUND);
 
-		Arrays.fill(itemStacks, null);           // set all slots to empty
+		Arrays.fill(itemStacks, new ItemStack(Blocks.AIR,1));           // set all slots to empty
 		for (int i = 0; i < dataForAllSlots.tagCount(); ++i) {
 			NBTTagCompound dataForOneSlot = dataForAllSlots.getCompoundTagAt(i);
 			int slotIndex = dataForOneSlot.getByte("Slot") & 255;
 
 			if (slotIndex >= 0 && slotIndex < this.itemStacks.length) {
 				//this.itemStacks[slotIndex] = ItemStack.loadItemStackFromNBT(dataForOneSlot);
-				setInventorySlotContents(slotIndex, ItemStack.loadItemStackFromNBT(dataForOneSlot));
+				setInventorySlotContents(slotIndex, new ItemStack(dataForOneSlot));
 				//System.out.println("loaditem: " + slotIndex + " " + this.itemStacks[slotIndex]);
 			}
 		}
@@ -180,7 +179,7 @@ public class TileEntityShelf extends TileEntity implements IInventory {
 	// set all slots to empty
 	@Override
 	public void clear() {
-		Arrays.fill(itemStacks, null);
+		Arrays.fill(itemStacks, new ItemStack(Blocks.AIR,1));
 	}
 
 	// will add a key for this container to the lang file so we can name it in the GUI
@@ -211,7 +210,7 @@ public class TileEntityShelf extends TileEntity implements IInventory {
 	//@Override
 	public ItemStack getStackInSlotOnClosing(int slotIndex) {
 		ItemStack itemStack = getStackInSlot(slotIndex);
-		if (itemStack != null) setInventorySlotContents(slotIndex, null);
+		if (itemStack != null) setInventorySlotContents(slotIndex, new ItemStack(Blocks.AIR,1));
 		return itemStack;
 	}
 
@@ -301,9 +300,18 @@ public class TileEntityShelf extends TileEntity implements IInventory {
 
 	@Override
 	public ItemStack removeStackFromSlot(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		ItemStack itemStack = getStackInSlot(index);
+		setInventorySlotContents(index, new ItemStack(Blocks.AIR,1));
+		return itemStack;
 	}
+
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 
 

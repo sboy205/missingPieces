@@ -20,7 +20,7 @@ public class MountableUtil {
 		{
 			// No entity, so create one and mount it.
 			EntityMountableObject nemo = new EntityMountableObject(worldIn, xPos, yPos, zPos, yOffset);
-			worldIn.spawnEntityInWorld(nemo);
+			worldIn.spawnEntity(nemo);
 			playerIn.startRiding(nemo);
 			//System.out.println("mounting chair x:"+ xPos + " y:"+ yPos + " z:"+  zPos + " offset:"+ yOffset);
 					

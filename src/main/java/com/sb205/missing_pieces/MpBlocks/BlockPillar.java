@@ -68,7 +68,7 @@ public class BlockPillar extends MpBlock
 
   // when the block is placed, set the appropriate facing direction based on which way the player is looking
   @Override
-  public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing blockFaceClickedOn, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+  public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing blockFaceClickedOn, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
   {
 	    // find the quadrant the player is facing
   EnumFacing enumfacing = EnumFacing.NORTH;
@@ -106,7 +106,7 @@ public class BlockPillar extends MpBlock
   {
 	    return new BlockStateContainer(this, new IProperty[] {PROPERTYFACING, PROPERTYCEILING});
   }
-
+/*
   @Override
   public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World worldIn, BlockPos pos)
   {
@@ -115,7 +115,7 @@ public class BlockPillar extends MpBlock
 
       return getAxisAlignedBBFromFacing(facing, ceiling, pos);
   }
-
+*/
   @Override
   @SideOnly(Side.CLIENT)
   public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
