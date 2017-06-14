@@ -1964,7 +1964,8 @@ public class Blocks {
 
 		
 		for( EnumChairTypes chairType: EnumChairTypes.values()){
-
+			Boolean spindleEnabled = false;
+			
 			if(enabled) {
 
 				switch( chairType){
