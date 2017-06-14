@@ -1,6 +1,9 @@
 package com.sb205.missing_pieces.MpBlocks;
 
 import com.sb205.missing_pieces.Utilities.MountableUtil;
+
+import java.util.List;
+
 import com.sb205.missing_pieces.MpBlocks.EnumChairTypes;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -182,7 +185,7 @@ public class BlockChair extends MpBlock
  // - the "metadata" value of the block is set to the colours metadata
  @Override
  @SideOnly(Side.CLIENT)
- public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
+ public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
  {
    EnumChairTypes[] allTypes = EnumChairTypes.values();
    for (EnumChairTypes type : allTypes) {
@@ -203,16 +206,4 @@ public class BlockChair extends MpBlock
 	    }
   }
   
-  /**
-   * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-   */
-  @SideOnly(Side.CLIENT)
-  public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
-  {
-	   EnumChairTypes[] allTypes = EnumChairTypes.values();
-	   for (EnumChairTypes type : allTypes) {
-		   //System.out.println("subBlock: " + itemIn.getUnlocalizedName() + ":" + type.getName());
-	     list.add(new ItemStack(itemIn, 1, type.getMeta()));
-	   }
-  }
 }
