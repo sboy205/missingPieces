@@ -2,9 +2,9 @@
 "forge_marker": 1,
 "defaults": {
     "textures": {
-        "side":   "minecraft:blocks/hardened_clay_stained_light_gray",
-        "top":    "minecraft:blocks/hardened_clay_stained_light_gray",
-        "bottom": "minecraft:blocks/hardened_clay_stained_light_gray"
+        "side":   "minecraft:blocks/hardened_clay_stained_silver",
+        "top":    "minecraft:blocks/hardened_clay_stained_silver",
+        "bottom": "minecraft:blocks/hardened_clay_stained_silver"
     }
 },
 "variants": {
