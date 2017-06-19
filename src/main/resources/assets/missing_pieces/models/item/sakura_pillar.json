@@ -1,6 +1,0 @@
-{
-  "parent": "missing_pieces:block/sakura_pillar",
-  "textures": {
-	"rim": "missing_pieces:blocks/sakura_rim"
-  }
-}

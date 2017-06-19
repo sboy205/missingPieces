@@ -1,6 +1,0 @@
-{
-  "parent": "missing_pieces:block/fusewood_pillar",
-  "textures": {
-      "rim": "missing_pieces:blocks/fusewood_rim"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "missing_pieces:block/hopseed_pillar",
-  "textures": {
-      "rim": "missing_pieces:blocks/hopseed_rim"
-  }
-}

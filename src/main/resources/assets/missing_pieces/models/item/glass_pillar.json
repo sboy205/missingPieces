@@ -1,6 +1,0 @@
-{
-  "parent": "missing_pieces:block/glass_pillar",
-  "textures": {
-      "rim": "missing_pieces:blocks/glass_rim"
-  }
-}

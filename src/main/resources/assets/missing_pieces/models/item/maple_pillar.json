@@ -1,6 +1,0 @@
-{
-  "parent": "missing_pieces:block/maple_pillar",
-  "textures": {
-      "rim": "missing_pieces:blocks/maple_rim"
-  }
-}

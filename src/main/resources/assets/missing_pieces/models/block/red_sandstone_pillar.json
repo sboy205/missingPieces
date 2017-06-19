@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "minecraft:blocks/red_sandstone_top",
-    		"bottom": "minecraft:blocks/red_sandstone_top",
-    		"rim": "minecraft:blocks/red_sandstone_top",
-    		"side": "minecraft:blocks/red_sandstone_top"
-	    }
-}

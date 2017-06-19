@@ -1,12 +1,21 @@
 {
+"forge_marker": 1,
+"defaults": {
+    "textures": {
+        "side":   "minecraft:blocks/planks_jungle",
+        "top":    "minecraft:blocks/planks_jungle",
+        "bottom": "minecraft:blocks/planks_jungle"
+    }
+},
 "variants": {
-    "ceiling=up,facing=east":  { "model": "missing_pieces:jungle_pillar", "uvlock": true},
-    "ceiling=up,facing=west":  { "model": "missing_pieces:jungle_pillar", "uvlock": true},
-    "ceiling=up,facing=south": { "model": "missing_pieces:jungle_pillar", "uvlock": true},
-    "ceiling=up,facing=north": { "model": "missing_pieces:jungle_pillar", "uvlock": true},
-    "ceiling=down,facing=east":  { "model": "missing_pieces:jungle_pillar", "x": 90, "y": 90, "uvlock": true  },
-    "ceiling=down,facing=west":  { "model": "missing_pieces:jungle_pillar", "x": 90, "y": 90, "uvlock": true },
-    "ceiling=down,facing=south": { "model": "missing_pieces:jungle_pillar", "x": 90, "uvlock": true },
-    "ceiling=down,facing=north": { "model": "missing_pieces:jungle_pillar", "x": 90, "uvlock": true }
-	}
+    "inventory": { "model": "missing_pieces:pillar_model", "uvlock": true  },
+    "ceiling=up,facing=east":  {"model": "missing_pieces:pillar_model", "uvlock": true },
+    "ceiling=up,facing=west":  {"model": "missing_pieces:pillar_model", "uvlock": true },
+    "ceiling=up,facing=south": {"model": "missing_pieces:pillar_model", "uvlock": true },
+    "ceiling=up,facing=north": {"model": "missing_pieces:pillar_model", "uvlock": true },
+    "ceiling=down,facing=east":  {"model": "missing_pieces:pillar_model", "uvlock": true,"x": 90, "y": 90 },
+    "ceiling=down,facing=west":  {"model": "missing_pieces:pillar_model", "uvlock": true,"x": 90, "y": 90 },
+    "ceiling=down,facing=south": {"model": "missing_pieces:pillar_model", "uvlock": true,"x": 90 },
+    "ceiling=down,facing=north": {"model": "missing_pieces:pillar_model", "uvlock": true,"x": 90 }
+}
 }

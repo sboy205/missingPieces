@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "minecraft:blocks/hardened_clay_stained_white",
-    		"bottom": "minecraft:blocks/hardened_clay_stained_white",
-    		"rim": "minecraft:blocks/hardened_clay_stained_white",
-    		"side": "minecraft:blocks/hardened_clay_stained_white"
-	    }
-}

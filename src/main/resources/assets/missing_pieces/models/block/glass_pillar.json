@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "minecraft:blocks/glass",
-    		"bottom": "minecraft:blocks/glass",
-    		"rim": "minecraft:blocks/glass",
-    		"side": "minecraft:blocks/glass"
-	    }
-}

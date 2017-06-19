@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "minecraft:blocks/hardened_clay_stained_pink",
-    		"bottom": "minecraft:blocks/hardened_clay_stained_pink",
-    		"rim": "minecraft:blocks/hardened_clay_stained_pink",
-    		"side": "minecraft:blocks/hardened_clay_stained_pink"
-	    }
-}

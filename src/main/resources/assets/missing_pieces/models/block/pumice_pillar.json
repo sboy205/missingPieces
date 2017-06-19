@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "mineralogy:blocks/pumice",
-    		"bottom": "mineralogy:blocks/pumice",
-    		"rim": "missing_pieces:blocks/pumice_rim",
-    		"side": "mineralogy:blocks/pumice"
-	    }
-}

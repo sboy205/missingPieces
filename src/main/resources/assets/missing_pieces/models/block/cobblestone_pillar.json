@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "minecraft:blocks/cobblestone",
-    		"bottom": "minecraft:blocks/cobblestone",
-    		"rim": "missing_pieces:blocks/stone_rim",
-    		"side": "minecraft:blocks/cobblestone"
-	    }
-}

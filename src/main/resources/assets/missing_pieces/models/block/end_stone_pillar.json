@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "minecraft:blocks/end_stone",
-    		"bottom": "minecraft:blocks/end_stone",
-    		"rim": "missing_pieces:blocks/end_stone_rim",
-    		"side": "minecraft:blocks/end_stone"
-	    }
-}

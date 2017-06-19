@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "natura:blocks/planks/overworld/redwood_planks",
-    		"bottom": "natura:blocks/planks/overworld/redwood_planks",
-    		"rim": "missing_pieces:blocks/redwood_rim",
-    		"side": "natura:blocks/planks/overworld/redwood_planks"
-	    }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "missing_pieces:block/redwood_pillar",
-  "textures": {
-      "rim": "missing_pieces:blocks/redwood_rim"
-  }
-}

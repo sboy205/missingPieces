@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "mineralogy:blocks/gneiss",
-    		"bottom": "mineralogy:blocks/gneiss",
-    		"rim": "missing_pieces:blocks/gneiss_rim",
-    		"side": "mineralogy:blocks/gneiss"
-	    }
-}

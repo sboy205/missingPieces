@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "missing_pieces:blocks/Rainbow",
-    		"bottom": "missing_pieces:blocks/Rainbow",
-    		"rim": "missing_pieces:blocks/Rainbow",
-    		"side": "missing_pieces:blocks/Rainbow"
-	    }
-}

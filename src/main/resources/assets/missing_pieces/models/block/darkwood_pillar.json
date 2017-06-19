@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "natura:blocks/planks/nether/darkwood_planks",
-    		"bottom": "natura:blocks/planks/nether/darkwood_planks",
-    		"rim": "missing_pieces:blocks/darkwood_rim",
-    		"side": "natura:blocks/planks/nether/darkwood_planks"
-	    }
-}

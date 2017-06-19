@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "mineralogy:blocks/amphibolite",
-    		"bottom": "mineralogy:blocks/amphibolite",
-    		"rim": "missing_pieces:blocks/amphibolite_rim",
-    		"side": "mineralogy:blocks/amphibolite"
-	    }
-}

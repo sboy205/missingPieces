@@ -1,6 +1,0 @@
-{
-  "parent": "missing_pieces:block/tiger_pillar",
-  "textures": {
-      "rim": "missing_pieces:blocks/tiger_rim"
-  }
-}

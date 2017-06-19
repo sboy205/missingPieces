@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "natura:blocks/planks/overworld/sakura_planks",
-    		"bottom": "natura:blocks/planks/overworld/sakura_planks",
-    		"rim": "missing_pieces:blocks/sakura_rim",
-    		"side": "natura:blocks/planks/overworld/sakura_planks"
-	    }
-}

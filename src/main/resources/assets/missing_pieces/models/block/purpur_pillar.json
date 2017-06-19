@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "minecraft:blocks/purpur_block",
-    		"bottom": "minecraft:blocks/purpur_block",
-    		"rim": "missing_pieces:blocks/purpur_rim",
-    		"side": "minecraft:blocks/purpur_block"
-	    }
-}

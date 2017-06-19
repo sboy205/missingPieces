@@ -1,6 +1,0 @@
-{
-  "parent": "missing_pieces:block/willow_pillar",
-  "textures": {
-      "rim": "missing_pieces:blocks/willow_rim"
-  }
-}

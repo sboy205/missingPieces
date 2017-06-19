@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "natura:blocks/planks/overworld/eucalyptus_planks",
-    		"bottom": "natura:blocks/planks/overworld/eucalyptus_planks",
-    		"rim": "missing_pieces:blocks/eucalyptus_rim",
-    		"side": "natura:blocks/planks/overworld/eucalyptus_planks"
-	    }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "missing_pieces:block/darkwood_pillar",
-  "textures": {
-      "rim": "missing_pieces:blocks/darkwood_rim"
-  }
-}

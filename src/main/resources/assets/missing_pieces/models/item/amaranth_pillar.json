@@ -1,6 +1,0 @@
-{
-  "parent": "missing_pieces:block/amaranth_pillar",
-  "textures": {
-      "rim": "missing_pieces:blocks/amaranth_rim"
-  }
-}

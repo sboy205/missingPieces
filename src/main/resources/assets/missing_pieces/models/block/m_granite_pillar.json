@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "mineralogy:blocks/granite",
-    		"bottom": "mineralogy:blocks/granite",
-    		"rim": "missing_pieces:blocks/m_granite_rim",
-    		"side": "mineralogy:blocks/granite"
-	    }
-}

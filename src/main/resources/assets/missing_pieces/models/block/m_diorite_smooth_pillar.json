@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "mineralogy:blocks/diorite_smooth",
-    		"bottom": "mineralogy:blocks/diorite_smooth",
-    		"rim": "missing_pieces:blocks/m_diorite_smooth_rim",
-    		"side": "mineralogy:blocks/diorite_smooth"
-	    }
-}

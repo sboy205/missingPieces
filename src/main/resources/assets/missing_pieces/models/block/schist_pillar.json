@@ -1,9 +1,0 @@
-{
-  "parent": "missing_pieces:block/pillar_model",
-    "textures": {
-    		"top": "mineralogy:blocks/schist",
-    		"bottom": "mineralogy:blocks/schist",
-    		"rim": "missing_pieces:blocks/schist_rim",
-    		"side": "mineralogy:blocks/schist"
-	    }
-}
