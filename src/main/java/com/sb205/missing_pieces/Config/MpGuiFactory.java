@@ -30,11 +30,12 @@ public class MpGuiFactory implements IModGuiFactory
 		// for the configuration gui
 	}
 	
-	@Override
-	public Class<? extends GuiScreen> mainConfigGuiClass() 
-	{
-		return MissingPiecesConfigGui.class; //tells Forge which class represents our main GUI screen
-	}
+	// removed in 1.12
+	//@Override
+	//public Class<? extends GuiScreen> mainConfigGuiClass() 
+	//{
+	//	return MissingPiecesConfigGui.class; //tells Forge which class represents our main GUI screen
+	//}
 	
 	//The following two functions are needed for implementation only, the config gui does not require them
 	@Override
@@ -44,11 +45,11 @@ public class MpGuiFactory implements IModGuiFactory
 	}
 	
 	
-	@Override
-	public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) 
-	{
-		return null;
-	}
+	//@Override
+	//public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) 
+	//{
+	//	return null;
+	//}
 	
 	
 	//This class inherits from GuiConfig, a specialized GuiScreen designed to display your
@@ -747,6 +748,15 @@ public class MpGuiFactory implements IModGuiFactory
 			//this is a complicated object that specifies the category's gui screen, to better understand
 			// how it works, look into the definitions of the called functions and objects
 		}
+	}
+	@Override
+	public boolean hasConfigGui() {
+		return true;
+	}
+
+	@Override
+	public GuiScreen createConfigGui(GuiScreen parentScreen) {
+		return new GuiConfig(parentScreen, MissingPieces.MODID, I18n.format("gui.configuration.misc"));
 	}
 
 }

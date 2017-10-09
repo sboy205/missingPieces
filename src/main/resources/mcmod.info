@@ -1,15 +1,16 @@
 [
 {
-  "modid": "missing_pieces",
-  "name": "Missing Pieces",
-  "description": "Some blocks I wanted in the game.",
-  "version": "4.3.0",
+  "modid": "examplemod",
+  "name": "Example Mod",
+  "description": "Example placeholder mod.",
+  "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["sboy205"],
-  "credits": "Thanks to the Forge and FML guys, The Grey Ghost for pulling together minecraft by Examples, Mr Crayfish for his model creator ",
+  "authorList": ["ExampleDude"],
+  "credits": "The Forge and FML guys, for making this example",
   "logoFile": "",
-  "screenshots": []
+  "screenshots": [],
+  "dependencies": []
 }
 ]

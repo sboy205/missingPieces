@@ -48,7 +48,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 
 /**
- * User: brandon3055
+ * User: sboy205
  * Date: 06/01/2015
  *
  * BlockInventoryBasic is a simple inventory capable of storing 9 item stacks. The block itself doesn't do much more
@@ -136,6 +136,7 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 	// Should return a new instance of the tile entity for the block
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
+		// TODO handle meta
 		return new TileEntityShelf();
 	}
 
@@ -147,7 +148,10 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 	    TileEntity tileentity = worldIn.getTileEntity(pos);
 	    if (tileentity instanceof TileEntityShelf) { // prevent a crash if not the right type, or is null
 	    	TileEntityShelf tileEntityInventoryBasic = (TileEntityShelf)tileentity;
+	    	System.out.println("blockshelf placed1");
 
+	    } else {
+	    	System.out.println("blockshelf placed2");
 	    }
 	  }
 	  @Override
@@ -258,7 +262,7 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 		if (worldIn.isRemote) return true;
 		ItemStack airStack = new ItemStack(Blocks.AIR,1);
 		IInventory inventory = worldIn.getTileEntity(pos) instanceof IInventory ? (IInventory)worldIn.getTileEntity(pos) : null;
-		float eyeHeight = playerIn.getEyeHeight();
+		//float eyeHeight = playerIn.getEyeHeight();
 	    double actualY, actualZ, actualX, delta;
 	    	/* BlockChest
 			System.out.println("player eye height is: " + eyeHeight);
@@ -284,15 +288,15 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 		    default:
 		    case NORTH:
 		    	//delta = (hitZ-SHELF_FRONT)/playerIn.getLookVec().zCoord;
-		    	delta = (hitX-SHELF_FRONT)/playerIn.getLookVec().zCoord;
-		    	actualY = hitY-delta*playerIn.getLookVec().yCoord;
+		    	delta = (hitX-SHELF_FRONT)/playerIn.getLookVec().z;
+		    	actualY = hitY-delta*playerIn.getLookVec().y;
 		    	actualX = hitZ;//-delta*playerIn.getLookVec().xCoord;
 		    	//System.out.println("north: actualY: " + actualY + " actualX:" + actualX);
 		    	//System.out.println("north");
 		    	break;
 		    	
 		    case EAST:
-		    	delta = (SHELF_FRONT-hitX)/playerIn.getLookVec().xCoord;
+		    	delta = (SHELF_FRONT-hitX)/playerIn.getLookVec().x;
 		    	actualY = hitY;//-delta*playerIn.getLookVec().yCoord;
 		    	actualX = hitX;//-delta*playerIn.getLookVec().zCoord;
 		    	//System.out.println("east: actualY: " + actualY + " actualX:" + actualX);
@@ -302,8 +306,8 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 		    	
 		    case SOUTH:
 		    	//delta = (hitZ-SHELF_FRONT)/playerIn.getLookVec().zCoord;
-		    	delta = (hitX-SHELF_FRONT)/playerIn.getLookVec().zCoord;
-		    	actualY = hitY-delta*playerIn.getLookVec().yCoord;
+		    	delta = (hitX-SHELF_FRONT)/playerIn.getLookVec().z;
+		    	actualY = hitY-delta*playerIn.getLookVec().y;
 		    	actualX = 1.0F-hitZ;//-delta*playerIn.getLookVec().xCoord;
 		    	//System.out.println("south: actualY: " + actualY + " actualX:" + actualX);
 
@@ -311,7 +315,7 @@ public class BlockShelf extends BlockContainer implements ITileEntityProvider
 		    	break;
 
 		    case WEST:
-		    	delta = (hitX-SHELF_FRONT)/playerIn.getLookVec().xCoord;
+		    	delta = (hitX-SHELF_FRONT)/playerIn.getLookVec().x;
 		    	actualY = hitY;//-delta*playerIn.getLookVec().yCoord;
 		    	actualX = 1.0F-hitX;//-delta*playerIn.getLookVec().zCoord;
 		    	//System.out.println("west: actualY: " + actualY + " actualX:" + actualX);

@@ -17,14 +17,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class TileEntities {
 	public static BlockShelf acaciaShelf;
@@ -56,7 +60,10 @@ public class TileEntities {
 		jungleShelf = 	createShelf("jungle_shelf", 	BlockType.BT_PLANK_JUNGLE, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_JUNGLE.ordinal()]);
 		oakShelf = 		createShelf("oak_shelf", 		BlockType.BT_PLANK_OAK, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_OAK.ordinal()]);
 		spruceShelf = 	createShelf("spruce_shelf",		BlockType.BT_PLANK_SPRUCE, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_SPRUCE.ordinal()]);
-		GameRegistry.registerTileEntityWithAlternatives(TileEntityShelf.class, "acaia_shelf","birch_shelf","dark_oak_shelf", "jungle_shelf","oak_shelf","spruce_shelf");
+		GameRegistry.registerTileEntity(TileEntityShelf.class, "oak_shelf");
+		//deleted for 1.12 GameRegistry.registerTileEntityWithAlternatives(TileEntityShelf.class, "acaia_shelf","birch_shelf","dark_oak_shelf", "jungle_shelf","oak_shelf","spruce_shelf");
+
+
 		if (Loader.isModLoaded("natura")) {
 			try {
 				// Natura shelves
@@ -148,12 +155,11 @@ public class TileEntities {
 		  if(enabled) {
 
 			    blockShelf = (BlockShelf)(new BlockShelf(mType, hardness).setUnlocalizedName(name));
-			    GameRegistry.register(blockShelf.setRegistryName(name));
-				GameRegistry.register(new ItemBlock(blockShelf).setRegistryName(blockShelf.getRegistryName()));
-
-				//GameRegistry.registerTileEntity(TileEntityShelf.class, name);
+			    ForgeRegistries.BLOCKS.register(blockShelf.setRegistryName(name));
+			    ForgeRegistries.ITEMS.register(new ItemBlock(blockShelf).setRegistryName(blockShelf.getRegistryName()));
 			
-				GameRegistry.addRecipe(new ItemStack(blockShelf, 3),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name),
+			    		new ResourceLocation(MissingPieces.MODID + ":"+ "shelf2"), new ItemStack(blockShelf, 3),
 		        	" A ",
 		        	"ABA",
 		        	" A ",

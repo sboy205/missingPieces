@@ -183,15 +183,16 @@ public class BlockChair extends MpBlock
  // ignores facings, because the facing is calculated when we place the item.
  //  - used to populate items for the creative inventory
  // - the "metadata" value of the block is set to the colours metadata
+
  @Override
  @SideOnly(Side.CLIENT)
- public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+ public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> list)
  {
    EnumChairTypes[] allTypes = EnumChairTypes.values();
    for (EnumChairTypes type : allTypes) {
 	   //System.out.println("subBlock: " + itemIn.getUnlocalizedName() + ":" + type.getName());
      if( type.getEnabled() == true){
-    	 list.add(new ItemStack(itemIn, 1, type.getMeta()));
+    	 list.add(new ItemStack(this, 1, type.getMeta()));
      }
    }
  }
