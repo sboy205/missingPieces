@@ -44,6 +44,19 @@ public class MpGuiFactory implements IModGuiFactory
 		return null;
 	}
 	
+	@Override
+	public boolean hasConfigGui() {
+		return true;
+	}
+
+	@Override
+	public GuiScreen createConfigGui(GuiScreen parentScreen) {
+		return new MissingPiecesConfigGui( parentScreen); 
+				//GuiConfig(parentScreen, MissingPieces.MODID, true, true, I18n.format("gui.configuration.misc"));
+		//GuiConfig(GuiScreen parentScreen, String modID, boolean allRequireWorldRestart, boolean allRequireMcRestart, String title,
+	    //        Class<?>... configClasses)
+
+	}
 	
 	//@Override
 	//public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) 
@@ -748,15 +761,6 @@ public class MpGuiFactory implements IModGuiFactory
 			//this is a complicated object that specifies the category's gui screen, to better understand
 			// how it works, look into the definitions of the called functions and objects
 		}
-	}
-	@Override
-	public boolean hasConfigGui() {
-		return true;
-	}
-
-	@Override
-	public GuiScreen createConfigGui(GuiScreen parentScreen) {
-		return new GuiConfig(parentScreen, MissingPieces.MODID, I18n.format("gui.configuration.misc"));
 	}
 
 }
