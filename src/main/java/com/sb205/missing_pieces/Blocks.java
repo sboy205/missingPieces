@@ -1992,7 +1992,7 @@ public class Blocks {
 	public static void registerChair(BlockChair chair_block, Boolean enabled){
 		String name = chair_block.getUnlocalizedName().substring(5);
 
-		System.out.println("register item " + name);
+		//System.out.println("register item " + name);
 
 		
 		for( EnumChairTypes chairType: EnumChairTypes.values()){
@@ -2032,7 +2032,7 @@ public class Blocks {
 				}
 				if( spindleEnabled == true){
 					ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation("missing_pieces:"+name, "facing=north,type="+chairType.getName()); 
-					System.out.println("item location:" + itemModelResourceLocation.toString());
+					//System.out.println("item location:" + itemModelResourceLocation.toString());
 					//System.out.println("ID:" + Item.getIdFromItem(Item.getItemFromBlock(blockChair)));
 					Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(chair_block), chairType.getMeta(), itemModelResourceLocation);
 
