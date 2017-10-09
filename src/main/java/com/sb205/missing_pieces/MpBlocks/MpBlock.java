@@ -8,6 +8,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class MpBlock extends Block {
 
@@ -59,6 +62,12 @@ public class MpBlock extends Block {
 				}
 			}
 		  
+	  }
+	  @Override
+	  @SideOnly(Side.CLIENT)
+	  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> tab)
+	  {
+			  super.getSubBlocks(itemIn, tab);
 	  }
 
 }

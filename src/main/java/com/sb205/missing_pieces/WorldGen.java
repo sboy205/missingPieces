@@ -6,7 +6,6 @@ import com.sb205.missing_pieces.MpBlocks.BlockPillar;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -37,8 +36,7 @@ public class WorldGen implements IWorldGenerator{
 	}
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
-			IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world, net.minecraft.world.gen.IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		// TODO Auto-generated method stub
 		switch (world.provider.getDimension()) {
 	    case 0: //Overworld
@@ -54,5 +52,6 @@ public class WorldGen implements IWorldGenerator{
 	    }
 	
 	}
+
 
 }

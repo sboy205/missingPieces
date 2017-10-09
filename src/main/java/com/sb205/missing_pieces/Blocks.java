@@ -34,6 +34,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
@@ -44,11 +46,14 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.RegistryManager;
 
 // Define and register blocks
 
 public class Blocks {
-	
+	private static IForgeRegistry<Block> blockRegistry;
+	private static IForgeRegistry<Item> itemRegistry;
 	//Vanilla Candelabras
 	public static BlockCandelabra acacia_candelabra;
 	public static BlockCandelabra birch_candelabra;
@@ -537,7 +542,13 @@ public class Blocks {
 		PATT_NORM
 	}
 
+	public Blocks(){
+
+	}
 	public static void preInitCommon(){
+		blockRegistry =ForgeRegistries.BLOCKS;
+		itemRegistry =ForgeRegistries.ITEMS; 
+
 		/*
 		rainbow_candelabra = 	createCandelabra("rainbow_candelabra",	BlockType.BT_PLANK_ACACIA,	Material.wood,	true);
 		rainbow_lamp = 			createLamp("rainbow_lamp",				BlockType.BT_PLANK_ACACIA,	Material.wood,	true);
@@ -620,7 +631,7 @@ public class Blocks {
 
 		/*
 		// Generic Candelabra
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(oak_candelabra, 2),
+		GameRegistry.addShapedRecipe(new ShapedOreRecipe(new ItemStack(oak_candelabra, 2),
 				"G G",
 				"TWT",
 				"SSS",
@@ -698,7 +709,7 @@ public class Blocks {
 		}
 		/*
 		// Generic Lamp
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(oak_lamp, 2),
+		GameRegistry.addShapedRecipe(new ShapedOreRecipe(new ItemStack(oak_lamp, 2),
 				"GTG",
 				" S ",
 				" W ",
@@ -715,7 +726,7 @@ public class Blocks {
 		oak_chair = 	createChair("oak_chair", 		BlockType.BT_PLANK_OAK, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_OAK.ordinal()]);
 		spruce_chair = 	createChair("spruce_chair", 	BlockType.BT_PLANK_SPRUCE, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SPRUCE.ordinal()]);
 		/*
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(oak_chair,2),
+		GameRegistry.addShapedRecipe(new ShapedOreRecipe(new ItemStack(oak_chair,2),
 				"  S",
 				" AA",
 				" SS",
@@ -883,12 +894,12 @@ public class Blocks {
 		}
 
 		// generic pillar
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(cobblestone_pillar, 3),
+		GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + "cobbleston_pillar"), new ResourceLocation(MissingPieces.MODID + ":" + "pillar"), new  ItemStack(cobblestone_pillar, 3),
 				" A ",
 				" A ",
 				" A ",
 				'A', "cobblestone"
-				));
+				);
 
 		// Create Tables
 		//		Name					Ingredient					Material		Enable/Disable
@@ -900,7 +911,7 @@ public class Blocks {
 		spruce_table = 	createTable("spruce_table", 	BlockType.BT_PLANK_SPRUCE, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_SPRUCE.ordinal()]);
 		//Generic Table
 		/*
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(oak_table,2),
+		GameRegistry.addShapedRecipe(new ShapedOreRecipe(new ItemStack(oak_table,2),
 				"AAA",
 				"S S",
 				"S S",
@@ -1054,12 +1065,12 @@ public class Blocks {
 		}
 
 		// Generic Wedge from Ore dictionary
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(cobblestone_wedge, 3),
+		GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + "cobblestone_wedge"), new ResourceLocation(MissingPieces.MODID + ":" + "wedge"), new ItemStack(cobblestone_wedge, 3),
 				"   ",
 				"A  ",
 				"AA ",
 				'A', "cobblestone" 
-				));
+				);
 
 		//rainbow_slab = createHalfSlab("rainbow_slab", Material.rock, 2.0F, true, "pickaxe", 3);
 		//rainbow_slab_double = createDoubleSlab("rainbow_slab_double",  Material.rock, 2.0F, true, "pickaxe", 3);
@@ -1593,15 +1604,15 @@ public class Blocks {
 		BlockCandelabra candelabra = null;
 		if(enabled) {
 			candelabra = (BlockCandelabra)(new BlockCandelabra(mType).setUnlocalizedName(name));
-			GameRegistry.register(candelabra.setRegistryName(name));
+			blockRegistry.register(candelabra.setRegistryName(name));
 			//GameRegistry.registerBlock(candelabra, name);
-			GameRegistry.register(new ItemBlock(candelabra).setRegistryName(candelabra.getRegistryName()));
+			itemRegistry.register(new ItemBlock(candelabra).setRegistryName(candelabra.getRegistryName()));
 
 			//OreDictionary.registerOre(candelabra.getOredictName(),candelabra);
 			//OreDictionary.registerOre("candelabra",candelabra); //generic
 			if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) { // can't enable recipe if no spindle
 
-				GameRegistry.addRecipe(new ItemStack(candelabra, 2),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name), new ResourceLocation(MissingPieces.MODID + ":" + "candelabra"),new ItemStack(candelabra, 2),
 						"G G",
 						"TWT",
 						"SSS",
@@ -1619,13 +1630,13 @@ public class Blocks {
 		BlockLamp lamp = null;
 		if(enabled) {
 			lamp = (BlockLamp)(new BlockLamp(mType).setUnlocalizedName(name));
-			GameRegistry.register(lamp.setRegistryName(name));
-			GameRegistry.register(new ItemBlock(lamp).setRegistryName(lamp.getRegistryName()));
+			blockRegistry.register(lamp.setRegistryName(name));
+			itemRegistry.register(new ItemBlock(lamp).setRegistryName(lamp.getRegistryName()));
 
 
 			if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) { // can't enable recipe if no spindle
 
-				GameRegistry.addRecipe(new ItemStack(lamp, 2),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name),new ResourceLocation(MissingPieces.MODID + ":" + "lamp"), new ItemStack(lamp, 2),
 						"GTG",
 						" S ",
 						" W ",
@@ -1646,10 +1657,11 @@ public class Blocks {
 
 
 			pillar = (BlockPillar)new BlockPillar(mType, mHardness, mHarvest, harvestLevel).setUnlocalizedName(name);
-			GameRegistry.register(pillar.setRegistryName(name));
-			GameRegistry.register(new ItemBlock(pillar).setRegistryName(pillar.getRegistryName()));
+			blockRegistry.register(pillar.setRegistryName(name));
+			itemRegistry.register(new ItemBlock(pillar).setRegistryName(pillar.getRegistryName()));
 
-			GameRegistry.addRecipe(new ItemStack(pillar, 3),
+			GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name), 
+					new ResourceLocation(MissingPieces.MODID + ":" + "pillar"),new ItemStack(pillar, 3),
 					" A ",
 					" A ",
 					" A ",
@@ -1665,10 +1677,11 @@ public class Blocks {
 
 
 			stairs = (MpBlockStairs)(new MpBlockStairs(mHardness, mHarvest, harvestLevel).setUnlocalizedName(name));
-			GameRegistry.register(stairs.setRegistryName(name));
-			GameRegistry.register(new ItemBlock(stairs).setRegistryName(stairs.getRegistryName()));
+			blockRegistry.register(stairs.setRegistryName(name));
+			itemRegistry.register(new ItemBlock(stairs).setRegistryName(stairs.getRegistryName()));
 
-			GameRegistry.addRecipe(new ItemStack(stairs, 3),
+			GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name),
+					new ResourceLocation(MissingPieces.MODID + ":" + "stairs"),new ItemStack(stairs, 3),
 					"A  ",
 					"AA ",
 					"AAA",
@@ -1684,18 +1697,19 @@ public class Blocks {
 		BlockChair chair = null;
 		chair = (BlockChair) new BlockChair(mType, EnumChairTypes.SPINDLE).setUnlocalizedName(name);
 		chair.setRegistryName(name);
-		GameRegistry.register(chair);
+		blockRegistry.register(chair);
 		
-		System.out.println("creating chair: " + name);
+		//System.out.println("creating chair: " + name);
 		
 		ItemBlockChair itemChair = (ItemBlockChair) new ItemBlockChair((Block) chair);
 		itemChair.setRegistryName(chair.getRegistryName());
 		
-		GameRegistry.register(itemChair);
+		itemRegistry.register(itemChair);
 
 		
 		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
-			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.SPINDLE.getMeta()),
+			GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name),
+					new ResourceLocation(MissingPieces.MODID + ":" + "chair"),new ItemStack(chair, 2, EnumChairTypes.SPINDLE.getMeta()),
 					"  S",
 					" AA",
 					" SS",
@@ -1704,7 +1718,8 @@ public class Blocks {
 					);
 		}
 		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_FLAT_SPINDLE.ordinal()] ==true) {
-			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.STRAIGHT.getMeta()),
+			GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name),
+					new ResourceLocation(MissingPieces.MODID + ":" + "chair"),new ItemStack(chair, 2, EnumChairTypes.STRAIGHT.getMeta()),
 					"  S",
 					" AA",
 					" SS",
@@ -1713,7 +1728,8 @@ public class Blocks {
 					);
 		}
 		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_TALL_SPINDLE.ordinal()] ==true) {
-			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.TALL.getMeta()),
+			GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name),
+					new ResourceLocation(MissingPieces.MODID + ":" + "chair"),new ItemStack(chair, 2, EnumChairTypes.TALL.getMeta()),
 					"  S",
 					" AA",
 					" SS",
@@ -1722,7 +1738,8 @@ public class Blocks {
 					);
 		}
 		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_BENT_SPINDLE.ordinal()] ==true) {
-			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.ADIRONDACK.getMeta()),
+			GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name),
+					new ResourceLocation(MissingPieces.MODID + ":" + "chair"),new ItemStack(chair, 2, EnumChairTypes.ADIRONDACK.getMeta()),
 					"  S",
 					" AA",
 					" SS",
@@ -1742,11 +1759,12 @@ public class Blocks {
 
 				table = (BlockTable)(new BlockTable(mType).setUnlocalizedName(name));
 				table = (BlockTable)(new BlockTable(mType).setUnlocalizedName(name));
-				GameRegistry.register(table.setRegistryName(name));
-				GameRegistry.register(new ItemBlock(table).setRegistryName(table.getRegistryName()));
+				blockRegistry.register(table.setRegistryName(name));
+				itemRegistry.register(new ItemBlock(table).setRegistryName(table.getRegistryName()));
 
 				if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
-					GameRegistry.addRecipe(new ItemStack(table, 2),
+					GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name),
+							new ResourceLocation(MissingPieces.MODID + ":" + "table"),new ItemStack(table, 2),
 							"AAA",
 							"S S",
 							"S S",
@@ -1768,10 +1786,11 @@ public class Blocks {
 
 			// each instance of your block should have a name that is unique within your mod.  use lower case.
 			wedge = (BlockWedge)(new BlockWedge(mType, mHardness, mHarvest, harvestLevel).setUnlocalizedName(name));
-			GameRegistry.register(wedge.setRegistryName(name));
-			GameRegistry.register(new ItemBlock(wedge).setRegistryName(wedge.getRegistryName()));
+			blockRegistry.register(wedge.setRegistryName(name));
+			itemRegistry.register(new ItemBlock(wedge).setRegistryName(wedge.getRegistryName()));
 
-			GameRegistry.addRecipe(new ItemStack(wedge, MpConfiguration.ConfigValue[ConfigInfo.WEDGE_QTY.ordinal()]),
+			GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name),
+					new ResourceLocation(MissingPieces.MODID + ":" + "wedge"),new ItemStack(wedge, MpConfiguration.ConfigValue[ConfigInfo.WEDGE_QTY.ordinal()]),
 					"   ",
 					"A  ",
 					"AA ",
@@ -1807,17 +1826,18 @@ public class Blocks {
 		if(enabled) {
 			//System.out.println("register slab:" + name_half + " : " + name_double);;
 
-			GameRegistry.register(slab_half.setRegistryName(name_half));
+			blockRegistry.register(slab_half.setRegistryName(name_half));
 			//GameRegistry.registerBlock(slab_half, ItemBlockSlab.class, name_half, slab_half, slab_double,false);
 
-			GameRegistry.register(new ItemSlab(slab_half, slab_half, slab_double).setRegistryName(name_half));
+			itemRegistry.register(new ItemSlab(slab_half, slab_half, slab_double).setRegistryName(name_half));
 			//GameRegistry.registerBlock(slab_double, ItemBlockSlab.class , name_double, slab_half, slab_double,true);
-			GameRegistry.register(slab_double.setRegistryName(name_double));
+			blockRegistry.register(slab_double.setRegistryName(name_double));
 			
 			OreDictionary.registerOre(slab_half.getOredictName(),slab_half);
 			switch(sType){
 			case PATT_1:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 4),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 4),
 						"AA ",
 						"AA ",
 						"   ",
@@ -1826,7 +1846,8 @@ public class Blocks {
 
 				break;
 			case PATT_10:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 4),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 4),
 						"A A",
 						"A A",
 						"   ",
@@ -1834,7 +1855,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_11:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 6),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 6),
 						"A A",
 						"A A",
 						"A A",
@@ -1842,7 +1864,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_12:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 4),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 4),
 						"AA ",
 						"   ",
 						"AA ",
@@ -1850,7 +1873,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_2:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 6),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 6),
 						"A A",
 						"AAA",
 						" A ",
@@ -1858,7 +1882,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_3:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 5),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 5),
 						" A ",
 						"AAA",
 						" A ",
@@ -1866,7 +1891,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_4:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 5),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 5),
 						"A A",
 						" A ",
 						"A A",
@@ -1874,7 +1900,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_5:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 4),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 4),
 						"A A",
 						"   ",
 						"A A",
@@ -1882,7 +1909,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_6:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 8),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 8),
 						"AAA",
 						"A A",
 						"AAA",
@@ -1890,7 +1918,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_7:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 6),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 6),
 						"AAA",
 						"   ",
 						"AAA",
@@ -1898,7 +1927,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_8:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 6),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 6),
 						"AA ",
 						" AA",
 						"AA ",
@@ -1906,7 +1936,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_9:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 6),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 6),
 						"   ",
 						"AAA",
 						"A A",
@@ -1915,7 +1946,8 @@ public class Blocks {
 				break;
 			case PATT_NORM:
 			default:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 6),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 6),
 						"   ",
 						"   ",
 						"AAA",

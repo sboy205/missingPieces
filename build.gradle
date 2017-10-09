@@ -17,10 +17,12 @@ archivesBaseName = "missing_pieces"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
+    //sourceCompatibility = targetCompatibility = "1.6"
     sourceCompatibility = targetCompatibility = '1.8'
 }
 
 minecraft {
+    //version = "1.11.2-13.20.0.2228"
     version = "1.12.2-14.23.0.2491"
     runDir = "run"
     

@@ -491,11 +491,6 @@ public class BlockWedge extends  BlockStairs {
 	    /**
 	     * Checks if an IBlockState represents a block that is opaque and a full cube.
 	     */
-	  @Override
-	    public boolean isFullyOpaque(IBlockState state)
-	    {
-	        return false;
-	    }
 	  
 	    @Override
 	    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face)
