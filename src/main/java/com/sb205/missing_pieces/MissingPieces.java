@@ -1,17 +1,20 @@
 package com.sb205.missing_pieces;
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = MissingPieces.MODID, 
 			 version = MissingPieces.VERSION, 
 			 name=MissingPieces.NAME, 
-			 dependencies = "after:basemetals;after:mineralogy;after:natura", 
+			 dependencies = "after:natura", //after:basemetals;after:mineralogy
 			 guiFactory= MissingPieces.GUIFACTORY)
 
 public class MissingPieces
@@ -39,6 +42,12 @@ public class MissingPieces
     public void init(FMLInitializationEvent event)
     {
         System.out.println(MissingPieces.MODID + " Is Rendering");
+		Block mapleBlock = GameRegistry.findRegistry(Block.class).getValue( new ResourceLocation("natura:overworld_planks"));
+		if (mapleBlock == null){
+			System.out.println("no maple block");
+		}
+		System.out.println("init mapleBlock: "+ mapleBlock.toString());
+
       proxy.init();
     }
 
@@ -46,6 +55,12 @@ public class MissingPieces
     public void postInit(FMLPostInitializationEvent event)
     {
       proxy.postInit();
+		Block mapleBlock = GameRegistry.findRegistry(Block.class).getValue( new ResourceLocation("natura:overworld_planks"));
+		if (mapleBlock == null){
+			System.out.println("no maple block");
+		}
+		System.out.println("post mapleBlock: "+ mapleBlock.toString());
+
     }
 
     /**
