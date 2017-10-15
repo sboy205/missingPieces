@@ -28,7 +28,7 @@ import java.util.Arrays;
 import javax.annotation.Nullable;
 
 /**
- * User: brandon3055
+ * User: sboy205
  * Date: 06/01/2015
  *
  * This is a simple tile entity implementing IInventory that can store 4 item stacks
@@ -184,7 +184,8 @@ public class TileEntityShelf extends TileEntity implements IInventory {
 
 	// will add a key for this container to the lang file so we can name it in the GUI
 	public String getName() {
-		return "tile.shelf.name";
+		// TODO return correct name
+		return "tile.oak_shelf.name";
 	}
 
 	@Override

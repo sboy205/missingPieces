@@ -11,7 +11,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
+import net.minecraftforge.registries.IForgeRegistry;
 /**
  * User: sboy205
  * Date: 5/9/2017
@@ -98,6 +101,7 @@ public class BlockInfo {
 	public static final int NATURA_TYPE_DARKWOOD_LOG = 1;
 	public static final int NATURA_TYPE_FUSEWOOD_LOG = 2;
 	public static final int NATURA_TYPE_BLOODWOOD_LOG = 1;
+
 	// used to interface from my mod to this class.
 	// identifies alll the needed blocks for recipies.
 	public enum BlockType {
@@ -665,7 +669,18 @@ public class BlockInfo {
     		myStack = new ItemStack(Block.getBlockFromName("natura:overworld_planks"),1, NATURA_TYPE_HOPSEED);
     		break;
     	case BT_PLANK_MAPLE:
-    		myStack = new ItemStack(Block.getBlockFromName("natura:overworld_planks"),1, NATURA_TYPE_MAPLE);
+    		//Block mapleBlock = Block.getBlockFromName("natura:overworld_planks");
+    		
+    		Block wedgeBlock = GameRegistry.findRegistry(Block.class).getValue( new ResourceLocation("missing_pieces:maple_lamp"));
+    		System.out.println("mapleBlock: "+ wedgeBlock.toString());
+    		Block mapleBlock = GameRegistry.findRegistry(Block.class).getValue( new ResourceLocation("natura:overworld_planks"));
+    		if (mapleBlock == null){
+    			System.out.println("no maple block");
+    		}
+    		System.out.println("mapleBlock: "+ mapleBlock.toString());
+    		myStack = new ItemStack(mapleBlock,1, NATURA_TYPE_MAPLE);
+   			System.out.println("maple stack: " + myStack.toString());
+   			// TODO figure out how this works... in 1.12.2
     		break;
     	case BT_PLANK_REDWOOD:
     		myStack = new ItemStack(Block.getBlockFromName("natura:overworld_planks"),1, NATURA_TYPE_REDWOOD);

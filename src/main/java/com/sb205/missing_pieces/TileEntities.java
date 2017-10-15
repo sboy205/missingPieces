@@ -17,14 +17,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class TileEntities {
 	public static BlockShelf acaciaShelf;
@@ -50,28 +54,31 @@ public class TileEntities {
 	
 	public static void preInitCommon()
 	{
-		acaciaShelf = 	createShelf("acacia_shelf", 	BlockType.BT_PLANK_ACACIA, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_ACACIA.ordinal()]);
-		birchShelf = 	createShelf("birch_shelf", 		BlockType.BT_PLANK_BIRCH, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_BIRCH.ordinal()]);
-		darkOakShelf = 	createShelf("dark_oak_shelf", 	BlockType.BT_PLANK_DARK_OAK, Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_DARK_OAK.ordinal()]);
-		jungleShelf = 	createShelf("jungle_shelf", 	BlockType.BT_PLANK_JUNGLE, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_JUNGLE.ordinal()]);
-		oakShelf = 		createShelf("oak_shelf", 		BlockType.BT_PLANK_OAK, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_OAK.ordinal()]);
-		spruceShelf = 	createShelf("spruce_shelf",		BlockType.BT_PLANK_SPRUCE, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_SPRUCE.ordinal()]);
-		GameRegistry.registerTileEntityWithAlternatives(TileEntityShelf.class, "acaia_shelf","birch_shelf","dark_oak_shelf", "jungle_shelf","oak_shelf","spruce_shelf");
+		acaciaShelf = 	createShelf("acacia_shelf", 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_ACACIA.ordinal()]);
+		birchShelf = 	createShelf("birch_shelf", 		Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_BIRCH.ordinal()]);
+		darkOakShelf = 	createShelf("dark_oak_shelf", 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_DARK_OAK.ordinal()]);
+		jungleShelf = 	createShelf("jungle_shelf", 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_JUNGLE.ordinal()]);
+		oakShelf = 		createShelf("oak_shelf", 		Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_OAK.ordinal()]);
+		spruceShelf = 	createShelf("spruce_shelf",		Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_SPRUCE.ordinal()]);
+		GameRegistry.registerTileEntity(TileEntityShelf.class, "oak_shelf");
+		//deleted for 1.12 GameRegistry.registerTileEntityWithAlternatives(TileEntityShelf.class, "acaia_shelf","birch_shelf","dark_oak_shelf", "jungle_shelf","oak_shelf","spruce_shelf");
+
+
 		if (Loader.isModLoaded("natura")) {
 			try {
 				// Natura shelves
-				amaranthShelf = 	createShelf("amaranth_shelf",	BlockType.BT_PLANK_AMARANTH, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_AMARANTH.ordinal()]);
-				darkwoodShelf = 	createShelf("darkwood_shelf",	BlockType.BT_PLANK_DARKWOOD, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_DARKWOOD.ordinal()]);
-				eucalyptusShelf = 	createShelf("eucalyptus_shelf",	BlockType.BT_PLANK_EUCALYPTUS, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_EUCALYPTUS.ordinal()]);
-				fusewoodShelf = 	createShelf("fusewood_shelf",	BlockType.BT_PLANK_FUSEWOOD, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_FUSEWOOD.ordinal()]);
-				ghostwoodShelf = 	createShelf("ghostwood_shelf",	BlockType.BT_PLANK_GHOSTWOOD, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_GHOSTWOOD.ordinal()]);
-				hopseedShelf = 	createShelf("hopseed_shelf",		BlockType.BT_PLANK_HOPSEED, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_HOPSEED.ordinal()]);
-				mapleShelf = 	createShelf("maple_shelf",			BlockType.BT_PLANK_MAPLE, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_MAPLE.ordinal()]);
-				redwoodShelf = 	createShelf("redwood_shelf",		BlockType.BT_PLANK_REDWOOD, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_REDWOOD.ordinal()]);
-				sakuraShelf = 	createShelf("sakura_shelf",			BlockType.BT_PLANK_SAKURA, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_SAKURA.ordinal()]);
-				silverbellShelf = 	createShelf("silverbell_shelf",	BlockType.BT_PLANK_SILVERBELL, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_SILVERBELL.ordinal()]);
-				tigerShelf = 	createShelf("tiger_shelf",			BlockType.BT_PLANK_TIGER, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_TIGER.ordinal()]);
-				willowShelf = 	createShelf("willow_shelf",			BlockType.BT_PLANK_WILLOW, 	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_WILLOW.ordinal()]);
+				amaranthShelf = 	createShelf("amaranth_shelf",	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_AMARANTH.ordinal()]);
+				darkwoodShelf = 	createShelf("darkwood_shelf",	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_DARKWOOD.ordinal()]);
+				eucalyptusShelf = 	createShelf("eucalyptus_shelf",	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_EUCALYPTUS.ordinal()]);
+				fusewoodShelf = 	createShelf("fusewood_shelf",	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_FUSEWOOD.ordinal()]);
+				ghostwoodShelf = 	createShelf("ghostwood_shelf",	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_GHOSTWOOD.ordinal()]);
+				hopseedShelf = 		createShelf("hopseed_shelf",	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_HOPSEED.ordinal()]);
+				mapleShelf = 		createShelf("maple_shelf",		Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_MAPLE.ordinal()]);
+				redwoodShelf = 		createShelf("redwood_shelf",	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_REDWOOD.ordinal()]);
+				sakuraShelf = 		createShelf("sakura_shelf",		Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_SAKURA.ordinal()]);
+				silverbellShelf = 	createShelf("silverbell_shelf",	Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_SILVERBELL.ordinal()]);
+				tigerShelf = 		createShelf("tiger_shelf",		Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_TIGER.ordinal()]);
+				willowShelf = 		createShelf("willow_shelf",		Material.WOOD, 0.8F, MpConfiguration.BlockEnable[ConfigInfo.SHELF_WILLOW.ordinal()]);
 
 				System.out.println("\nLoaded natura shelves\n");
 			}
@@ -88,6 +95,41 @@ public class TileEntities {
 
 	public static void initCommon()
 	{
+		shelfRecipe(acaciaShelf, 	BlockType.BT_PLANK_ACACIA, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_ACACIA.ordinal()]);
+		shelfRecipe(birchShelf, 	BlockType.BT_PLANK_BIRCH, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_BIRCH.ordinal()]);
+		shelfRecipe(darkOakShelf, 	BlockType.BT_PLANK_DARK_OAK, MpConfiguration.BlockEnable[ConfigInfo.SHELF_DARK_OAK.ordinal()]);
+		shelfRecipe(jungleShelf, 	BlockType.BT_PLANK_JUNGLE, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_JUNGLE.ordinal()]);
+		shelfRecipe(oakShelf, 		BlockType.BT_PLANK_OAK, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_OAK.ordinal()]);
+		shelfRecipe(spruceShelf,	BlockType.BT_PLANK_SPRUCE, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_SPRUCE.ordinal()]);
+		GameRegistry.registerTileEntity(TileEntityShelf.class, "oak_shelf");
+		//deleted for 1.12 GameRegistry.registerTileEntityWithAlternatives(TileEntityShelf.class, "acaia_shelf","birch_shelf","dark_oak_shelf", "jungle_shelf","oak_shelf","spruce_shelf");
+
+
+		if (Loader.isModLoaded("natura")) {
+			try {
+				// Natura shelves
+				shelfRecipe(amaranthShelf,		BlockType.BT_PLANK_AMARANTH, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_AMARANTH.ordinal()]);
+				shelfRecipe(darkwoodShelf,		BlockType.BT_PLANK_DARKWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_DARKWOOD.ordinal()]);
+				shelfRecipe(eucalyptusShelf,	BlockType.BT_PLANK_EUCALYPTUS, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_EUCALYPTUS.ordinal()]);
+				shelfRecipe(fusewoodShelf,		BlockType.BT_PLANK_FUSEWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_FUSEWOOD.ordinal()]);
+				shelfRecipe(ghostwoodShelf,		BlockType.BT_PLANK_GHOSTWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_GHOSTWOOD.ordinal()]);
+				shelfRecipe(hopseedShelf,		BlockType.BT_PLANK_HOPSEED, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_HOPSEED.ordinal()]);
+				shelfRecipe(mapleShelf,			BlockType.BT_PLANK_MAPLE, 		MpConfiguration.BlockEnable[ConfigInfo.SHELF_MAPLE.ordinal()]);
+				shelfRecipe(redwoodShelf,		BlockType.BT_PLANK_REDWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_REDWOOD.ordinal()]);
+				shelfRecipe(sakuraShelf,		BlockType.BT_PLANK_SAKURA, 		MpConfiguration.BlockEnable[ConfigInfo.SHELF_SAKURA.ordinal()]);
+				shelfRecipe(silverbellShelf,	BlockType.BT_PLANK_SILVERBELL, 	MpConfiguration.BlockEnable[ConfigInfo.SHELF_SILVERBELL.ordinal()]);
+				shelfRecipe(tigerShelf,			BlockType.BT_PLANK_TIGER, 		MpConfiguration.BlockEnable[ConfigInfo.SHELF_TIGER.ordinal()]);
+				shelfRecipe(willowShelf,		BlockType.BT_PLANK_WILLOW, 		MpConfiguration.BlockEnable[ConfigInfo.SHELF_WILLOW.ordinal()]);
+				System.out.println("\nLoaded natura shelves\n");
+			}
+			catch (Exception e) {
+				System.out.println("Could not load natura shelves");
+				e.printStackTrace(System.err);
+			}
+		} else {
+			System.out.println("\nNo Natura\n");
+		}
+
 	}
 
 	public static void postInitCommon()
@@ -142,32 +184,36 @@ public class TileEntities {
 	}
 	
 	
-	private static BlockShelf createShelf(String name, BlockType ingredientA, Material mType, Float hardness, Boolean enabled) {
-		  BlockShelf blockShelf = null;
-		  
-		  if(enabled) {
+	private static BlockShelf createShelf(String name, Material mType, Float hardness, Boolean enabled) {
+		BlockShelf blockShelf = null;
 
-			    blockShelf = (BlockShelf)(new BlockShelf(mType, hardness).setUnlocalizedName(name));
-			    GameRegistry.register(blockShelf.setRegistryName(name));
-				GameRegistry.register(new ItemBlock(blockShelf).setRegistryName(blockShelf.getRegistryName()));
+		if(enabled) {
 
-				//GameRegistry.registerTileEntity(TileEntityShelf.class, name);
-			
-				GameRegistry.addRecipe(new ItemStack(blockShelf, 3),
-		        	" A ",
-		        	"ABA",
-		        	" A ",
-		        	'A', BlockInfo.blockType2Stack(ingredientA),
-		        	'B', BlockInfo.blockType2Stack(BlockType.BT_CHEST)
-			);
+			blockShelf = (BlockShelf)(new BlockShelf(mType, hardness).setUnlocalizedName(name));
+			ForgeRegistries.BLOCKS.register(blockShelf.setRegistryName(name));
+			ForgeRegistries.ITEMS.register(new ItemBlock(blockShelf).setRegistryName(blockShelf.getRegistryName()));
+
 			NetworkRegistry.INSTANCE.registerGuiHandler(MissingPieces.instance, GuiHandlerRegistry.getInstance());
 			GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandlerShelf(), GuiHandlerShelf.getGuiID());
-		  }
+		}
 
-		  return blockShelf;
+		return blockShelf;
 
 	}
-	
+	public static void  shelfRecipe( BlockShelf bs, BlockType ingredientA, Boolean enabled){	
+		if(enabled) {
+
+			GameRegistry.addShapedRecipe(bs.getRegistryName(),
+					new ResourceLocation(MissingPieces.MODID + ":"+ "shelf2"), new ItemStack(bs, 3),
+					" A ",
+					"ABA",
+					" A ",
+					'A', BlockInfo.blockType2Stack(ingredientA),
+					'B', BlockInfo.blockType2Stack(BlockType.BT_CHEST)
+					);
+		}
+	}
+
 	private static void registerShelf(BlockShelf block, String name, boolean enabled){
 		final int DEFAULT_ITEM_SUBTYPE = 0;
 		if(enabled) { 

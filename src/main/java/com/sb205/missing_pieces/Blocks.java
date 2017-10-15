@@ -34,6 +34,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
@@ -44,11 +46,14 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.RegistryManager;
 
 // Define and register blocks
 
 public class Blocks {
-	
+	private static IForgeRegistry<Block> blockRegistry;
+	private static IForgeRegistry<Item> itemRegistry;
 	//Vanilla Candelabras
 	public static BlockCandelabra acacia_candelabra;
 	public static BlockCandelabra birch_candelabra;
@@ -537,7 +542,13 @@ public class Blocks {
 		PATT_NORM
 	}
 
+	public Blocks(){
+
+	}
 	public static void preInitCommon(){
+		blockRegistry =ForgeRegistries.BLOCKS;
+		itemRegistry =ForgeRegistries.ITEMS; 
+
 		/*
 		rainbow_candelabra = 	createCandelabra("rainbow_candelabra",	BlockType.BT_PLANK_ACACIA,	Material.wood,	true);
 		rainbow_lamp = 			createLamp("rainbow_lamp",				BlockType.BT_PLANK_ACACIA,	Material.wood,	true);
@@ -550,37 +561,37 @@ public class Blocks {
 		registerSlab(rainbow_slab, "rainbow_slab", rainbow_slab_double, "rainbow_slab_double", BlockType.BT_POLISHED_GRANITE, true);
 	    rainbow_stairs = 		createStairs("rainbow_stairs", 			BlockType.BT_RED_SANDSTONE, 1.5F, true, "pickxe", 1);
 		 */
-		acacia_candelabra = 	createCandelabra("acacia_candelabra",		BlockType.BT_PLANK_ACACIA,	Material.WOOD,	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_ACACIA.ordinal()]);
-		birch_candelabra = 		createCandelabra("birch_candelabra",		BlockType.BT_PLANK_BIRCH, 	Material.WOOD,	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_BIRCH.ordinal()]);
-		dark_oak_candelabra = 	createCandelabra("dark_oak_candelabra", 	BlockType.BT_PLANK_DARK_OAK, Material.WOOD, MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_DARK_OAK.ordinal()]);
-		jungle_candelabra = 	createCandelabra("jungle_candelabra", 		BlockType.BT_PLANK_JUNGLE, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_JUNGLE.ordinal()]);
-		oak_candelabra = 		createCandelabra("oak_candelabra", 			BlockType.BT_PLANK_OAK, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_OAK.ordinal()]);
-		spruce_candelabra = 	createCandelabra("spruce_candelabra", 		BlockType.BT_PLANK_SPRUCE, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_SPRUCE.ordinal()]);
+		acacia_candelabra = 	createCandelabra("acacia_candelabra",		Material.WOOD,	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_ACACIA.ordinal()]);
+		birch_candelabra = 		createCandelabra("birch_candelabra",		Material.WOOD,	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_BIRCH.ordinal()]);
+		dark_oak_candelabra = 	createCandelabra("dark_oak_candelabra", 	Material.WOOD, MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_DARK_OAK.ordinal()]);
+		jungle_candelabra = 	createCandelabra("jungle_candelabra", 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_JUNGLE.ordinal()]);
+		oak_candelabra = 		createCandelabra("oak_candelabra", 			Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_OAK.ordinal()]);
+		spruce_candelabra = 	createCandelabra("spruce_candelabra", 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_SPRUCE.ordinal()]);
 
-		gold_candelabra = 		createCandelabra("gold_candelabra", 		BlockType.BT_INGOT_GOLD, 	Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_GOLD.ordinal()]);
-		iron_candelabra =	 	createCandelabra("iron_candelabra", 		BlockType.BT_INGOT_IRON, 	Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_IRON.ordinal()]);
+		gold_candelabra = 		createCandelabra("gold_candelabra", 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_GOLD.ordinal()]);
+		iron_candelabra =	 	createCandelabra("iron_candelabra", 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_IRON.ordinal()]);
 
 		// BaseMetal Lamps
 		if (Loader.isModLoaded("basemetals")) {
 			try {
 				//do stuff
 
-				adamantine_candelabra =	createCandelabra("adamantine_candelabra", 	BlockType.BT_INGOT_ADAMANTINE, 	Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_ACACIA.ordinal()]);
-				aquarium_candelabra =	createCandelabra("aquarium_candelabra", 	BlockType.BT_INGOT_AQUARIUM, 	Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_AQUARIUM.ordinal()]);
-				brass_candelabra =	 	createCandelabra("brass_candelabra", 		BlockType.BT_INGOT_BRASS, 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_BRASS.ordinal()]);
-				bronze_candelabra =	 	createCandelabra("bronze_candelabra", 		BlockType.BT_INGOT_BRONZE, 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_BRONZE.ordinal()]);
-				cold_iron_candelabra =	createCandelabra("cold_iron_candelabra", 	BlockType.BT_INGOT_COLD_IRON, 	Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_COLD_IRON.ordinal()]);
-				copper_candelabra =	 	createCandelabra("copper_candelabra",  		BlockType.BT_INGOT_COPPER, 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_COPPER.ordinal()]);
-				electrum_candelabra =	createCandelabra("electrum_candelabra", 	BlockType.BT_INGOT_ELECTRUM, 	Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_ELECTRUM.ordinal()]);
-				invar_candelabra =	 	createCandelabra("invar_candelabra", 		BlockType.BT_INGOT_INVAR, 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_INVAR.ordinal()]);
-				lead_candelabra =	 	createCandelabra("lead_candelabra", 		BlockType.BT_INGOT_LEAD, 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_LEAD.ordinal()]);
-				mithril_candelabra =	createCandelabra("mithril_candelabra", 		BlockType.BT_INGOT_MITHRIL, 	Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_MITHRIL.ordinal()]);
-				nickel_candelabra =	 	createCandelabra("nickel_candelabra", 		BlockType.BT_INGOT_NICKEL, 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_NICKEL.ordinal()]);
-				silver_candelabra =	 	createCandelabra("silver_candelabra", 		BlockType.BT_INGOT_SILVER, 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_SILVER.ordinal()]);
-				star_steel_candelabra =	createCandelabra("star_steel_candelabra", 	BlockType.BT_INGOT_STAR_STEEL, 	Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_STAR_STEEL.ordinal()]);
-				steel_candelabra =	 	createCandelabra("steel_candelabra", 		BlockType.BT_INGOT_STEEL, 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_STEEL.ordinal()]);
-				tin_candelabra =	 	createCandelabra("tin_candelabra", 			BlockType.BT_INGOT_TIN, 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_TIN.ordinal()]);
-				zinc_candelabra =	 	createCandelabra("zinc_candelabra", 		BlockType.BT_INGOT_ZINC, 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_ZINC.ordinal()]);
+				adamantine_candelabra =	createCandelabra("adamantine_candelabra", 	Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_ACACIA.ordinal()]);
+				aquarium_candelabra =	createCandelabra("aquarium_candelabra", 	Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_AQUARIUM.ordinal()]);
+				brass_candelabra =	 	createCandelabra("brass_candelabra", 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_BRASS.ordinal()]);
+				bronze_candelabra =	 	createCandelabra("bronze_candelabra", 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_BRONZE.ordinal()]);
+				cold_iron_candelabra =	createCandelabra("cold_iron_candelabra", 	Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_COLD_IRON.ordinal()]);
+				copper_candelabra =	 	createCandelabra("copper_candelabra",  		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_COPPER.ordinal()]);
+				electrum_candelabra =	createCandelabra("electrum_candelabra", 	Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_ELECTRUM.ordinal()]);
+				invar_candelabra =	 	createCandelabra("invar_candelabra", 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_INVAR.ordinal()]);
+				lead_candelabra =	 	createCandelabra("lead_candelabra", 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_LEAD.ordinal()]);
+				mithril_candelabra =	createCandelabra("mithril_candelabra", 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_MITHRIL.ordinal()]);
+				nickel_candelabra =	 	createCandelabra("nickel_candelabra", 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_NICKEL.ordinal()]);
+				silver_candelabra =	 	createCandelabra("silver_candelabra", 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_SILVER.ordinal()]);
+				star_steel_candelabra =	createCandelabra("star_steel_candelabra", 	Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_STAR_STEEL.ordinal()]);
+				steel_candelabra =	 	createCandelabra("steel_candelabra", 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_STEEL.ordinal()]);
+				tin_candelabra =	 	createCandelabra("tin_candelabra", 			Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_TIN.ordinal()]);
+				zinc_candelabra =	 	createCandelabra("zinc_candelabra", 		Material.IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_ZINC.ordinal()]);
 				System.out.println("\nLoaded base metals\n");
 			}
 			catch (Exception e) {
@@ -594,18 +605,18 @@ public class Blocks {
 		if (Loader.isModLoaded("natura")) {
 			try {
 				// Natura Candelabras
-				amaranth_candelabra =	createCandelabra("amaranth_candelabra", 	BlockType.BT_PLANK_AMARANTH,	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_AMARANTH.ordinal()]);
-				darkwood_candelabra =	createCandelabra("darkwood_candelabra", 	BlockType.BT_PLANK_DARKWOOD, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_DARKWOOD.ordinal()]);
-				eucalyptus_candelabra =	createCandelabra("eucalyptus_candelabra", 	BlockType.BT_PLANK_EUCALYPTUS, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_EUCALYPTUS.ordinal()]);
-				fusewood_candelabra =	createCandelabra("fusewood_candelabra", 	BlockType.BT_PLANK_FUSEWOOD, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_FUSEWOOD.ordinal()]);
-				ghostwood_candelabra =	createCandelabra("ghostwood_candelabra", 	BlockType.BT_PLANK_GHOSTWOOD, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_GHOSTWOOD.ordinal()]);
-				hopseed_candelabra =	createCandelabra("hopseed_candelabra", 		BlockType.BT_PLANK_HOPSEED, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_HOPSEED.ordinal()]);
-				maple_candelabra =	 	createCandelabra("maple_candelabra", 		BlockType.BT_PLANK_MAPLE, 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_MAPLE.ordinal()]);
-				redwood_candelabra =	createCandelabra("redwood_candelabra", 		BlockType.BT_PLANK_REDWOOD, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_REDWOOD.ordinal()]);
-				sakura_candelabra =	 	createCandelabra("sakura_candelabra", 		BlockType.BT_PLANK_SAKURA, 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_SAKURA.ordinal()]);
-				silverbell_candelabra =	createCandelabra("silverbell_candelabra", 	BlockType.BT_PLANK_SILVERBELL, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_SILVERBELL.ordinal()]);
-				tiger_candelabra =	 	createCandelabra("tiger_candelabra", 		BlockType.BT_PLANK_TIGER, 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_TIGER.ordinal()]);
-				willow_candelabra =	 	createCandelabra("willow_candelabra", 		BlockType.BT_PLANK_WILLOW, 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_WILLOW.ordinal()]);
+				amaranth_candelabra =	createCandelabra("amaranth_candelabra", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_AMARANTH.ordinal()]);
+				darkwood_candelabra =	createCandelabra("darkwood_candelabra", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_DARKWOOD.ordinal()]);
+				eucalyptus_candelabra =	createCandelabra("eucalyptus_candelabra", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_EUCALYPTUS.ordinal()]);
+				fusewood_candelabra =	createCandelabra("fusewood_candelabra", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_FUSEWOOD.ordinal()]);
+				ghostwood_candelabra =	createCandelabra("ghostwood_candelabra", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_GHOSTWOOD.ordinal()]);
+				hopseed_candelabra =	createCandelabra("hopseed_candelabra", 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_HOPSEED.ordinal()]);
+				maple_candelabra =	 	createCandelabra("maple_candelabra", 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_MAPLE.ordinal()]);
+				redwood_candelabra =	createCandelabra("redwood_candelabra", 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_REDWOOD.ordinal()]);
+				sakura_candelabra =	 	createCandelabra("sakura_candelabra", 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_SAKURA.ordinal()]);
+				silverbell_candelabra =	createCandelabra("silverbell_candelabra", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_SILVERBELL.ordinal()]);
+				tiger_candelabra =	 	createCandelabra("tiger_candelabra", 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_TIGER.ordinal()]);
+				willow_candelabra =	 	createCandelabra("willow_candelabra", 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_WILLOW.ordinal()]);
 
 
 				System.out.println("\nLoaded natura candelabras\n");
@@ -620,7 +631,7 @@ public class Blocks {
 
 		/*
 		// Generic Candelabra
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(oak_candelabra, 2),
+		GameRegistry.addShapedRecipe(new ShapedOreRecipe(new ItemStack(oak_candelabra, 2),
 				"G G",
 				"TWT",
 				"SSS",
@@ -698,7 +709,7 @@ public class Blocks {
 		}
 		/*
 		// Generic Lamp
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(oak_lamp, 2),
+		GameRegistry.addShapedRecipe(new ShapedOreRecipe(new ItemStack(oak_lamp, 2),
 				"GTG",
 				" S ",
 				" W ",
@@ -708,14 +719,14 @@ public class Blocks {
 				'T', BlockInfo.blockType2Stack(BlockType.BT_TORCH)
 				));
 		 */
-		acacia_chair = 	createChair("acacia_chair",		BlockType.BT_PLANK_ACACIA,	Material.WOOD,	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_ACACIA.ordinal()]);
-		birch_chair = 	createChair("birch_chair",		BlockType.BT_PLANK_BIRCH, 	Material.WOOD,	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_BIRCH.ordinal()]);
-		dark_oak_chair = createChair("dark_oak_chair", 	BlockType.BT_PLANK_DARK_OAK, Material.WOOD, MpConfiguration.BlockEnable[ConfigInfo.CHAIR_DARK_OAK.ordinal()]);
-		jungle_chair = 	createChair("jungle_chair", 	BlockType.BT_PLANK_JUNGLE, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_JUNGLE.ordinal()]);
-		oak_chair = 	createChair("oak_chair", 		BlockType.BT_PLANK_OAK, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_OAK.ordinal()]);
-		spruce_chair = 	createChair("spruce_chair", 	BlockType.BT_PLANK_SPRUCE, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SPRUCE.ordinal()]);
+		acacia_chair = 	createChair("acacia_chair",		Material.WOOD,	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_ACACIA.ordinal()]);
+		birch_chair = 	createChair("birch_chair",		Material.WOOD,	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_BIRCH.ordinal()]);
+		dark_oak_chair = createChair("dark_oak_chair", 	Material.WOOD, MpConfiguration.BlockEnable[ConfigInfo.CHAIR_DARK_OAK.ordinal()]);
+		jungle_chair = 	createChair("jungle_chair", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_JUNGLE.ordinal()]);
+		oak_chair = 	createChair("oak_chair", 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_OAK.ordinal()]);
+		spruce_chair = 	createChair("spruce_chair", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SPRUCE.ordinal()]);
 		/*
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(oak_chair,2),
+		GameRegistry.addShapedRecipe(new ShapedOreRecipe(new ItemStack(oak_chair,2),
 				"  S",
 				" AA",
 				" SS",
@@ -725,18 +736,18 @@ public class Blocks {
 		if (Loader.isModLoaded("natura")) {
 			try {
 				// Natura Chairs
-				amaranth_chair =	createChair("amaranth_chair", 	BlockType.BT_PLANK_AMARANTH,	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_AMARANTH.ordinal()]);
-				darkwood_chair =	createChair("darkwood_chair", 	BlockType.BT_PLANK_DARKWOOD, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_DARKWOOD.ordinal()]);
-				eucalyptus_chair =	createChair("eucalyptus_chair", BlockType.BT_PLANK_EUCALYPTUS, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_EUCALYPTUS.ordinal()]);
-				fusewood_chair =	createChair("fusewood_chair", 	BlockType.BT_PLANK_FUSEWOOD, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_FUSEWOOD.ordinal()]);
-				ghostwood_chair =	createChair("ghostwood_chair", 	BlockType.BT_PLANK_GHOSTWOOD, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_GHOSTWOOD.ordinal()]);
-				hopseed_chair =		createChair("hopseed_chair", 	BlockType.BT_PLANK_HOPSEED, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_HOPSEED.ordinal()]);
-				maple_chair =	 	createChair("maple_chair", 		BlockType.BT_PLANK_MAPLE, 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_MAPLE.ordinal()]);
-				redwood_chair =		createChair("redwood_chair", 	BlockType.BT_PLANK_REDWOOD, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_REDWOOD.ordinal()]);
-				sakura_chair =	 	createChair("sakura_chair", 	BlockType.BT_PLANK_SAKURA, 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SAKURA.ordinal()]);
-				silverbell_chair =	createChair("silverbell_chair", BlockType.BT_PLANK_SILVERBELL, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SILVERBELL.ordinal()]);
-				tiger_chair =	 	createChair("tiger_chair", 		BlockType.BT_PLANK_TIGER, 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_TIGER.ordinal()]);
-				willow_chair =	 	createChair("willow_chair", 	BlockType.BT_PLANK_WILLOW, 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_WILLOW.ordinal()]);
+				amaranth_chair =	createChair("amaranth_chair", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_AMARANTH.ordinal()]);
+				darkwood_chair =	createChair("darkwood_chair", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_DARKWOOD.ordinal()]);
+				eucalyptus_chair =	createChair("eucalyptus_chair", Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_EUCALYPTUS.ordinal()]);
+				fusewood_chair =	createChair("fusewood_chair", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_FUSEWOOD.ordinal()]);
+				ghostwood_chair =	createChair("ghostwood_chair", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_GHOSTWOOD.ordinal()]);
+				hopseed_chair =		createChair("hopseed_chair", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_HOPSEED.ordinal()]);
+				maple_chair =	 	createChair("maple_chair", 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_MAPLE.ordinal()]);
+				redwood_chair =		createChair("redwood_chair", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_REDWOOD.ordinal()]);
+				sakura_chair =	 	createChair("sakura_chair", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SAKURA.ordinal()]);
+				silverbell_chair =	createChair("silverbell_chair", Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SILVERBELL.ordinal()]);
+				tiger_chair =	 	createChair("tiger_chair", 		Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_TIGER.ordinal()]);
+				willow_chair =	 	createChair("willow_chair", 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_WILLOW.ordinal()]);
 
 
 				System.out.println("\nLoaded natura chairs\n");
@@ -749,93 +760,93 @@ public class Blocks {
 			System.out.println("\nNo Natura\n");
 		}
 
-		//		Name					    Ingredient						Material		Hard	Enable/Disable
-		acacia_pillar =			createPillar("acacia_pillar",		BlockType.BT_PLANK_ACACIA,		Material.WOOD,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_ACACIA.ordinal()], "axe", 1);
-		birch_pillar = 			createPillar("birch_pillar",		BlockType.BT_PLANK_BIRCH, 		Material.WOOD,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BIRCH.ordinal()], "axe", 1);
-		dark_oak_pillar = 		createPillar("dark_oak_pillar", 	BlockType.BT_PLANK_DARK_OAK, 	Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DARK_OAK.ordinal()], "axe", 1);
-		jungle_pillar = 		createPillar("jungle_pillar", 		BlockType.BT_PLANK_JUNGLE, 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_JUNGLE.ordinal()], "axe", 1);
-		oak_pillar = 			createPillar("oak_pillar", 			BlockType.BT_PLANK_OAK, 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_OAK.ordinal()], "axe", 1);
-		spruce_pillar = 		createPillar("spruce_pillar", 		BlockType.BT_PLANK_SPRUCE, 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SPRUCE.ordinal()], "axe", 1);
-		acacia_log =			createPillar("acacia_log",			BlockType.BT_WOOD_ACACIA,		Material.WOOD,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.LOG_ACACIA.ordinal()], "axe", 1);
-		birch_log = 			createPillar("birch_log",			BlockType.BT_WOOD_BIRCH, 		Material.WOOD,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.LOG_BIRCH.ordinal()], "axe", 1);
-		dark_oak_log = 			createPillar("dark_oak_log", 		BlockType.BT_WOOD_DARK_OAK, 	Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.LOG_DARK_OAK.ordinal()], "axe", 1);
-		jungle_log = 			createPillar("jungle_log", 			BlockType.BT_WOOD_JUNGLE, 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.LOG_JUNGLE.ordinal()], "axe", 1);
-		oak_log = 				createPillar("oak_log", 			BlockType.BT_WOOD_OAK, 			Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.LOG_OAK.ordinal()], "axe", 1);
-		spruce_log = 			createPillar("spruce_log", 			BlockType.BT_WOOD_SPRUCE, 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.LOG_SPRUCE.ordinal()], "axe", 1);
-		p_granite_pillar = 		createPillar("p_granite_pillar", 	BlockType.BT_POLISHED_GRANITE, 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_P_GRANITE.ordinal()], "pickaxe", 1);
-		p_andesite_pillar = 	createPillar("p_andesite_pillar", 	BlockType.BT_POLISHED_ANDESITE, Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_P_ANDESITE.ordinal()], "pickaxe", 1);
-		p_diorite_pillar = 		createPillar("p_diorite_pillar", 	BlockType.BT_POLISHED_DIORITE, 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_P_DIORITE.ordinal()], "pickaxe", 1);
-		granite_pillar = 		createPillar("granite_pillar", 		BlockType.BT_GRANITE, 			Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GRANITE.ordinal()], "pickaxe", 1);
-		andesite_pillar = 		createPillar("andesite_pillar", 	BlockType.BT_ANDESITE, 			Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_ANDESITE.ordinal()], "pickaxe", 1);
-		diorite_pillar = 		createPillar("diorite_pillar", 		BlockType.BT_DIORITE, 			Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DIORITE.ordinal()], "pickaxe", 1);
-		stone_pillar = 			createPillar("stone_pillar", 		BlockType.BT_STONE, 			Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_STONE.ordinal()], "pickaxe", 1);
-		stonebrick_pillar = 	createPillar("stonebrick_pillar", 	BlockType.BT_STONEBRICK, 		Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_STONEBRICK.ordinal()], "pickaxe", 1);
-		purpur_pillar = 		createPillar("purpur_pillar", 		BlockType.BT_PURPUR, 			Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PURPUR.ordinal()], "pickaxe", 1);
-		cobblestone_pillar = 	createPillar("cobblestone_pillar", 	BlockType.BT_COBBLESTONE, 		Material.ROCK, 	2.0F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_COBBLESTONE.ordinal()], "pickaxe", 1);
-		obsidian_pillar = 		createPillar("obsidian_pillar", 	BlockType.BT_OBSIDIAN, 			Material.ROCK, 	50.0F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_OBSIDIAN.ordinal()], "pickaxe", 3);
-		quartz_pillar = 		createPillar("quartz_pillar", 		BlockType.BT_QUARTZ_BLOCK, 		Material.ROCK, 	0.8F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_QUARTZ.ordinal()], "pickaxe", 1);
-		sandstone_pillar = 		createPillar("sandstone_pillar", 	BlockType.BT_SANDSTONE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SANDSTONE.ordinal()], "pickaxe", 1);
-		red_sandstone_pillar = 	createPillar("red_sandstone_pillar", BlockType.BT_RED_SANDSTONE, 	Material.ROCK, 	0.8F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_RED_SANDSTONE.ordinal()], "pickaxe", 1);
-		nether_brick_pillar = 	createPillar("nether_brick_pillar", BlockType.BT_NETHER_BRICK, 		Material.ROCK, 	0.8F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_NETHER_BRICK.ordinal()], "pickaxe", 1);
+		//		Name					    Ingredient				Hard	Enable/Disable
+		acacia_pillar =			createPillar("acacia_pillar",		Material.WOOD,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_ACACIA.ordinal()], "axe", 1);
+		birch_pillar = 			createPillar("birch_pillar",		Material.WOOD,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BIRCH.ordinal()], "axe", 1);
+		dark_oak_pillar = 		createPillar("dark_oak_pillar", 	Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DARK_OAK.ordinal()], "axe", 1);
+		jungle_pillar = 		createPillar("jungle_pillar", 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_JUNGLE.ordinal()], "axe", 1);
+		oak_pillar = 			createPillar("oak_pillar", 			Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_OAK.ordinal()], "axe", 1);
+		spruce_pillar = 		createPillar("spruce_pillar", 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SPRUCE.ordinal()], "axe", 1);
+		acacia_log =			createPillar("acacia_log",			Material.WOOD,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.LOG_ACACIA.ordinal()], "axe", 1);
+		birch_log = 			createPillar("birch_log",			Material.WOOD,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.LOG_BIRCH.ordinal()], "axe", 1);
+		dark_oak_log = 			createPillar("dark_oak_log", 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.LOG_DARK_OAK.ordinal()], "axe", 1);
+		jungle_log = 			createPillar("jungle_log", 			Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.LOG_JUNGLE.ordinal()], "axe", 1);
+		oak_log = 				createPillar("oak_log", 			Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.LOG_OAK.ordinal()], "axe", 1);
+		spruce_log = 			createPillar("spruce_log", 			Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.LOG_SPRUCE.ordinal()], "axe", 1);
+		p_granite_pillar = 		createPillar("p_granite_pillar", 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_P_GRANITE.ordinal()], "pickaxe", 1);
+		p_andesite_pillar = 	createPillar("p_andesite_pillar", 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_P_ANDESITE.ordinal()], "pickaxe", 1);
+		p_diorite_pillar = 		createPillar("p_diorite_pillar", 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_P_DIORITE.ordinal()], "pickaxe", 1);
+		granite_pillar = 		createPillar("granite_pillar", 		Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GRANITE.ordinal()], "pickaxe", 1);
+		andesite_pillar = 		createPillar("andesite_pillar", 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_ANDESITE.ordinal()], "pickaxe", 1);
+		diorite_pillar = 		createPillar("diorite_pillar", 		Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DIORITE.ordinal()], "pickaxe", 1);
+		stone_pillar = 			createPillar("stone_pillar", 		Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_STONE.ordinal()], "pickaxe", 1);
+		stonebrick_pillar = 	createPillar("stonebrick_pillar", 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_STONEBRICK.ordinal()], "pickaxe", 1);
+		purpur_pillar = 		createPillar("purpur_pillar", 		Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PURPUR.ordinal()], "pickaxe", 1);
+		cobblestone_pillar = 	createPillar("cobblestone_pillar", 	Material.ROCK, 	2.0F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_COBBLESTONE.ordinal()], "pickaxe", 1);
+		obsidian_pillar = 		createPillar("obsidian_pillar", 	Material.ROCK, 	50.0F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_OBSIDIAN.ordinal()], "pickaxe", 3);
+		quartz_pillar = 		createPillar("quartz_pillar", 		Material.ROCK, 	0.8F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_QUARTZ.ordinal()], "pickaxe", 1);
+		sandstone_pillar = 		createPillar("sandstone_pillar", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SANDSTONE.ordinal()], "pickaxe", 1);
+		red_sandstone_pillar = 	createPillar("red_sandstone_pillar",Material.ROCK, 	0.8F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_RED_SANDSTONE.ordinal()], "pickaxe", 1);
+		nether_brick_pillar = 	createPillar("nether_brick_pillar", Material.ROCK, 	0.8F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_NETHER_BRICK.ordinal()], "pickaxe", 1);
 
-		end_stone_pillar = 		createPillar("end_stone_pillar", 		BlockType.BT_END_STONE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_END_STONE.ordinal()], "pickaxe", 1);
-		black_clay_pillar = 	createPillar("black_clay_pillar", 		BlockType.BT_CLAY_BLACK, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BLACK_CLAY.ordinal()], "pickaxe", 1);
-		blue_clay_pillar = 		createPillar("blue_clay_pillar", 		BlockType.BT_CLAY_BLUE, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BLUE_CLAY.ordinal()], "pickaxe", 1);
-		brown_clay_pillar = 	createPillar("brown_clay_pillar", 		BlockType.BT_CLAY_BROWN, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BROWN_CLAY.ordinal()], "pickaxe", 1);
-		cyan_clay_pillar = 		createPillar("cyan_clay_pillar", 		BlockType.BT_CLAY_CYAN, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_CYAN_CLAY.ordinal()], "pickaxe", 1);
-		gray_clay_pillar = 		createPillar("gray_clay_pillar", 		BlockType.BT_CLAY_GRAY, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GRAY_CLAY.ordinal()], "pickaxe", 1);
-		green_clay_pillar = 	createPillar("green_clay_pillar", 		BlockType.BT_CLAY_GREEN, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GREEN_CLAY.ordinal()], "pickaxe", 1);
-		light_blue_clay_pillar = createPillar("light_blue_clay_pillar", BlockType.BT_CLAY_LIGHT_BLUE, 	Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIGHT_BLUE_CLAY.ordinal()], "pickaxe", 1);
-		light_gray_clay_pillar = createPillar("light_gray_clay_pillar", BlockType.BT_CLAY_LIGHT_GRAY, 	Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIGHT_GRAY_CLAY.ordinal()], "pickaxe", 1);
-		lime_clay_pillar = 		createPillar("lime_clay_pillar", 		BlockType.BT_CLAY_LIME, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIME_CLAY.ordinal()], "pickaxe", 1);
-		magenta_clay_pillar = 	createPillar("magenta_clay_pillar", 	BlockType.BT_CLAY_MAGENTA, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_MAGENTA_CLAY.ordinal()], "pickaxe", 1);
-		orange_clay_pillar = 	createPillar("orange_clay_pillar", 		BlockType.BT_CLAY_ORANGE, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_ORANGE_CLAY.ordinal()], "pickaxe", 1);
-		pink_clay_pillar = 		createPillar("pink_clay_pillar", 		BlockType.BT_CLAY_PINK, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PINK_CLAY.ordinal()], "pickaxe", 1);
-		purple_clay_pillar = 	createPillar("purple_clay_pillar", 		BlockType.BT_CLAY_PURPLE, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PURPLE_CLAY.ordinal()], "pickaxe", 1);
-		red_clay_pillar = 		createPillar("red_clay_pillar", 		BlockType.BT_CLAY_RED, 			Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_RED_CLAY.ordinal()], "pickaxe", 1);
-		white_clay_pillar = 	createPillar("white_clay_pillar", 		BlockType.BT_CLAY_WHITE, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_WHITE_CLAY.ordinal()], "pickaxe", 1);
-		yellow_clay_pillar = 	createPillar("yellow_clay_pillar", 		BlockType.BT_CLAY_YELLOW, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_YELLOW_CLAY.ordinal()], "pickaxe", 1);
-		glass_pillar = 			createPillar("glass_pillar", 			BlockType.BT_GLASS_BLOCK, 		Material.GLASS,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GLASS.ordinal()], "pickaxe", 1);
+		end_stone_pillar = 		createPillar("end_stone_pillar", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_END_STONE.ordinal()], "pickaxe", 1);
+		black_clay_pillar = 	createPillar("black_clay_pillar", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BLACK_CLAY.ordinal()], "pickaxe", 1);
+		blue_clay_pillar = 		createPillar("blue_clay_pillar", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BLUE_CLAY.ordinal()], "pickaxe", 1);
+		brown_clay_pillar = 	createPillar("brown_clay_pillar", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BROWN_CLAY.ordinal()], "pickaxe", 1);
+		cyan_clay_pillar = 		createPillar("cyan_clay_pillar", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_CYAN_CLAY.ordinal()], "pickaxe", 1);
+		gray_clay_pillar = 		createPillar("gray_clay_pillar", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GRAY_CLAY.ordinal()], "pickaxe", 1);
+		green_clay_pillar = 	createPillar("green_clay_pillar", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GREEN_CLAY.ordinal()], "pickaxe", 1);
+		light_blue_clay_pillar = createPillar("light_blue_clay_pillar", Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIGHT_BLUE_CLAY.ordinal()], "pickaxe", 1);
+		light_gray_clay_pillar = createPillar("light_gray_clay_pillar", Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIGHT_GRAY_CLAY.ordinal()], "pickaxe", 1);
+		lime_clay_pillar = 		createPillar("lime_clay_pillar", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIME_CLAY.ordinal()], "pickaxe", 1);
+		magenta_clay_pillar = 	createPillar("magenta_clay_pillar", 	Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_MAGENTA_CLAY.ordinal()], "pickaxe", 1);
+		orange_clay_pillar = 	createPillar("orange_clay_pillar", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_ORANGE_CLAY.ordinal()], "pickaxe", 1);
+		pink_clay_pillar = 		createPillar("pink_clay_pillar", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PINK_CLAY.ordinal()], "pickaxe", 1);
+		purple_clay_pillar = 	createPillar("purple_clay_pillar", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PURPLE_CLAY.ordinal()], "pickaxe", 1);
+		red_clay_pillar = 		createPillar("red_clay_pillar", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_RED_CLAY.ordinal()], "pickaxe", 1);
+		white_clay_pillar = 	createPillar("white_clay_pillar", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_WHITE_CLAY.ordinal()], "pickaxe", 1);
+		yellow_clay_pillar = 	createPillar("yellow_clay_pillar", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_YELLOW_CLAY.ordinal()], "pickaxe", 1);
+		glass_pillar = 			createPillar("glass_pillar", 			Material.GLASS,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GLASS.ordinal()], "pickaxe", 1);
 
 		// mineralogy Pillars
 		if (Loader.isModLoaded("mineralogy")) {
 			try {
 				//System.out.println("\nLoaded mineralogy\n");
 
-				amphibolite_pillar = 		createPillar("amphibolite_pillar", 		BlockType.BT_AMPHIBOLITE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_AMPHIBOLITE.ordinal()], 		"pickaxe", 1);
-				amphibolite_smooth_pillar = createPillar("amphibolite_smooth_pillar", BlockType.BT_AMPHIBOLITE_SMOOTH, Material.ROCK, 0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_AMPHIBOLITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				m_andesite_pillar = 		createPillar("m_andesite_pillar", 		BlockType.BT_M_ANDESITE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_ANDESITE.ordinal()], 		"pickaxe", 1);
-				m_andesite_smooth_pillar = 	createPillar("m_andesite_smooth_pillar", BlockType.BT_M_ANDESITE_SMOOTH, Material.ROCK, 0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_ANDESITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				basalt_pillar = 			createPillar("basalt_pillar", 			BlockType.BT_BASALT, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BASALT.ordinal()], 			"pickaxe", 1);
-				basalt_smooth_pillar = 		createPillar("basalt_smooth_pillar", 	BlockType.BT_BASALT_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BASALT_SMOOTH.ordinal()], 	"pickaxe", 1);
-				chert_pillar = 				createPillar("chert_pillar", 			BlockType.BT_CHERT, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_CHERT.ordinal()], 			"pickaxe", 1);
-				conglomerate_pillar = 		createPillar("conglomerate_pillar", 	BlockType.BT_CONGLOMERATE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_CONGLOMERATE.ordinal()], 	"pickaxe", 1);
-				conglomerate_smooth_pillar = createPillar("conglomerate_smooth_pillar", BlockType.BT_CONGLOMERATE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_CONGLOMERATE_SMOOTH.ordinal()], "pickaxe", 1);
-				m_diorite_pillar = 			createPillar("m_diorite_pillar", 		BlockType.BT_M_DIORITE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_DIORITE.ordinal()], 		"pickaxe", 1);
-				m_diorite_smooth_pillar = 	createPillar("m_diorite_smooth_pillar", BlockType.BT_M_DIORITE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_DIORITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				dolomite_pillar = 			createPillar("dolomite_pillar", 		BlockType.BT_DOLOMITE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DOLOMITE.ordinal()], 		"pickaxe", 1);
-				dolomite_smooth_pillar = 	createPillar("dolomite_smooth_pillar", 	BlockType.BT_DOLOMITE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DOLOMITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				gneiss_pillar = 			createPillar("gneiss_pillar", 			BlockType.BT_GNEISS, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GNEISS.ordinal()], 			"pickaxe", 1);
-				gneiss_smooth_pillar = 		createPillar("gneiss_smooth_pillar", 	BlockType.BT_GNEISS_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GNEISS_SMOOTH.ordinal()], 	"pickaxe", 1);
-				m_granite_pillar = 			createPillar("m_granite_pillar", 		BlockType.BT_M_GRANITE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_GRANITE.ordinal()], 		"pickaxe", 1);
-				m_granite_smooth_pillar = 	createPillar("m_granite_smooth_pillar", BlockType.BT_M_GRANITE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_GRANITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				limestone_pillar = 			createPillar("limestone_pillar", 		BlockType.BT_LIMESTONE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIMESTONE.ordinal()], 		"pickaxe", 1);
-				limestone_smooth_pillar = 	createPillar("limestone_smooth_pillar", BlockType.BT_LIMESTONE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIMESTONE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				marble_pillar = 			createPillar("marble_pillar", 			BlockType.BT_MARBLE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_MARBLE.ordinal()], 			"pickaxe", 1);
-				marble_smooth_pillar = 		createPillar("marble_smooth_pillar", 	BlockType.BT_MARBLE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_MARBLE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				pumice_pillar = 			createPillar("pumice_pillar", 			BlockType.BT_PUMICE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PUMICE.ordinal()], 			"pickaxe", 1);
-				pegmatite_pillar = 			createPillar("pegmatite_pillar", 		BlockType.BT_PEGMATITE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PEGMATITE.ordinal()], 		"pickaxe", 1);
-				pegmatite_smooth_pillar = 	createPillar("pegmatite_smooth_pillar", BlockType.BT_PEGMATITE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PEGMATITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				phyllite_pillar = 			createPillar("phyllite_pillar", 		BlockType.BT_PHYLLITE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PHYLLITE.ordinal()], 		"pickaxe", 1);
-				phyllite_smooth_pillar = 	createPillar("phyllite_smooth_pillar", BlockType.BT_PHYLLITE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PHYLLITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				rhyolite_pillar = 			createPillar("rhyolite_pillar", 		BlockType.BT_RHYOLITE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_RHYOLITE.ordinal()], 		"pickaxe", 1);
-				rhyolite_smooth_pillar = 	createPillar("rhyolite_smooth_pillar", 	BlockType.BT_RHYOLITE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_RHYOLITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				schist_pillar = 			createPillar("schist_pillar", 			BlockType.BT_SCHIST, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SCHIST.ordinal()], 			"pickaxe", 1);
-				schist_smooth_pillar = 		createPillar("schist_smooth_pillar", 	BlockType.BT_SCHIST_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SCHIST_SMOOTH.ordinal()], 	"pickaxe", 1);
-				shale_pillar = 				createPillar("shale_pillar", 			BlockType.BT_SHALE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SHALE.ordinal()], 			"pickaxe", 1);
-				shale_smooth_pillar = 		createPillar("shale_smooth_pillar", 	BlockType.BT_SHALE_SMOOTH, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SHALE_SMOOTH.ordinal()], 		"pickaxe", 1);
-				slate_pillar = 				createPillar("slate_pillar", 			BlockType.BT_SLATE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SLATE.ordinal()], 			"pickaxe", 1);
-				slate_smooth_pillar = 		createPillar("slate_smooth_pillar", 	BlockType.BT_SLATE_SMOOTH, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SLATE_SMOOTH.ordinal()], 		"pickaxe", 1);
+				amphibolite_pillar = 		createPillar("amphibolite_pillar", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_AMPHIBOLITE.ordinal()], 		"pickaxe", 1);
+				amphibolite_smooth_pillar = createPillar("amphibolite_smooth_pillar", Material.ROCK, 0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_AMPHIBOLITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				m_andesite_pillar = 		createPillar("m_andesite_pillar", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_ANDESITE.ordinal()], 		"pickaxe", 1);
+				m_andesite_smooth_pillar = 	createPillar("m_andesite_smooth_pillar",Material.ROCK, 0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_ANDESITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				basalt_pillar = 			createPillar("basalt_pillar", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BASALT.ordinal()], 			"pickaxe", 1);
+				basalt_smooth_pillar = 		createPillar("basalt_smooth_pillar", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BASALT_SMOOTH.ordinal()], 	"pickaxe", 1);
+				chert_pillar = 				createPillar("chert_pillar", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_CHERT.ordinal()], 			"pickaxe", 1);
+				conglomerate_pillar = 		createPillar("conglomerate_pillar", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_CONGLOMERATE.ordinal()], 	"pickaxe", 1);
+				conglomerate_smooth_pillar = createPillar("conglomerate_smooth_pillar", Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_CONGLOMERATE_SMOOTH.ordinal()], "pickaxe", 1);
+				m_diorite_pillar = 			createPillar("m_diorite_pillar", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_DIORITE.ordinal()], 		"pickaxe", 1);
+				m_diorite_smooth_pillar = 	createPillar("m_diorite_smooth_pillar", Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_DIORITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				dolomite_pillar = 			createPillar("dolomite_pillar", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DOLOMITE.ordinal()], 		"pickaxe", 1);
+				dolomite_smooth_pillar = 	createPillar("dolomite_smooth_pillar", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DOLOMITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				gneiss_pillar = 			createPillar("gneiss_pillar", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GNEISS.ordinal()], 			"pickaxe", 1);
+				gneiss_smooth_pillar = 		createPillar("gneiss_smooth_pillar", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GNEISS_SMOOTH.ordinal()], 	"pickaxe", 1);
+				m_granite_pillar = 			createPillar("m_granite_pillar", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_GRANITE.ordinal()], 		"pickaxe", 1);
+				m_granite_smooth_pillar = 	createPillar("m_granite_smooth_pillar", Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_GRANITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				limestone_pillar = 			createPillar("limestone_pillar", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIMESTONE.ordinal()], 		"pickaxe", 1);
+				limestone_smooth_pillar = 	createPillar("limestone_smooth_pillar", Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIMESTONE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				marble_pillar = 			createPillar("marble_pillar", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_MARBLE.ordinal()], 			"pickaxe", 1);
+				marble_smooth_pillar = 		createPillar("marble_smooth_pillar", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_MARBLE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				pumice_pillar = 			createPillar("pumice_pillar", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PUMICE.ordinal()], 			"pickaxe", 1);
+				pegmatite_pillar = 			createPillar("pegmatite_pillar", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PEGMATITE.ordinal()], 		"pickaxe", 1);
+				pegmatite_smooth_pillar = 	createPillar("pegmatite_smooth_pillar", Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PEGMATITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				phyllite_pillar = 			createPillar("phyllite_pillar", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PHYLLITE.ordinal()], 		"pickaxe", 1);
+				phyllite_smooth_pillar = 	createPillar("phyllite_smooth_pillar",  Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PHYLLITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				rhyolite_pillar = 			createPillar("rhyolite_pillar", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_RHYOLITE.ordinal()], 		"pickaxe", 1);
+				rhyolite_smooth_pillar = 	createPillar("rhyolite_smooth_pillar", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_RHYOLITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				schist_pillar = 			createPillar("schist_pillar", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SCHIST.ordinal()], 			"pickaxe", 1);
+				schist_smooth_pillar = 		createPillar("schist_smooth_pillar", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SCHIST_SMOOTH.ordinal()], 	"pickaxe", 1);
+				shale_pillar = 				createPillar("shale_pillar", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SHALE.ordinal()], 			"pickaxe", 1);
+				shale_smooth_pillar = 		createPillar("shale_smooth_pillar", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SHALE_SMOOTH.ordinal()], 		"pickaxe", 1);
+				slate_pillar = 				createPillar("slate_pillar", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SLATE.ordinal()], 			"pickaxe", 1);
+				slate_smooth_pillar = 		createPillar("slate_smooth_pillar", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SLATE_SMOOTH.ordinal()], 		"pickaxe", 1);
 			}
 			catch (Exception e) {
 				System.out.println("Could not load mineralogy");
@@ -845,31 +856,31 @@ public class Blocks {
 		if (Loader.isModLoaded("natura")) {
 			try {
 				// Natura Pillars
-				amaranth_pillar =	createPillar("amaranth_pillar", 	BlockType.BT_PLANK_AMARANTH,	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_AMARANTH.ordinal()],	"axe", 1);
-				darkwood_pillar =	createPillar("darkwood_pillar", 	BlockType.BT_PLANK_DARKWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DARKWOOD.ordinal()],	"axe", 1);
-				eucalyptus_pillar =	createPillar("eucalyptus_pillar", 	BlockType.BT_PLANK_EUCALYPTUS, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_EUCALYPTUS.ordinal()],"axe", 1);
-				fusewood_pillar =	createPillar("fusewood_pillar", 	BlockType.BT_PLANK_FUSEWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_FUSEWOOD.ordinal()],	"axe", 1);
-				ghostwood_pillar =	createPillar("ghostwood_pillar", 	BlockType.BT_PLANK_GHOSTWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GHOSTWOOD.ordinal()],	"axe", 1);
-				hopseed_pillar =	createPillar("hopseed_pillar", 		BlockType.BT_PLANK_HOPSEED, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_HOPSEED.ordinal()],	"axe", 1);
-				maple_pillar =	 	createPillar("maple_pillar", 		BlockType.BT_PLANK_MAPLE, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_MAPLE.ordinal()],		"axe", 1);
-				redwood_pillar =	createPillar("redwood_pillar", 		BlockType.BT_PLANK_REDWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_REDWOOD.ordinal()],	"axe", 1);
-				sakura_pillar =	 	createPillar("sakura_pillar", 		BlockType.BT_PLANK_SAKURA, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SAKURA.ordinal()],	"axe", 1);
-				silverbell_pillar =	createPillar("silverbell_pillar", 	BlockType.BT_PLANK_SILVERBELL, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SILVERBELL.ordinal()],"axe", 1);
-				tiger_pillar =	 	createPillar("tiger_pillar", 		BlockType.BT_PLANK_TIGER, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_TIGER.ordinal()],		"axe", 1);
-				willow_pillar =	 	createPillar("willow_pillar", 		BlockType.BT_PLANK_WILLOW, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_WILLOW.ordinal()],	"axe", 1);
+				amaranth_pillar =	createPillar("amaranth_pillar", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_AMARANTH.ordinal()],	"axe", 1);
+				darkwood_pillar =	createPillar("darkwood_pillar", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DARKWOOD.ordinal()],	"axe", 1);
+				eucalyptus_pillar =	createPillar("eucalyptus_pillar", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_EUCALYPTUS.ordinal()],"axe", 1);
+				fusewood_pillar =	createPillar("fusewood_pillar", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_FUSEWOOD.ordinal()],	"axe", 1);
+				ghostwood_pillar =	createPillar("ghostwood_pillar", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GHOSTWOOD.ordinal()],	"axe", 1);
+				hopseed_pillar =	createPillar("hopseed_pillar", 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_HOPSEED.ordinal()],	"axe", 1);
+				maple_pillar =	 	createPillar("maple_pillar", 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_MAPLE.ordinal()],		"axe", 1);
+				redwood_pillar =	createPillar("redwood_pillar", 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_REDWOOD.ordinal()],	"axe", 1);
+				sakura_pillar =	 	createPillar("sakura_pillar", 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SAKURA.ordinal()],	"axe", 1);
+				silverbell_pillar =	createPillar("silverbell_pillar", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SILVERBELL.ordinal()],"axe", 1);
+				tiger_pillar =	 	createPillar("tiger_pillar", 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_TIGER.ordinal()],		"axe", 1);
+				willow_pillar =	 	createPillar("willow_pillar", 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_WILLOW.ordinal()],	"axe", 1);
 				//Natura Logs
-				amaranth_log =		createPillar("amaranth_log", 	BlockType.BT_WOOD_AMARANTH,	    Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_AMARANTH.ordinal()],	"axe", 1);
-				darkwood_log =		createPillar("darkwood_log", 	BlockType.BT_WOOD_DARKWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_DARKWOOD.ordinal()],	"axe", 1);
-				eucalyptus_log =	createPillar("eucalyptus_log", 	BlockType.BT_WOOD_EUCALYPTUS, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_EUCALYPTUS.ordinal()],"axe", 1);
-				fusewood_log =		createPillar("fusewood_log", 	BlockType.BT_WOOD_FUSEWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_FUSEWOOD.ordinal()],	"axe", 1);
-				ghostwood_log =		createPillar("ghostwood_log", 	BlockType.BT_WOOD_GHOSTWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_GHOSTWOOD.ordinal()],	"axe", 1);
-				hopseed_log =		createPillar("hopseed_log", 	BlockType.BT_WOOD_HOPSEED, 	    Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_HOPSEED.ordinal()],	"axe", 1);
-				maple_log =	 		createPillar("maple_log", 		BlockType.BT_WOOD_MAPLE, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_MAPLE.ordinal()],		"axe", 1);
-				redwood_log =		createPillar("redwood_log", 	BlockType.BT_WOOD_REDWOOD, 	    Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_REDWOOD.ordinal()],	"axe", 1);
-				sakura_log =	 	createPillar("sakura_log", 		BlockType.BT_WOOD_SAKURA, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_SAKURA.ordinal()],	"axe", 1);
-				silverbell_log =	createPillar("silverbell_log", 	BlockType.BT_WOOD_SILVERBELL, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_SILVERBELL.ordinal()],"axe", 1);
-				tiger_log =	 		createPillar("tiger_log", 		BlockType.BT_WOOD_TIGER, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_TIGER.ordinal()],		"axe", 1);
-				willow_log =	 	createPillar("willow_log", 		BlockType.BT_WOOD_WILLOW, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_WILLOW.ordinal()],	"axe", 1);
+				amaranth_log =		createPillar("amaranth_log", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_AMARANTH.ordinal()],	"axe", 1);
+				darkwood_log =		createPillar("darkwood_log", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_DARKWOOD.ordinal()],	"axe", 1);
+				eucalyptus_log =	createPillar("eucalyptus_log", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_EUCALYPTUS.ordinal()],"axe", 1);
+				fusewood_log =		createPillar("fusewood_log", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_FUSEWOOD.ordinal()],	"axe", 1);
+				ghostwood_log =		createPillar("ghostwood_log", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_GHOSTWOOD.ordinal()],	"axe", 1);
+				hopseed_log =		createPillar("hopseed_log", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_HOPSEED.ordinal()],	"axe", 1);
+				maple_log =	 		createPillar("maple_log", 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_MAPLE.ordinal()],		"axe", 1);
+				redwood_log =		createPillar("redwood_log", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_REDWOOD.ordinal()],	"axe", 1);
+				sakura_log =	 	createPillar("sakura_log", 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_SAKURA.ordinal()],	"axe", 1);
+				silverbell_log =	createPillar("silverbell_log", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_SILVERBELL.ordinal()],"axe", 1);
+				tiger_log =	 		createPillar("tiger_log", 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_TIGER.ordinal()],		"axe", 1);
+				willow_log =	 	createPillar("willow_log", 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_WILLOW.ordinal()],	"axe", 1);
 
 
 				System.out.println("\nLoaded natura pillars\n");
@@ -883,12 +894,12 @@ public class Blocks {
 		}
 
 		// generic pillar
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(cobblestone_pillar, 3),
+		GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + "cobbleston_pillar"), new ResourceLocation(MissingPieces.MODID + ":" + "pillar"), new  ItemStack(cobblestone_pillar, 3),
 				" A ",
 				" A ",
 				" A ",
 				'A', "cobblestone"
-				));
+				);
 
 		// Create Tables
 		//		Name					Ingredient					Material		Enable/Disable
@@ -900,7 +911,7 @@ public class Blocks {
 		spruce_table = 	createTable("spruce_table", 	BlockType.BT_PLANK_SPRUCE, 	Material.WOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_SPRUCE.ordinal()]);
 		//Generic Table
 		/*
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(oak_table,2),
+		GameRegistry.addShapedRecipe(new ShapedOreRecipe(new ItemStack(oak_table,2),
 				"AAA",
 				"S S",
 				"S S",
@@ -935,91 +946,91 @@ public class Blocks {
 		}
 
 		//		Name					    Ingredient						Material		Hard	Enable/Disable
-		acacia_wedge =		createWedge("acacia_wedge",		BlockType.BT_PLANK_ACACIA,		Material.WOOD,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ACACIA.ordinal()], 	"axe", 1);
-		birch_wedge = 		createWedge("birch_wedge",		BlockType.BT_PLANK_BIRCH, 		Material.WOOD,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BIRCH.ordinal()], 	"axe", 1);
-		dark_oak_wedge = 	createWedge("dark_oak_wedge", 	BlockType.BT_PLANK_DARK_OAK, 	Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DARK_OAK.ordinal()], 	"axe", 1);
-		jungle_wedge = 		createWedge("jungle_wedge", 	BlockType.BT_PLANK_JUNGLE, 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_JUNGLE.ordinal()], 	"axe", 1);
-		oak_wedge = 		createWedge("oak_wedge", 		BlockType.BT_PLANK_OAK, 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_OAK.ordinal()], 		"axe", 1);
-		spruce_wedge = 		createWedge("spruce_wedge", 	BlockType.BT_PLANK_SPRUCE, 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SPRUCE.ordinal()], 	"axe", 1);
-		p_granite_wedge = 	createWedge("p_granite_wedge", 	BlockType.BT_POLISHED_GRANITE, 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_GRANITE.ordinal()], 		"pickaxe", 1);
-		p_andesite_wedge = 	createWedge("p_andesite_wedge", BlockType.BT_POLISHED_ANDESITE, Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_ANDESITE.ordinal()], 		"pickaxe", 1);
-		p_diorite_wedge = 	createWedge("p_diorite_wedge", 	BlockType.BT_POLISHED_DIORITE, 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_DIORITE.ordinal()], 		"pickaxe", 1);
-		diorite_wedge = 	createWedge("diorite_wedge", 	BlockType.BT_DIORITE, 			Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DIORITE.ordinal()], 		"pickaxe", 1);
-		granite_wedge = 	createWedge("granite_wedge", 	BlockType.BT_GRANITE, 			Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRANITE.ordinal()], 		"pickaxe", 1);
-		andesite_wedge = 	createWedge("andesite_wedge", 	BlockType.BT_ANDESITE, 			Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ANDESITE.ordinal()], 		"pickaxe", 1);
-		stone_wedge = 		createWedge("stone_wedge", 		BlockType.BT_STONE, 			Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_STONE.ordinal()], 		"pickaxe", 1);
-		stonebrick_wedge = 	createWedge("stonebrick_wedge",	BlockType.BT_STONEBRICK, 		Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_STONEBRICK.ordinal()], 	"pickaxe", 1);
-		purpur_wedge = 		createWedge("purpur_wedge", 	BlockType.BT_PURPUR, 			Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PURPUR.ordinal()], 		"pickaxe", 1);
-		cobblestone_wedge = createWedge("cobblestone_wedge",BlockType.BT_COBBLESTONE, 		Material.ROCK, 	2.0F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_COBBLESTONE.ordinal()], 	"pickaxe", 1);
-		obsidian_wedge = 	createWedge("obsidian_wedge", 	BlockType.BT_OBSIDIAN, 			Material.ROCK, 	50.0F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_OBSIDIAN.ordinal()], 		"pickaxe", 3);
-		quartz_wedge = 		createWedge("quartz_wedge", 	BlockType.BT_QUARTZ_BLOCK, 		Material.ROCK, 	0.8F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_QUARTZ.ordinal()], 		"pickaxe", 1);
-		sandstone_wedge = 	createWedge("sandstone_wedge", 	BlockType.BT_SANDSTONE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SANDSTONE.ordinal()], 	"pickaxe", 1);
-		red_sandstone_wedge = createWedge("red_sandstone_wedge", BlockType.BT_RED_SANDSTONE, Material.ROCK, 0.8F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RED_SANDSTONE.ordinal()], 	"pickaxe", 1);
-		nether_brick_wedge= createWedge("nether_brick_wedge", BlockType.BT_NETHER_BRICK, 	Material.ROCK, 	0.8F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_NETHER_BRICK.ordinal()], 	"pickaxe", 1);
+		acacia_wedge =		createWedge("acacia_wedge",		Material.WOOD,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ACACIA.ordinal()], 	"axe", 1);
+		birch_wedge = 		createWedge("birch_wedge",		Material.WOOD,	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BIRCH.ordinal()], 	"axe", 1);
+		dark_oak_wedge = 	createWedge("dark_oak_wedge", 	Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DARK_OAK.ordinal()], 	"axe", 1);
+		jungle_wedge = 		createWedge("jungle_wedge", 	Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_JUNGLE.ordinal()], 	"axe", 1);
+		oak_wedge = 		createWedge("oak_wedge", 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_OAK.ordinal()], 		"axe", 1);
+		spruce_wedge = 		createWedge("spruce_wedge", 	Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SPRUCE.ordinal()], 	"axe", 1);
+		p_granite_wedge = 	createWedge("p_granite_wedge", 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_GRANITE.ordinal()], 		"pickaxe", 1);
+		p_andesite_wedge = 	createWedge("p_andesite_wedge", Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_ANDESITE.ordinal()], 		"pickaxe", 1);
+		p_diorite_wedge = 	createWedge("p_diorite_wedge", 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_DIORITE.ordinal()], 		"pickaxe", 1);
+		diorite_wedge = 	createWedge("diorite_wedge", 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DIORITE.ordinal()], 		"pickaxe", 1);
+		granite_wedge = 	createWedge("granite_wedge", 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRANITE.ordinal()], 		"pickaxe", 1);
+		andesite_wedge = 	createWedge("andesite_wedge", 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ANDESITE.ordinal()], 		"pickaxe", 1);
+		stone_wedge = 		createWedge("stone_wedge", 		Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_STONE.ordinal()], 		"pickaxe", 1);
+		stonebrick_wedge = 	createWedge("stonebrick_wedge",	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_STONEBRICK.ordinal()], 	"pickaxe", 1);
+		purpur_wedge = 		createWedge("purpur_wedge", 	Material.ROCK, 	1.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PURPUR.ordinal()], 		"pickaxe", 1);
+		cobblestone_wedge = createWedge("cobblestone_wedge",Material.ROCK, 	2.0F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_COBBLESTONE.ordinal()], 	"pickaxe", 1);
+		obsidian_wedge = 	createWedge("obsidian_wedge", 	Material.ROCK, 	50.0F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_OBSIDIAN.ordinal()], 		"pickaxe", 3);
+		quartz_wedge = 		createWedge("quartz_wedge", 	Material.ROCK, 	0.8F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_QUARTZ.ordinal()], 		"pickaxe", 1);
+		sandstone_wedge = 	createWedge("sandstone_wedge", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SANDSTONE.ordinal()], 	"pickaxe", 1);
+		red_sandstone_wedge = createWedge("red_sandstone_wedge", Material.ROCK, 0.8F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RED_SANDSTONE.ordinal()], 	"pickaxe", 1);
+		nether_brick_wedge= createWedge("nether_brick_wedge", Material.ROCK, 	0.8F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_NETHER_BRICK.ordinal()], 	"pickaxe", 1);
 
 
-		end_stone_wedge = 		createWedge("end_stone_wedge", 		BlockType.BT_END_STONE, 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_END_STONE.ordinal()], 		"pickaxe", 1);
-		black_clay_wedge = 		createWedge("black_clay_wedge", 	BlockType.BT_CLAY_BLACK, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BLACK_CLAY.ordinal()], 	"pickaxe", 1);
-		blue_clay_wedge = 		createWedge("blue_clay_wedge", 		BlockType.BT_CLAY_BLUE, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BLUE_CLAY.ordinal()], 		"pickaxe", 1);
-		brown_clay_wedge = 		createWedge("brown_clay_wedge", 	BlockType.BT_CLAY_BROWN, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BROWN_CLAY.ordinal()], 	"pickaxe", 1);
-		cyan_clay_wedge = 		createWedge("cyan_clay_wedge", 		BlockType.BT_CLAY_CYAN, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CYAN_CLAY.ordinal()], 		"pickaxe", 1);
-		gray_clay_wedge = 		createWedge("gray_clay_wedge", 		BlockType.BT_CLAY_GRAY, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRAY_CLAY.ordinal()], 		"pickaxe", 1);
-		green_clay_wedge = 		createWedge("green_clay_wedge", 	BlockType.BT_CLAY_GREEN, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GREEN_CLAY.ordinal()], 	"pickaxe", 1);
-		light_blue_clay_wedge =	createWedge("light_blue_clay_wedge", BlockType.BT_CLAY_LIGHT_BLUE, 	Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIGHT_BLUE_CLAY.ordinal()], "pickaxe", 1);
-		light_gray_clay_wedge = createWedge("light_gray_clay_wedge", BlockType.BT_CLAY_LIGHT_GRAY, 	Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIGHT_GRAY_CLAY.ordinal()], "pickaxe", 1);
-		lime_clay_wedge = 		createWedge("lime_clay_wedge", 		BlockType.BT_CLAY_LIME, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIME_CLAY.ordinal()], 		"pickaxe", 1);
-		magenta_clay_wedge = 	createWedge("magenta_clay_wedge", 	BlockType.BT_CLAY_MAGENTA, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MAGENTA_CLAY.ordinal()], 	"pickaxe", 1);
-		orange_clay_wedge = 	createWedge("orange_clay_wedge", 	BlockType.BT_CLAY_ORANGE, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ORANGE_CLAY.ordinal()], 	"pickaxe", 1);
-		pink_clay_wedge = 		createWedge("pink_clay_wedge", 		BlockType.BT_CLAY_PINK, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PINK_CLAY.ordinal()], 		"pickaxe", 1);
-		purple_clay_wedge = 	createWedge("purple_clay_wedge", 	BlockType.BT_CLAY_PURPLE, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PURPLE_CLAY.ordinal()], 	"pickaxe", 1);
-		red_clay_wedge = 		createWedge("red_clay_wedge", 		BlockType.BT_CLAY_RED, 			Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RED_CLAY.ordinal()], 		"pickaxe", 1);
-		white_clay_wedge = 		createWedge("white_clay_wedge", 	BlockType.BT_CLAY_WHITE, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_WHITE_CLAY.ordinal()], 	"pickaxe", 1);
-		yellow_clay_wedge = 	createWedge("yellow_clay_wedge", 	BlockType.BT_CLAY_YELLOW, 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_YELLOW_CLAY.ordinal()], 	"pickaxe", 1);
-		dirt_wedge = 			createWedge("dirt_wedge", 			BlockType.BT_DIRT, 				Material.GROUND,0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DIRT.ordinal()], 			"shovel", 0);
-		grass_wedge = 			createWedge("grass_wedge", 			BlockType.BT_GRASS, 			Material.GROUND, 0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRASS.ordinal()], 			"shovel", 0);
-		grass_path_wedge = 		createWedge("grass_path_wedge", 	BlockType.BT_GRASS_PATH, 		Material.GROUND, 0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRASS_PATH.ordinal()], 	"shovel", 0);
-		glass_wedge = 			createWedge("glass_wedge", 			BlockType.BT_GLASS_BLOCK, 		Material.GLASS, 0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GLASS.ordinal()], 			"pickaxe", 1);
-		hay_wedge = 			createWedge("hay_wedge", 			BlockType.BT_HAY_BALE, 			Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_HAY.ordinal()], 			"pickaxe", 0);
+		end_stone_wedge = 		createWedge("end_stone_wedge", 		Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_END_STONE.ordinal()], 		"pickaxe", 1);
+		black_clay_wedge = 		createWedge("black_clay_wedge", 	Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BLACK_CLAY.ordinal()], 	"pickaxe", 1);
+		blue_clay_wedge = 		createWedge("blue_clay_wedge", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BLUE_CLAY.ordinal()], 		"pickaxe", 1);
+		brown_clay_wedge = 		createWedge("brown_clay_wedge", 	Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BROWN_CLAY.ordinal()], 	"pickaxe", 1);
+		cyan_clay_wedge = 		createWedge("cyan_clay_wedge", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CYAN_CLAY.ordinal()], 		"pickaxe", 1);
+		gray_clay_wedge = 		createWedge("gray_clay_wedge", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRAY_CLAY.ordinal()], 		"pickaxe", 1);
+		green_clay_wedge = 		createWedge("green_clay_wedge", 	Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GREEN_CLAY.ordinal()], 	"pickaxe", 1);
+		light_blue_clay_wedge =	createWedge("light_blue_clay_wedge", Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIGHT_BLUE_CLAY.ordinal()], "pickaxe", 1);
+		light_gray_clay_wedge = createWedge("light_gray_clay_wedge", Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIGHT_GRAY_CLAY.ordinal()], "pickaxe", 1);
+		lime_clay_wedge = 		createWedge("lime_clay_wedge", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIME_CLAY.ordinal()], 		"pickaxe", 1);
+		magenta_clay_wedge = 	createWedge("magenta_clay_wedge", 	Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MAGENTA_CLAY.ordinal()], 	"pickaxe", 1);
+		orange_clay_wedge = 	createWedge("orange_clay_wedge", 	Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ORANGE_CLAY.ordinal()], 	"pickaxe", 1);
+		pink_clay_wedge = 		createWedge("pink_clay_wedge", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PINK_CLAY.ordinal()], 		"pickaxe", 1);
+		purple_clay_wedge = 	createWedge("purple_clay_wedge", 	Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PURPLE_CLAY.ordinal()], 	"pickaxe", 1);
+		red_clay_wedge = 		createWedge("red_clay_wedge", 		Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RED_CLAY.ordinal()], 		"pickaxe", 1);
+		white_clay_wedge = 		createWedge("white_clay_wedge", 	Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_WHITE_CLAY.ordinal()], 	"pickaxe", 1);
+		yellow_clay_wedge = 	createWedge("yellow_clay_wedge", 	Material.CLAY, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_YELLOW_CLAY.ordinal()], 	"pickaxe", 1);
+		dirt_wedge = 			createWedge("dirt_wedge", 			Material.GROUND,0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DIRT.ordinal()], 			"shovel", 0);
+		grass_wedge = 			createWedge("grass_wedge", 			Material.GROUND, 0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRASS.ordinal()], 			"shovel", 0);
+		grass_path_wedge = 		createWedge("grass_path_wedge", 	Material.GROUND, 0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRASS_PATH.ordinal()], 	"shovel", 0);
+		glass_wedge = 			createWedge("glass_wedge", 			Material.GLASS, 0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GLASS.ordinal()], 			"pickaxe", 1);
+		hay_wedge = 			createWedge("hay_wedge", 			Material.WOOD, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_HAY.ordinal()], 			"pickaxe", 0);
 
 		// mineralogy Wedges
 		if (Loader.isModLoaded("mineralogy")) {
 			try {
 				//System.out.println("\nLoaded mineralogy\n");
 
-				amphibolite_wedge = 		createWedge("amphibolite_wedge", 		BlockType.BT_AMPHIBOLITE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMPHIBOLITE.ordinal()], 		"pickaxe", 1);
-				amphibolite_smooth_wedge = 	createWedge("amphibolite_smooth_wedge",	BlockType.BT_AMPHIBOLITE_SMOOTH, Material.ROCK, 0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMPHIBOLITE_SMOOTH.ordinal()], 		"pickaxe", 1);
-				m_andesite_wedge = 			createWedge("m_andesite_wedge", 		BlockType.BT_M_ANDESITE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_ANDESITE.ordinal()], 		"pickaxe", 1);
-				m_andesite_smooth_wedge = 	createWedge("m_andesite_smooth_wedge", 	BlockType.BT_M_ANDESITE_SMOOTH, Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_ANDESITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				basalt_wedge = 				createWedge("basalt_wedge", 			BlockType.BT_BASALT, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BASALT.ordinal()], 			"pickaxe", 1);
-				basalt_smooth_wedge = 		createWedge("basalt_smooth_wedge", 		BlockType.BT_BASALT_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BASALT_SMOOTH.ordinal()], 		"pickaxe", 1);
-				chert_wedge = 				createWedge("chert_wedge", 				BlockType.BT_CHERT, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CHERT.ordinal()], 			"pickaxe", 1);
-				conglomerate_wedge = 		createWedge("conglomerate_wedge", 		BlockType.BT_CONGLOMERATE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CONGLOMERATE.ordinal()], 		"pickaxe", 1);
-				conglomerate_smooth_wedge = createWedge("conglomerate_smooth_wedge", BlockType.BT_CONGLOMERATE_SMOOTH, 	Material.ROCK, 0.5F,MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CONGLOMERATE_SMOOTH.ordinal()], "pickaxe", 1);
-				m_diorite_wedge = 			createWedge("m_diorite_wedge", 			BlockType.BT_M_DIORITE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_DIORITE.ordinal()], 			"pickaxe", 1);
-				m_diorite_smooth_wedge = 	createWedge("m_diorite_smooth_wedge", 	BlockType.BT_M_DIORITE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_DIORITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				dolomite_wedge = 			createWedge("dolomite_wedge", 			BlockType.BT_DOLOMITE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DOLOMITE.ordinal()], 			"pickaxe", 1);
-				dolomite_smooth_wedge = 	createWedge("dolomite_smooth_wedge", 	BlockType.BT_DOLOMITE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DOLOMITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				gneiss_wedge = 				createWedge("gneiss_wedge", 			BlockType.BT_GNEISS, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GNEISS.ordinal()], 			"pickaxe", 1);
-				gneiss_smooth_wedge = 		createWedge("gneiss_smooth_wedge", 		BlockType.BT_GNEISS_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GNEISS_SMOOTH.ordinal()], 		"pickaxe", 1);
-				m_granite_wedge = 			createWedge("m_granite_wedge", 			BlockType.BT_M_GRANITE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_GRANITE.ordinal()], 			"pickaxe", 1);
-				m_granite_smooth_wedge = 	createWedge("m_granite_smooth_wedge", 	BlockType.BT_M_GRANITE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_GRANITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				limestone_wedge = 			createWedge("limestone_wedge", 			BlockType.BT_LIMESTONE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIMESTONE.ordinal()], 		"pickaxe", 1);
-				limestone_smooth_wedge = 	createWedge("limestone_smooth_wedge", 	BlockType.BT_LIMESTONE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIMESTONE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				marble_wedge = 				createWedge("marble_wedge", 			BlockType.BT_MARBLE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MARBLE.ordinal()], 			"pickaxe", 1);
-				marble_smooth_wedge = 		createWedge("marble_smooth_wedge", 		BlockType.BT_MARBLE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MARBLE_SMOOTH.ordinal()], 		"pickaxe", 1);
-				pumice_wedge = 				createWedge("pumice_wedge", 			BlockType.BT_PUMICE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PUMICE.ordinal()], 			"pickaxe", 1);
-				pegmatite_wedge = 			createWedge("pegmatite_wedge", 			BlockType.BT_PEGMATITE, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PEGMATITE.ordinal()], 		"pickaxe", 1);
-				pegmatite_smooth_wedge = 	createWedge("pegmatite_smooth_wedge", 	BlockType.BT_PEGMATITE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PEGMATITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				phyllite_wedge = 			createWedge("phyllite_wedge", 			BlockType.BT_PHYLLITE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PHYLLITE.ordinal()], 			"pickaxe", 1);
-				phyllite_smooth_wedge = 	createWedge("phyllite_smooth_wedge", 	BlockType.BT_PHYLLITE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PHYLLITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				rhyolite_wedge = 			createWedge("rhyolite_wedge", 			BlockType.BT_RHYOLITE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RHYOLITE.ordinal()], 			"pickaxe", 1);
-				rhyolite_smooth_wedge = 	createWedge("rhyolite_smooth_wedge", 	BlockType.BT_RHYOLITE_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RHYOLITE_SMOOTH.ordinal()], 	"pickaxe", 1);
-				schist_wedge = 				createWedge("schist_wedge", 			BlockType.BT_SCHIST, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SCHIST.ordinal()], 			"pickaxe", 1);
-				schist_smooth_wedge = 		createWedge("schist_smooth_wedge", 		BlockType.BT_SCHIST_SMOOTH, 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SCHIST_SMOOTH.ordinal()], 		"pickaxe", 1);
-				shale_wedge = 				createWedge("shale_wedge", 				BlockType.BT_SHALE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SHALE.ordinal()], 			"pickaxe", 1);
-				shale_smooth_wedge = 		createWedge("shale_smooth_wedge", 		BlockType.BT_SHALE_SMOOTH, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SHALE_SMOOTH.ordinal()], 		"pickaxe", 1);
-				slate_wedge = 				createWedge("slate_wedge", 				BlockType.BT_SLATE, 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SLATE.ordinal()], 			"pickaxe", 1);
-				slate_smooth_wedge = 		createWedge("slate_smooth_wedge", 		BlockType.BT_SLATE_SMOOTH, 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SLATE_SMOOTH.ordinal()], 		"pickaxe", 1);
+				amphibolite_wedge = 		createWedge("amphibolite_wedge", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMPHIBOLITE.ordinal()], 		"pickaxe", 1);
+				amphibolite_smooth_wedge = 	createWedge("amphibolite_smooth_wedge",	Material.ROCK, 0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMPHIBOLITE_SMOOTH.ordinal()], 		"pickaxe", 1);
+				m_andesite_wedge = 			createWedge("m_andesite_wedge", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_ANDESITE.ordinal()], 		"pickaxe", 1);
+				m_andesite_smooth_wedge = 	createWedge("m_andesite_smooth_wedge", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_ANDESITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				basalt_wedge = 				createWedge("basalt_wedge", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BASALT.ordinal()], 			"pickaxe", 1);
+				basalt_smooth_wedge = 		createWedge("basalt_smooth_wedge", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BASALT_SMOOTH.ordinal()], 		"pickaxe", 1);
+				chert_wedge = 				createWedge("chert_wedge", 				Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CHERT.ordinal()], 			"pickaxe", 1);
+				conglomerate_wedge = 		createWedge("conglomerate_wedge", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CONGLOMERATE.ordinal()], 		"pickaxe", 1);
+				conglomerate_smooth_wedge = createWedge("conglomerate_smooth_wedge", Material.ROCK, 0.5F,MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CONGLOMERATE_SMOOTH.ordinal()], "pickaxe", 1);
+				m_diorite_wedge = 			createWedge("m_diorite_wedge", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_DIORITE.ordinal()], 			"pickaxe", 1);
+				m_diorite_smooth_wedge = 	createWedge("m_diorite_smooth_wedge", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_DIORITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				dolomite_wedge = 			createWedge("dolomite_wedge", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DOLOMITE.ordinal()], 			"pickaxe", 1);
+				dolomite_smooth_wedge = 	createWedge("dolomite_smooth_wedge", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DOLOMITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				gneiss_wedge = 				createWedge("gneiss_wedge", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GNEISS.ordinal()], 			"pickaxe", 1);
+				gneiss_smooth_wedge = 		createWedge("gneiss_smooth_wedge", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GNEISS_SMOOTH.ordinal()], 		"pickaxe", 1);
+				m_granite_wedge = 			createWedge("m_granite_wedge", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_GRANITE.ordinal()], 			"pickaxe", 1);
+				m_granite_smooth_wedge = 	createWedge("m_granite_smooth_wedge", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_GRANITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				limestone_wedge = 			createWedge("limestone_wedge", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIMESTONE.ordinal()], 		"pickaxe", 1);
+				limestone_smooth_wedge = 	createWedge("limestone_smooth_wedge", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIMESTONE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				marble_wedge = 				createWedge("marble_wedge", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MARBLE.ordinal()], 			"pickaxe", 1);
+				marble_smooth_wedge = 		createWedge("marble_smooth_wedge", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MARBLE_SMOOTH.ordinal()], 		"pickaxe", 1);
+				pumice_wedge = 				createWedge("pumice_wedge", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PUMICE.ordinal()], 			"pickaxe", 1);
+				pegmatite_wedge = 			createWedge("pegmatite_wedge", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PEGMATITE.ordinal()], 		"pickaxe", 1);
+				pegmatite_smooth_wedge = 	createWedge("pegmatite_smooth_wedge", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PEGMATITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				phyllite_wedge = 			createWedge("phyllite_wedge", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PHYLLITE.ordinal()], 			"pickaxe", 1);
+				phyllite_smooth_wedge = 	createWedge("phyllite_smooth_wedge", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PHYLLITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				rhyolite_wedge = 			createWedge("rhyolite_wedge", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RHYOLITE.ordinal()], 			"pickaxe", 1);
+				rhyolite_smooth_wedge = 	createWedge("rhyolite_smooth_wedge", 	Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RHYOLITE_SMOOTH.ordinal()], 	"pickaxe", 1);
+				schist_wedge = 				createWedge("schist_wedge", 			Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SCHIST.ordinal()], 			"pickaxe", 1);
+				schist_smooth_wedge = 		createWedge("schist_smooth_wedge", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SCHIST_SMOOTH.ordinal()], 		"pickaxe", 1);
+				shale_wedge = 				createWedge("shale_wedge", 				Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SHALE.ordinal()], 			"pickaxe", 1);
+				shale_smooth_wedge = 		createWedge("shale_smooth_wedge", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SHALE_SMOOTH.ordinal()], 		"pickaxe", 1);
+				slate_wedge = 				createWedge("slate_wedge", 				Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SLATE.ordinal()], 			"pickaxe", 1);
+				slate_smooth_wedge = 		createWedge("slate_smooth_wedge", 		Material.ROCK, 	0.5F,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SLATE_SMOOTH.ordinal()], 		"pickaxe", 1);
 			}
 			catch (Exception e) {
 				System.out.println("Could not load mineralogy");
@@ -1029,18 +1040,18 @@ public class Blocks {
 		if (Loader.isModLoaded("natura")) {
 			try {
 				// Natura Wedge
-				amaranth_wedge =	createWedge("amaranth_wedge", 	BlockType.BT_PLANK_AMARANTH,	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMARANTH.ordinal()], "axe", 1);
-				darkwood_wedge =	createWedge("darkwood_wedge", 	BlockType.BT_PLANK_DARKWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DARKWOOD.ordinal()], "axe", 1);
-				eucalyptus_wedge =	createWedge("eucalyptus_wedge", BlockType.BT_PLANK_EUCALYPTUS, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_EUCALYPTUS.ordinal()], "axe", 1);
-				fusewood_wedge =	createWedge("fusewood_wedge", 	BlockType.BT_PLANK_FUSEWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_FUSEWOOD.ordinal()], "axe", 1);
-				ghostwood_wedge =	createWedge("ghostwood_wedge", 	BlockType.BT_PLANK_GHOSTWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GHOSTWOOD.ordinal()], "axe", 1);
-				hopseed_wedge =		createWedge("hopseed_wedge", 	BlockType.BT_PLANK_HOPSEED, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_HOPSEED.ordinal()], "axe", 1);
-				maple_wedge =	 	createWedge("maple_wedge", 		BlockType.BT_PLANK_MAPLE, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MAPLE.ordinal()], "axe", 1);
-				redwood_wedge =		createWedge("redwood_wedge", 	BlockType.BT_PLANK_REDWOOD, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_REDWOOD.ordinal()], "axe", 1);
-				sakura_wedge =	 	createWedge("sakura_wedge", 	BlockType.BT_PLANK_SAKURA, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SAKURA.ordinal()], "axe", 1);
-				silverbell_wedge =	createWedge("silverbell_wedge", BlockType.BT_PLANK_SILVERBELL, 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SILVERBELL.ordinal()], "axe", 1);
-				tiger_wedge =	 	createWedge("tiger_wedge", 		BlockType.BT_PLANK_TIGER, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_TIGER.ordinal()], "axe", 1);
-				willow_wedge =	 	createWedge("willow_wedge", 	BlockType.BT_PLANK_WILLOW, 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_WILLOW.ordinal()], "axe", 1);
+				amaranth_wedge =	createWedge("amaranth_wedge", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMARANTH.ordinal()], "axe", 1);
+				darkwood_wedge =	createWedge("darkwood_wedge", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DARKWOOD.ordinal()], "axe", 1);
+				eucalyptus_wedge =	createWedge("eucalyptus_wedge", Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_EUCALYPTUS.ordinal()], "axe", 1);
+				fusewood_wedge =	createWedge("fusewood_wedge", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_FUSEWOOD.ordinal()], "axe", 1);
+				ghostwood_wedge =	createWedge("ghostwood_wedge", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GHOSTWOOD.ordinal()], "axe", 1);
+				hopseed_wedge =		createWedge("hopseed_wedge", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_HOPSEED.ordinal()], "axe", 1);
+				maple_wedge =	 	createWedge("maple_wedge", 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MAPLE.ordinal()], "axe", 1);
+				redwood_wedge =		createWedge("redwood_wedge", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_REDWOOD.ordinal()], "axe", 1);
+				sakura_wedge =	 	createWedge("sakura_wedge", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SAKURA.ordinal()], "axe", 1);
+				silverbell_wedge =	createWedge("silverbell_wedge", Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SILVERBELL.ordinal()], "axe", 1);
+				tiger_wedge =	 	createWedge("tiger_wedge", 		Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_TIGER.ordinal()], "axe", 1);
+				willow_wedge =	 	createWedge("willow_wedge", 	Material.WOOD, 	0.5F, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_WILLOW.ordinal()], "axe", 1);
 
 
 				System.out.println("\nLoaded natura wedges\n");
@@ -1054,12 +1065,12 @@ public class Blocks {
 		}
 
 		// Generic Wedge from Ore dictionary
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(cobblestone_wedge, 3),
+		GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + "cobblestone_wedge"), new ResourceLocation(MissingPieces.MODID + ":" + "wedge"), new ItemStack(cobblestone_wedge, 3),
 				"   ",
 				"A  ",
 				"AA ",
 				'A', "cobblestone" 
-				));
+				);
 
 		//rainbow_slab = createHalfSlab("rainbow_slab", Material.rock, 2.0F, true, "pickaxe", 3);
 		//rainbow_slab_double = createDoubleSlab("rainbow_slab_double",  Material.rock, 2.0F, true, "pickaxe", 3);
@@ -1103,6 +1114,486 @@ public class Blocks {
 		registerSlab(stone_patt12_slab, "stone_patt12_slab", stone_patt12_slab_double, "stone_patt12_slab_double", BlockType.BT_COBBLESTONE_SLAB, Slab_type.PATT_12, MpConfiguration.BlockEnable[ConfigInfo.SLABPATT12.ordinal()]);
 
 	};
+	public static void initCommon(){
+		// TODO fill in recipes
+		// Create Chair recipes
+		
+		chairRecipe(acacia_chair,	BlockType.BT_PLANK_ACACIA,	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_ACACIA.ordinal()]);
+		chairRecipe(birch_chair,	BlockType.BT_PLANK_BIRCH, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_BIRCH.ordinal()]);
+		chairRecipe(dark_oak_chair, BlockType.BT_PLANK_DARK_OAK, MpConfiguration.BlockEnable[ConfigInfo.CHAIR_DARK_OAK.ordinal()]);
+		chairRecipe(jungle_chair, 	BlockType.BT_PLANK_JUNGLE, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_JUNGLE.ordinal()]);
+		chairRecipe(oak_chair, 		BlockType.BT_PLANK_OAK, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_OAK.ordinal()]);
+		chairRecipe(spruce_chair, 	BlockType.BT_PLANK_SPRUCE, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SPRUCE.ordinal()]);
+		/*
+		GameRegistry.addShapedRecipe(new ShapedOreRecipe(new ItemStack(oak_chair,2),
+				"  S",
+				" AA",
+				" SS",
+				'A', "plankWood",
+				'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE )));
+		 */
+		if (Loader.isModLoaded("natura")) {
+			try {
+				// Natura Chairs
+				chairRecipe(amaranth_chair, 	BlockType.BT_PLANK_AMARANTH,	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_AMARANTH.ordinal()]);
+				chairRecipe(darkwood_chair, 	BlockType.BT_PLANK_DARKWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_DARKWOOD.ordinal()]);
+				chairRecipe(eucalyptus_chair, 	BlockType.BT_PLANK_EUCALYPTUS, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_EUCALYPTUS.ordinal()]);
+				chairRecipe(fusewood_chair, 	BlockType.BT_PLANK_FUSEWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_FUSEWOOD.ordinal()]);
+				chairRecipe(ghostwood_chair, 	BlockType.BT_PLANK_GHOSTWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_GHOSTWOOD.ordinal()]);
+				chairRecipe(hopseed_chair, 		BlockType.BT_PLANK_HOPSEED, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_HOPSEED.ordinal()]);
+				chairRecipe(maple_chair, 		BlockType.BT_PLANK_MAPLE, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_MAPLE.ordinal()]);
+				chairRecipe(redwood_chair, 		BlockType.BT_PLANK_REDWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_REDWOOD.ordinal()]);
+				chairRecipe(sakura_chair, 		BlockType.BT_PLANK_SAKURA, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SAKURA.ordinal()]);
+				chairRecipe(silverbell_chair, 	BlockType.BT_PLANK_SILVERBELL, 	MpConfiguration.BlockEnable[ConfigInfo.CHAIR_SILVERBELL.ordinal()]);
+				chairRecipe(tiger_chair, 		BlockType.BT_PLANK_TIGER, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_TIGER.ordinal()]);
+				chairRecipe(willow_chair, 		BlockType.BT_PLANK_WILLOW, 		MpConfiguration.BlockEnable[ConfigInfo.CHAIR_WILLOW.ordinal()]);
+
+
+				System.out.println("\nLoaded natura chairs\n");
+			}
+			catch (Exception e) {
+				System.out.println("Could not load natura chairs");
+				e.printStackTrace(System.err);
+			}
+		} else {
+			System.out.println("\nNo Natura\n");
+		}
+
+		// Create Lamp Recipes
+		lampRecipe(acacia_lamp,		BlockType.BT_PLANK_ACACIA,	MpConfiguration.BlockEnable[ConfigInfo.LAMP_ACACIA.ordinal()]);
+		lampRecipe(birch_lamp,		BlockType.BT_PLANK_BIRCH, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_BIRCH.ordinal()]);
+		lampRecipe(dark_oak_lamp, 	BlockType.BT_PLANK_DARK_OAK,MpConfiguration.BlockEnable[ConfigInfo.LAMP_DARK_OAK.ordinal()]);
+		lampRecipe(jungle_lamp, 	BlockType.BT_PLANK_JUNGLE, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_JUNGLE.ordinal()]);
+		lampRecipe(oak_lamp, 		BlockType.BT_PLANK_OAK, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_OAK.ordinal()]);
+		lampRecipe(spruce_lamp, 	BlockType.BT_PLANK_SPRUCE, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_SPRUCE.ordinal()]);
+		lampRecipe(gold_lamp, 		BlockType.BT_INGOT_GOLD, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_GOLD.ordinal()]);
+		lampRecipe(iron_lamp, 		BlockType.BT_INGOT_IRON, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_IRON.ordinal()]);
+		
+		// BaseMetal Lamps
+		if (Loader.isModLoaded("basemetals")) {
+			try {
+				//do stuff
+
+				lampRecipe(adamantine_lamp, BlockType.BT_INGOT_ADAMANTINE, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_ADAMANTINE.ordinal()]);
+				lampRecipe(aquarium_lamp, 	BlockType.BT_INGOT_AQUARIUM, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_AQUARIUM.ordinal()]);
+				lampRecipe(brass_lamp, 		BlockType.BT_INGOT_BRASS, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_BRASS.ordinal()]);
+				lampRecipe(bronze_lamp, 	BlockType.BT_INGOT_BRONZE, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_BRONZE.ordinal()]);
+				lampRecipe(cold_iron_lamp, 	BlockType.BT_INGOT_COLD_IRON, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_COLD_IRON.ordinal()]);
+				lampRecipe(copper_lamp, 	BlockType.BT_INGOT_COPPER, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_COPPER.ordinal()]);
+				lampRecipe(electrum_lamp, 	BlockType.BT_INGOT_ELECTRUM, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_ELECTRUM.ordinal()]);
+				lampRecipe(invar_lamp, 		BlockType.BT_INGOT_INVAR, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_INVAR.ordinal()]);
+				lampRecipe(lead_lamp, 		BlockType.BT_INGOT_LEAD, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_LEAD.ordinal()]);
+				lampRecipe(mithril_lamp, 	BlockType.BT_INGOT_MITHRIL, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_MITHRIL.ordinal()]);
+				lampRecipe(nickel_lamp, 	BlockType.BT_INGOT_NICKEL, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_NICKEL.ordinal()]);
+				lampRecipe(silver_lamp, 	BlockType.BT_INGOT_SILVER, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_SILVER.ordinal()]);
+				lampRecipe(star_steel_lamp, BlockType.BT_INGOT_STAR_STEEL, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_STAR_STEEL.ordinal()]);
+				lampRecipe(steel_lamp, 		BlockType.BT_INGOT_STEEL, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_STEEL.ordinal()]);
+				lampRecipe(tin_lamp, 		BlockType.BT_INGOT_TIN, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_TIN.ordinal()]);
+				lampRecipe(zinc_lamp, 		BlockType.BT_INGOT_ZINC, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_ZINC.ordinal()]);
+				
+				System.out.println("\nLoaded base metals\n");
+			}
+			catch (Exception e) {
+				System.out.println("Could not load base metals");
+				e.printStackTrace(System.err);
+			}
+		} else {
+			System.out.println("\nNo Base metals\n");
+		}
+		if (Loader.isModLoaded("natura")) {
+			try {
+				// Natura Lamps
+				lampRecipe(amaranth_lamp, 	BlockType.BT_PLANK_AMARANTH,	MpConfiguration.BlockEnable[ConfigInfo.LAMP_AMARANTH.ordinal()]);
+				lampRecipe(darkwood_lamp, 	BlockType.BT_PLANK_DARKWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_DARKWOOD.ordinal()]);
+				lampRecipe(eucalyptus_lamp, BlockType.BT_PLANK_EUCALYPTUS, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_EUCALYPTUS.ordinal()]);
+				lampRecipe(fusewood_lamp, 	BlockType.BT_PLANK_FUSEWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_FUSEWOOD.ordinal()]);
+				lampRecipe(ghostwood_lamp, 	BlockType.BT_PLANK_GHOSTWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_GHOSTWOOD.ordinal()]);
+				lampRecipe(hopseed_lamp, 	BlockType.BT_PLANK_HOPSEED, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_HOPSEED.ordinal()]);
+				lampRecipe(maple_lamp, 		BlockType.BT_PLANK_MAPLE, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_MAPLE.ordinal()]);
+				lampRecipe(redwood_lamp, 	BlockType.BT_PLANK_REDWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_REDWOOD.ordinal()]);
+				lampRecipe(sakura_lamp, 	BlockType.BT_PLANK_SAKURA, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_SAKURA.ordinal()]);
+				lampRecipe(silverbell_lamp, BlockType.BT_PLANK_SILVERBELL, 	MpConfiguration.BlockEnable[ConfigInfo.LAMP_SILVERBELL.ordinal()]);
+				lampRecipe(tiger_lamp, 		BlockType.BT_PLANK_TIGER, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_TIGER.ordinal()]);
+				lampRecipe(willow_lamp, 	BlockType.BT_PLANK_WILLOW, 		MpConfiguration.BlockEnable[ConfigInfo.LAMP_WILLOW.ordinal()]);
+
+
+				System.out.println("\nLoaded natura lamps\n");
+			}
+			catch (Exception e) {
+				System.out.println("Could not load natura lamps");
+				e.printStackTrace(System.err);
+			}
+		} else {
+			System.out.println("\nNo Natura\n");
+		}
+		// Create Tables
+		//		Name					Ingredient					Material		Enable/Disable
+		tableRecipe(acacia_table,		BlockType.BT_PLANK_ACACIA, MpConfiguration.BlockEnable[ConfigInfo.TABLE_ACACIA.ordinal()]);
+		tableRecipe(birch_table,		BlockType.BT_PLANK_BIRCH, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_BIRCH.ordinal()]);
+		tableRecipe(dark_oak_table, 	BlockType.BT_PLANK_DARK_OAK, MpConfiguration.BlockEnable[ConfigInfo.TABLE_DARK_OAK.ordinal()]);
+		tableRecipe(jungle_table, 		BlockType.BT_PLANK_JUNGLE, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_JUNGLE.ordinal()]);
+		tableRecipe(oak_table, 			BlockType.BT_PLANK_OAK, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_OAK.ordinal()]);
+		tableRecipe(spruce_table, 		BlockType.BT_PLANK_SPRUCE, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_SPRUCE.ordinal()]);
+		//Generic Table
+		/*
+		GameRegistry.addShapedRecipe(new ShapedOreRecipe(new ItemStack(oak_table,2),
+				"AAA",
+				"S S",
+				"S S",
+				'A', "plankWood",
+				'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE)));
+		*/
+		if (Loader.isModLoaded("natura")) {
+			try {
+				// Natura Tables
+				tableRecipe(amaranth_table, 	BlockType.BT_PLANK_AMARANTH,	MpConfiguration.BlockEnable[ConfigInfo.TABLE_AMARANTH.ordinal()]);
+				tableRecipe(darkwood_table, 	BlockType.BT_PLANK_DARKWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_DARKWOOD.ordinal()]);
+				tableRecipe(eucalyptus_table, 	BlockType.BT_PLANK_EUCALYPTUS, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_EUCALYPTUS.ordinal()]);
+				tableRecipe(fusewood_table, 	BlockType.BT_PLANK_FUSEWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_FUSEWOOD.ordinal()]);
+				tableRecipe(ghostwood_table, 	BlockType.BT_PLANK_GHOSTWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_GHOSTWOOD.ordinal()]);
+				tableRecipe(hopseed_table, 		BlockType.BT_PLANK_HOPSEED, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_HOPSEED.ordinal()]);
+				tableRecipe(maple_table, 		BlockType.BT_PLANK_MAPLE, 		MpConfiguration.BlockEnable[ConfigInfo.TABLE_MAPLE.ordinal()]);
+				tableRecipe(redwood_table, 		BlockType.BT_PLANK_REDWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_REDWOOD.ordinal()]);
+				tableRecipe(sakura_table, 		BlockType.BT_PLANK_SAKURA, 		MpConfiguration.BlockEnable[ConfigInfo.TABLE_SAKURA.ordinal()]);
+				tableRecipe(silverbell_table, 	BlockType.BT_PLANK_SILVERBELL, 	MpConfiguration.BlockEnable[ConfigInfo.TABLE_SILVERBELL.ordinal()]);
+				tableRecipe(tiger_table, 		BlockType.BT_PLANK_TIGER, 		MpConfiguration.BlockEnable[ConfigInfo.TABLE_TIGER.ordinal()]);
+				tableRecipe(willow_table, 		BlockType.BT_PLANK_WILLOW, 		MpConfiguration.BlockEnable[ConfigInfo.TABLE_WILLOW.ordinal()]);
+
+
+				System.out.println("\nLoaded natura tables\n");
+			}
+			catch (Exception e) {
+				System.out.println("Could not load natura tables");
+				e.printStackTrace(System.err);
+			}
+		} else {
+			System.out.println("\nNo Natura\n");
+		}
+
+		// Candelabras
+		  candelabraRecipe(acacia_candelabra,		BlockType.BT_PLANK_ACACIA,	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_ACACIA.ordinal()]);
+		  candelabraRecipe(birch_candelabra,		BlockType.BT_PLANK_BIRCH,	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_BIRCH.ordinal()]);
+		  candelabraRecipe(dark_oak_candelabra, 	BlockType.BT_PLANK_DARK_OAK,  MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_DARK_OAK.ordinal()]);
+		  candelabraRecipe(jungle_candelabra, 		BlockType.BT_PLANK_JUNGLE, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_JUNGLE.ordinal()]);
+		  candelabraRecipe(oak_candelabra, 			BlockType.BT_PLANK_OAK, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_OAK.ordinal()]);
+		  candelabraRecipe(spruce_candelabra, 		BlockType.BT_PLANK_SPRUCE, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_SPRUCE.ordinal()]);
+
+		  candelabraRecipe(gold_candelabra, 		BlockType.BT_INGOT_GOLD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_GOLD.ordinal()]);
+		  candelabraRecipe(iron_candelabra, 		BlockType.BT_INGOT_IRON, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_IRON.ordinal()]);
+
+		// BaseMetal Lamps
+		if (Loader.isModLoaded("basemetals")) {
+			try {
+				//do stuff
+
+				candelabraRecipe(adamantine_candelabra, BlockType.BT_INGOT_ADAMANTINE, 		MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_ACACIA.ordinal()]);
+				candelabraRecipe(aquarium_candelabra, 	BlockType.BT_INGOT_AQUARIUM, 		MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_AQUARIUM.ordinal()]);
+				candelabraRecipe(brass_candelabra, 		BlockType.BT_INGOT_BRASS, 			MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_BRASS.ordinal()]);
+				candelabraRecipe(bronze_candelabra, 	BlockType.BT_INGOT_BRONZE, 			MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_BRONZE.ordinal()]);
+				candelabraRecipe(cold_iron_candelabra, 	BlockType.BT_INGOT_COLD_IRON, 		MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_COLD_IRON.ordinal()]);
+				candelabraRecipe(copper_candelabra,  	BlockType.BT_INGOT_COPPER, 			MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_COPPER.ordinal()]);
+				candelabraRecipe(electrum_candelabra, 	BlockType.BT_INGOT_ELECTRUM, 		MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_ELECTRUM.ordinal()]);
+				candelabraRecipe(invar_candelabra, 		BlockType.BT_INGOT_INVAR, 			MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_INVAR.ordinal()]);
+				candelabraRecipe(lead_candelabra, 		BlockType.BT_INGOT_LEAD, 			MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_LEAD.ordinal()]);
+				candelabraRecipe(mithril_candelabra, 	BlockType.BT_INGOT_MITHRIL, 		MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_MITHRIL.ordinal()]);
+				candelabraRecipe(nickel_candelabra, 	BlockType.BT_INGOT_NICKEL, 			MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_NICKEL.ordinal()]);
+				candelabraRecipe(silver_candelabra, 	BlockType.BT_INGOT_SILVER, 			MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_SILVER.ordinal()]);
+				candelabraRecipe(star_steel_candelabra,	BlockType.BT_INGOT_STAR_STEEL, 		MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_STAR_STEEL.ordinal()]);
+				candelabraRecipe(steel_candelabra, 		BlockType.BT_INGOT_STEEL, 			MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_STEEL.ordinal()]);
+				candelabraRecipe(tin_candelabra, 		BlockType.BT_INGOT_TIN, 			MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_TIN.ordinal()]);
+				candelabraRecipe(zinc_candelabra, 		BlockType.BT_INGOT_ZINC, 			MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_ZINC.ordinal()]);
+				System.out.println("\nLoaded base metals\n");
+			}
+			catch (Exception e) {
+				System.out.println("Could not load base metals");
+				e.printStackTrace(System.err);
+			}
+		} else {
+			System.out.println("\nNo Base metals\n");
+		}
+		
+		if (Loader.isModLoaded("natura")) {
+			try {
+				// Natura Candelabras
+				candelabraRecipe(amaranth_candelabra, 	BlockType.BT_PLANK_AMARANTH, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_AMARANTH.ordinal()]);
+				candelabraRecipe(darkwood_candelabra, 	BlockType.BT_PLANK_DARKWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_DARKWOOD.ordinal()]);
+				candelabraRecipe(eucalyptus_candelabra,	BlockType.BT_PLANK_EUCALYPTUS, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_EUCALYPTUS.ordinal()]);
+				candelabraRecipe(fusewood_candelabra, 	BlockType.BT_PLANK_FUSEWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_FUSEWOOD.ordinal()]);
+				candelabraRecipe(ghostwood_candelabra, 	BlockType.BT_PLANK_GHOSTWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_GHOSTWOOD.ordinal()]);
+				candelabraRecipe(hopseed_candelabra, 	BlockType.BT_PLANK_HOPSEED, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_HOPSEED.ordinal()]);
+				candelabraRecipe(maple_candelabra, 		BlockType.BT_PLANK_MAPLE, 		MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_MAPLE.ordinal()]);
+				candelabraRecipe(redwood_candelabra, 	BlockType.BT_PLANK_REDWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_REDWOOD.ordinal()]);
+				candelabraRecipe(sakura_candelabra, 	BlockType.BT_PLANK_SAKURA, 		MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_SAKURA.ordinal()]);
+				candelabraRecipe(silverbell_candelabra, BlockType.BT_PLANK_SILVERBELL, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_SILVERBELL.ordinal()]);
+				candelabraRecipe(tiger_candelabra, 		BlockType.BT_PLANK_TIGER, 		MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_TIGER.ordinal()]);
+				candelabraRecipe(willow_candelabra, 	BlockType.BT_PLANK_WILLOW, 		MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_WILLOW.ordinal()]);
+
+
+				System.out.println("\nLoaded natura candelabras\n");
+			}
+			catch (Exception e) {
+				System.out.println("Could not load natura candelabras");
+				e.printStackTrace(System.err);
+			}
+		} else {
+			System.out.println("\nNo Natura\n");
+		}
+		
+		// Pillars
+		pillarRecipe(acacia_pillar,		BlockType.BT_PLANK_ACACIA,		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_ACACIA.ordinal()]);
+		pillarRecipe(birch_pillar,		BlockType.BT_PLANK_BIRCH, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BIRCH.ordinal()]);
+		pillarRecipe(dark_oak_pillar, 	BlockType.BT_PLANK_DARK_OAK, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DARK_OAK.ordinal()]);
+		pillarRecipe(jungle_pillar, 	BlockType.BT_PLANK_JUNGLE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_JUNGLE.ordinal()]);
+		pillarRecipe(oak_pillar, 		BlockType.BT_PLANK_OAK, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_OAK.ordinal()]);
+		pillarRecipe(spruce_pillar, 	BlockType.BT_PLANK_SPRUCE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SPRUCE.ordinal()]);
+		pillarRecipe(acacia_log,		BlockType.BT_WOOD_ACACIA,		MpConfiguration.BlockEnable[ConfigInfo.LOG_ACACIA.ordinal()]);
+		pillarRecipe(birch_log,			BlockType.BT_WOOD_BIRCH, 		MpConfiguration.BlockEnable[ConfigInfo.LOG_BIRCH.ordinal()]);
+		pillarRecipe(dark_oak_log, 		BlockType.BT_WOOD_DARK_OAK, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_DARK_OAK.ordinal()]);
+		pillarRecipe(jungle_log, 		BlockType.BT_WOOD_JUNGLE, 		MpConfiguration.BlockEnable[ConfigInfo.LOG_JUNGLE.ordinal()]);
+		pillarRecipe(oak_log, 			BlockType.BT_WOOD_OAK, 			MpConfiguration.BlockEnable[ConfigInfo.LOG_OAK.ordinal()]);
+		pillarRecipe(spruce_log, 		BlockType.BT_WOOD_SPRUCE, 		MpConfiguration.BlockEnable[ConfigInfo.LOG_SPRUCE.ordinal()]);
+		pillarRecipe(p_granite_pillar, 	BlockType.BT_POLISHED_GRANITE, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_P_GRANITE.ordinal()]);
+		pillarRecipe(p_andesite_pillar, BlockType.BT_POLISHED_ANDESITE, MpConfiguration.BlockEnable[ConfigInfo.PILLAR_P_ANDESITE.ordinal()]);
+		pillarRecipe(p_diorite_pillar, 	BlockType.BT_POLISHED_DIORITE, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_P_DIORITE.ordinal()]);
+		pillarRecipe(granite_pillar, 	BlockType.BT_GRANITE, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GRANITE.ordinal()]);
+		pillarRecipe(andesite_pillar, 	BlockType.BT_ANDESITE, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_ANDESITE.ordinal()]);
+		pillarRecipe(diorite_pillar, 	BlockType.BT_DIORITE, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DIORITE.ordinal()]);
+		pillarRecipe(stone_pillar, 		BlockType.BT_STONE, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_STONE.ordinal()]);
+		pillarRecipe(stonebrick_pillar, BlockType.BT_STONEBRICK, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_STONEBRICK.ordinal()]);
+		pillarRecipe(purpur_pillar, 	BlockType.BT_PURPUR, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PURPUR.ordinal()]);
+		pillarRecipe(cobblestone_pillar,BlockType.BT_COBBLESTONE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_COBBLESTONE.ordinal()]);
+		pillarRecipe(obsidian_pillar, 	BlockType.BT_OBSIDIAN, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_OBSIDIAN.ordinal()]);
+		pillarRecipe(quartz_pillar, 	BlockType.BT_QUARTZ_BLOCK, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_QUARTZ.ordinal()]);
+		pillarRecipe(sandstone_pillar, 	BlockType.BT_SANDSTONE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SANDSTONE.ordinal()]);
+		pillarRecipe(red_sandstone_pillar, BlockType.BT_RED_SANDSTONE, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_RED_SANDSTONE.ordinal()]);
+		pillarRecipe(nether_brick_pillar, BlockType.BT_NETHER_BRICK, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_NETHER_BRICK.ordinal()]);
+
+		pillarRecipe(end_stone_pillar, 		BlockType.BT_END_STONE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_END_STONE.ordinal()]);
+		pillarRecipe(black_clay_pillar, 	BlockType.BT_CLAY_BLACK, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BLACK_CLAY.ordinal()]);
+		pillarRecipe(blue_clay_pillar, 		BlockType.BT_CLAY_BLUE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BLUE_CLAY.ordinal()]);
+		pillarRecipe(brown_clay_pillar, 	BlockType.BT_CLAY_BROWN, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BROWN_CLAY.ordinal()]);
+		pillarRecipe(cyan_clay_pillar, 		BlockType.BT_CLAY_CYAN, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_CYAN_CLAY.ordinal()]);
+		pillarRecipe(gray_clay_pillar, 		BlockType.BT_CLAY_GRAY, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GRAY_CLAY.ordinal()]);
+		pillarRecipe(green_clay_pillar, 	BlockType.BT_CLAY_GREEN, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GREEN_CLAY.ordinal()]);
+		pillarRecipe(light_blue_clay_pillar, BlockType.BT_CLAY_LIGHT_BLUE, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIGHT_BLUE_CLAY.ordinal()]);
+		pillarRecipe(light_gray_clay_pillar, BlockType.BT_CLAY_LIGHT_GRAY, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIGHT_GRAY_CLAY.ordinal()]);
+		pillarRecipe(lime_clay_pillar, 		BlockType.BT_CLAY_LIME, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIME_CLAY.ordinal()]);
+		pillarRecipe(magenta_clay_pillar, 	BlockType.BT_CLAY_MAGENTA, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_MAGENTA_CLAY.ordinal()]);
+		pillarRecipe(orange_clay_pillar, 	BlockType.BT_CLAY_ORANGE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_ORANGE_CLAY.ordinal()]);
+		pillarRecipe(pink_clay_pillar, 		BlockType.BT_CLAY_PINK, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PINK_CLAY.ordinal()]);
+		pillarRecipe(purple_clay_pillar, 	BlockType.BT_CLAY_PURPLE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PURPLE_CLAY.ordinal()]);
+		pillarRecipe(red_clay_pillar, 		BlockType.BT_CLAY_RED, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_RED_CLAY.ordinal()]);
+		pillarRecipe(white_clay_pillar, 	BlockType.BT_CLAY_WHITE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_WHITE_CLAY.ordinal()]);
+		pillarRecipe(yellow_clay_pillar, 	BlockType.BT_CLAY_YELLOW, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_YELLOW_CLAY.ordinal()]);
+		pillarRecipe(glass_pillar, 			BlockType.BT_GLASS_BLOCK, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GLASS.ordinal()]);
+
+		// mineralogy Pillars
+		if (Loader.isModLoaded("mineralogy")) {
+			try {
+				//System.out.println("\nLoaded mineralogy\n");
+
+				pillarRecipe(amphibolite_pillar, 		BlockType.BT_AMPHIBOLITE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_AMPHIBOLITE.ordinal()]);
+				pillarRecipe(amphibolite_smooth_pillar, BlockType.BT_AMPHIBOLITE_SMOOTH, MpConfiguration.BlockEnable[ConfigInfo.PILLAR_AMPHIBOLITE_SMOOTH.ordinal()]);
+				pillarRecipe(m_andesite_pillar, 		BlockType.BT_M_ANDESITE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_ANDESITE.ordinal()]);
+				pillarRecipe(m_andesite_smooth_pillar, 	BlockType.BT_M_ANDESITE_SMOOTH, MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_ANDESITE_SMOOTH.ordinal()]);
+				pillarRecipe(basalt_pillar, 			BlockType.BT_BASALT, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BASALT.ordinal()]);
+				pillarRecipe(basalt_smooth_pillar, 		BlockType.BT_BASALT_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_BASALT_SMOOTH.ordinal()]);
+				pillarRecipe(chert_pillar, 				BlockType.BT_CHERT, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_CHERT.ordinal()]);
+				pillarRecipe(conglomerate_pillar, 		BlockType.BT_CONGLOMERATE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_CONGLOMERATE.ordinal()]);
+				pillarRecipe(conglomerate_smooth_pillar, BlockType.BT_CONGLOMERATE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_CONGLOMERATE_SMOOTH.ordinal()]);
+				pillarRecipe(m_diorite_pillar, 			BlockType.BT_M_DIORITE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_DIORITE.ordinal()]);
+				pillarRecipe(m_diorite_smooth_pillar, 	BlockType.BT_M_DIORITE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_DIORITE_SMOOTH.ordinal()]);
+				pillarRecipe(dolomite_pillar, 			BlockType.BT_DOLOMITE, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DOLOMITE.ordinal()]);
+				pillarRecipe(dolomite_smooth_pillar, 	BlockType.BT_DOLOMITE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DOLOMITE_SMOOTH.ordinal()]);
+				pillarRecipe(gneiss_pillar, 			BlockType.BT_GNEISS, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GNEISS.ordinal()]);
+				pillarRecipe(gneiss_smooth_pillar, 		BlockType.BT_GNEISS_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GNEISS_SMOOTH.ordinal()]);
+				pillarRecipe(m_granite_pillar, 			BlockType.BT_M_GRANITE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_GRANITE.ordinal()]);
+				pillarRecipe(m_granite_smooth_pillar, 	BlockType.BT_M_GRANITE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_M_GRANITE_SMOOTH.ordinal()]);
+				pillarRecipe(limestone_pillar, 			BlockType.BT_LIMESTONE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIMESTONE.ordinal()]);
+				pillarRecipe(limestone_smooth_pillar, 	BlockType.BT_LIMESTONE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_LIMESTONE_SMOOTH.ordinal()]);
+				pillarRecipe(marble_pillar, 			BlockType.BT_MARBLE, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_MARBLE.ordinal()]);
+				pillarRecipe(marble_smooth_pillar, 		BlockType.BT_MARBLE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_MARBLE_SMOOTH.ordinal()]);
+				pillarRecipe(pumice_pillar, 			BlockType.BT_PUMICE, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PUMICE.ordinal()]);
+				pillarRecipe(pegmatite_pillar, 			BlockType.BT_PEGMATITE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PEGMATITE.ordinal()]);
+				pillarRecipe(pegmatite_smooth_pillar, 	BlockType.BT_PEGMATITE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PEGMATITE_SMOOTH.ordinal()]);
+				pillarRecipe(phyllite_pillar, 			BlockType.BT_PHYLLITE, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PHYLLITE.ordinal()]);
+				pillarRecipe(phyllite_smooth_pillar, 	BlockType.BT_PHYLLITE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_PHYLLITE_SMOOTH.ordinal()]);
+				pillarRecipe(rhyolite_pillar, 			BlockType.BT_RHYOLITE, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_RHYOLITE.ordinal()]);
+				pillarRecipe(rhyolite_smooth_pillar, 	BlockType.BT_RHYOLITE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_RHYOLITE_SMOOTH.ordinal()]);
+				pillarRecipe(schist_pillar, 			BlockType.BT_SCHIST, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SCHIST.ordinal()]);
+				pillarRecipe(schist_smooth_pillar, 		BlockType.BT_SCHIST_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SCHIST_SMOOTH.ordinal()]);
+				pillarRecipe(shale_pillar, 				BlockType.BT_SHALE, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SHALE.ordinal()]);
+				pillarRecipe(shale_smooth_pillar, 		BlockType.BT_SHALE_SMOOTH, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SHALE_SMOOTH.ordinal()]);
+				pillarRecipe(slate_pillar, 				BlockType.BT_SLATE, 			MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SLATE.ordinal()]);
+				pillarRecipe(slate_smooth_pillar, 		BlockType.BT_SLATE_SMOOTH, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SLATE_SMOOTH.ordinal()]);
+			}
+			catch (Exception e) {
+				System.out.println("Could not load mineralogy");
+				e.printStackTrace(System.err);
+			}
+		} 
+		if (Loader.isModLoaded("natura")) {
+			try {
+				// Natura Pillars
+				pillarRecipe(amaranth_pillar, 	BlockType.BT_PLANK_AMARANTH,	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_AMARANTH.ordinal()]);
+				pillarRecipe(darkwood_pillar, 	BlockType.BT_PLANK_DARKWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_DARKWOOD.ordinal()]);
+				pillarRecipe(eucalyptus_pillar, BlockType.BT_PLANK_EUCALYPTUS, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_EUCALYPTUS.ordinal()]);
+				pillarRecipe(fusewood_pillar, 	BlockType.BT_PLANK_FUSEWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_FUSEWOOD.ordinal()]);
+				pillarRecipe(ghostwood_pillar, 	BlockType.BT_PLANK_GHOSTWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_GHOSTWOOD.ordinal()]);
+				pillarRecipe(hopseed_pillar, 	BlockType.BT_PLANK_HOPSEED, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_HOPSEED.ordinal()]);
+				pillarRecipe(maple_pillar, 		BlockType.BT_PLANK_MAPLE, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_MAPLE.ordinal()]);
+				pillarRecipe(redwood_pillar, 	BlockType.BT_PLANK_REDWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_REDWOOD.ordinal()]);
+				pillarRecipe(sakura_pillar, 	BlockType.BT_PLANK_SAKURA, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SAKURA.ordinal()]);
+				pillarRecipe(silverbell_pillar, BlockType.BT_PLANK_SILVERBELL, 	MpConfiguration.BlockEnable[ConfigInfo.PILLAR_SILVERBELL.ordinal()]);
+				pillarRecipe(tiger_pillar, 		BlockType.BT_PLANK_TIGER, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_TIGER.ordinal()]);
+				pillarRecipe(willow_pillar, 	BlockType.BT_PLANK_WILLOW, 		MpConfiguration.BlockEnable[ConfigInfo.PILLAR_WILLOW.ordinal()]);
+				//Natura Logs
+				pillarRecipe(amaranth_log, 		BlockType.BT_WOOD_AMARANTH,	    MpConfiguration.BlockEnable[ConfigInfo.LOG_AMARANTH.ordinal()]);
+				pillarRecipe(darkwood_log, 		BlockType.BT_WOOD_DARKWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_DARKWOOD.ordinal()]);
+				pillarRecipe(eucalyptus_log, 	BlockType.BT_WOOD_EUCALYPTUS, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_EUCALYPTUS.ordinal()]);
+				pillarRecipe(fusewood_log, 		BlockType.BT_WOOD_FUSEWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_FUSEWOOD.ordinal()]);
+				pillarRecipe(ghostwood_log, 	BlockType.BT_WOOD_GHOSTWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_GHOSTWOOD.ordinal()]);
+				pillarRecipe(hopseed_log, 		BlockType.BT_WOOD_HOPSEED, 	    MpConfiguration.BlockEnable[ConfigInfo.LOG_HOPSEED.ordinal()]);
+				pillarRecipe(maple_log, 		BlockType.BT_WOOD_MAPLE, 		MpConfiguration.BlockEnable[ConfigInfo.LOG_MAPLE.ordinal()]);
+				pillarRecipe(redwood_log, 		BlockType.BT_WOOD_REDWOOD, 	    MpConfiguration.BlockEnable[ConfigInfo.LOG_REDWOOD.ordinal()]);
+				pillarRecipe(sakura_log, 		BlockType.BT_WOOD_SAKURA, 		MpConfiguration.BlockEnable[ConfigInfo.LOG_SAKURA.ordinal()]);
+				pillarRecipe(silverbell_log, 	BlockType.BT_WOOD_SILVERBELL, 	MpConfiguration.BlockEnable[ConfigInfo.LOG_SILVERBELL.ordinal()]);
+				pillarRecipe(tiger_log, 		BlockType.BT_WOOD_TIGER, 		MpConfiguration.BlockEnable[ConfigInfo.LOG_TIGER.ordinal()]);
+				pillarRecipe(willow_log, 		BlockType.BT_WOOD_WILLOW, 		MpConfiguration.BlockEnable[ConfigInfo.LOG_WILLOW.ordinal()]);
+
+
+				System.out.println("\nLoaded natura pillars\n");
+			}
+			catch (Exception e) {
+				System.out.println("Could not load natura pillars");
+				e.printStackTrace(System.err);
+			}
+		} else {
+			System.out.println("\nNo Natura\n");
+		}
+        
+        // Wedge Recipes
+        wedgeRecipe(acacia_wedge,		BlockType.BT_PLANK_ACACIA,		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ACACIA.ordinal()]);
+		wedgeRecipe(birch_wedge,		BlockType.BT_PLANK_BIRCH, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BIRCH.ordinal()]);
+		wedgeRecipe(dark_oak_wedge, 	BlockType.BT_PLANK_DARK_OAK, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DARK_OAK.ordinal()]);
+		wedgeRecipe(jungle_wedge, 	    BlockType.BT_PLANK_JUNGLE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_JUNGLE.ordinal()]);
+		wedgeRecipe(oak_wedge, 		    BlockType.BT_PLANK_OAK, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_OAK.ordinal()]);
+		wedgeRecipe(spruce_wedge, 	    BlockType.BT_PLANK_SPRUCE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SPRUCE.ordinal()]);
+		wedgeRecipe(p_granite_wedge, 	BlockType.BT_POLISHED_GRANITE, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_GRANITE.ordinal()]);
+		wedgeRecipe(p_andesite_wedge,   BlockType.BT_POLISHED_ANDESITE, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_ANDESITE.ordinal()]);
+		wedgeRecipe(p_diorite_wedge, 	BlockType.BT_POLISHED_DIORITE, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_P_DIORITE.ordinal()]);
+		wedgeRecipe(diorite_wedge, 	    BlockType.BT_DIORITE, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DIORITE.ordinal()]);
+		wedgeRecipe(granite_wedge, 	    BlockType.BT_GRANITE, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRANITE.ordinal()]);
+        wedgeRecipe(andesite_wedge, 	BlockType.BT_ANDESITE, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ANDESITE.ordinal()]);
+        wedgeRecipe(stone_wedge, 		BlockType.BT_STONE, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_STONE.ordinal()]);
+		wedgeRecipe(stonebrick_wedge,	BlockType.BT_STONEBRICK, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_STONEBRICK.ordinal()]);
+		wedgeRecipe(purpur_wedge, 	    BlockType.BT_PURPUR, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PURPUR.ordinal()]);
+		wedgeRecipe(cobblestone_wedge,  BlockType.BT_COBBLESTONE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_COBBLESTONE.ordinal()]);
+		wedgeRecipe(obsidian_wedge, 	BlockType.BT_OBSIDIAN, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_OBSIDIAN.ordinal()]);
+		wedgeRecipe(quartz_wedge, 	    BlockType.BT_QUARTZ_BLOCK, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_QUARTZ.ordinal()]);
+		wedgeRecipe(sandstone_wedge, 	BlockType.BT_SANDSTONE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SANDSTONE.ordinal()]);
+		wedgeRecipe(red_sandstone_wedge, BlockType.BT_RED_SANDSTONE,    MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RED_SANDSTONE.ordinal()]);
+		wedgeRecipe(nether_brick_wedge, BlockType.BT_NETHER_BRICK, 	    MpConfiguration.BlockEnable[ConfigInfo.WEDGE_NETHER_BRICK.ordinal()]);
+
+
+		wedgeRecipe(end_stone_wedge, 		BlockType.BT_END_STONE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_END_STONE.ordinal()]);
+		wedgeRecipe(black_clay_wedge, 	    BlockType.BT_CLAY_BLACK, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BLACK_CLAY.ordinal()]);
+		wedgeRecipe(blue_clay_wedge, 		BlockType.BT_CLAY_BLUE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BLUE_CLAY.ordinal()]);
+		wedgeRecipe(brown_clay_wedge, 	    BlockType.BT_CLAY_BROWN, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BROWN_CLAY.ordinal()]);
+		wedgeRecipe(cyan_clay_wedge, 		BlockType.BT_CLAY_CYAN, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CYAN_CLAY.ordinal()]);
+		wedgeRecipe(gray_clay_wedge, 		BlockType.BT_CLAY_GRAY, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRAY_CLAY.ordinal()]);
+		wedgeRecipe(green_clay_wedge, 	    BlockType.BT_CLAY_GREEN, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GREEN_CLAY.ordinal()]);
+		wedgeRecipe(light_blue_clay_wedge,  BlockType.BT_CLAY_LIGHT_BLUE, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIGHT_BLUE_CLAY.ordinal()]);
+		wedgeRecipe(light_gray_clay_wedge,  BlockType.BT_CLAY_LIGHT_GRAY, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIGHT_GRAY_CLAY.ordinal()]);
+		wedgeRecipe(lime_clay_wedge, 		BlockType.BT_CLAY_LIME, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIME_CLAY.ordinal()]);
+		wedgeRecipe(magenta_clay_wedge, 	BlockType.BT_CLAY_MAGENTA, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MAGENTA_CLAY.ordinal()]);
+		wedgeRecipe(orange_clay_wedge, 	    BlockType.BT_CLAY_ORANGE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_ORANGE_CLAY.ordinal()]);
+		wedgeRecipe(pink_clay_wedge, 		BlockType.BT_CLAY_PINK, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PINK_CLAY.ordinal()]);
+		wedgeRecipe(purple_clay_wedge, 	    BlockType.BT_CLAY_PURPLE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PURPLE_CLAY.ordinal()]);
+		wedgeRecipe(red_clay_wedge, 		BlockType.BT_CLAY_RED, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RED_CLAY.ordinal()]);
+		wedgeRecipe(white_clay_wedge, 	    BlockType.BT_CLAY_WHITE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_WHITE_CLAY.ordinal()]);
+		wedgeRecipe(yellow_clay_wedge, 	    BlockType.BT_CLAY_YELLOW, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_YELLOW_CLAY.ordinal()]);
+		wedgeRecipe(dirt_wedge, 			BlockType.BT_DIRT, 				MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DIRT.ordinal()]);
+		wedgeRecipe(grass_wedge, 			BlockType.BT_GRASS, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRASS.ordinal()]);
+		wedgeRecipe(grass_path_wedge, 	    BlockType.BT_GRASS_PATH, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GRASS_PATH.ordinal()]);
+		wedgeRecipe(glass_wedge, 			BlockType.BT_GLASS_BLOCK, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GLASS.ordinal()]);
+		wedgeRecipe(hay_wedge, 			    BlockType.BT_HAY_BALE, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_HAY.ordinal()]);
+
+		// mineralogy Wedges
+		if (Loader.isModLoaded("mineralogy")) {
+			try {
+				//System.out.println("\nLoaded mineralogy\n");
+
+				wedgeRecipe(amphibolite_wedge, 		    BlockType.BT_AMPHIBOLITE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMPHIBOLITE.ordinal()]);
+				wedgeRecipe(amphibolite_smooth_wedge,	BlockType.BT_AMPHIBOLITE_SMOOTH, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMPHIBOLITE_SMOOTH.ordinal()]);
+				wedgeRecipe(m_andesite_wedge, 		    BlockType.BT_M_ANDESITE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_ANDESITE.ordinal()]);
+				wedgeRecipe(m_andesite_smooth_wedge, 	BlockType.BT_M_ANDESITE_SMOOTH, MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_ANDESITE_SMOOTH.ordinal()]);
+				wedgeRecipe(basalt_wedge, 			    BlockType.BT_BASALT, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BASALT.ordinal()]);
+				wedgeRecipe(basalt_smooth_wedge, 		BlockType.BT_BASALT_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_BASALT_SMOOTH.ordinal()]);
+				wedgeRecipe(chert_wedge, 				BlockType.BT_CHERT, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CHERT.ordinal()]);
+				wedgeRecipe(conglomerate_wedge, 		BlockType.BT_CONGLOMERATE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CONGLOMERATE.ordinal()]);
+				wedgeRecipe(conglomerate_smooth_wedge,  BlockType.BT_CONGLOMERATE_SMOOTH,MpConfiguration.BlockEnable[ConfigInfo.WEDGE_CONGLOMERATE_SMOOTH.ordinal()]);
+				wedgeRecipe(m_diorite_wedge, 			BlockType.BT_M_DIORITE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_DIORITE.ordinal()]);
+				wedgeRecipe(m_diorite_smooth_wedge, 	BlockType.BT_M_DIORITE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_DIORITE_SMOOTH.ordinal()]);
+				wedgeRecipe(dolomite_wedge, 			BlockType.BT_DOLOMITE, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DOLOMITE.ordinal()]);
+				wedgeRecipe(dolomite_smooth_wedge, 	    BlockType.BT_DOLOMITE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DOLOMITE_SMOOTH.ordinal()]);
+				wedgeRecipe(gneiss_wedge, 			    BlockType.BT_GNEISS, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GNEISS.ordinal()]);
+				wedgeRecipe(gneiss_smooth_wedge, 		BlockType.BT_GNEISS_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GNEISS_SMOOTH.ordinal()]);
+				wedgeRecipe(m_granite_wedge, 			BlockType.BT_M_GRANITE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_GRANITE.ordinal()]);
+				wedgeRecipe(m_granite_smooth_wedge, 	BlockType.BT_M_GRANITE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_M_GRANITE_SMOOTH.ordinal()]);
+				wedgeRecipe(limestone_wedge, 			BlockType.BT_LIMESTONE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIMESTONE.ordinal()]);
+				wedgeRecipe(limestone_smooth_wedge, 	BlockType.BT_LIMESTONE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_LIMESTONE_SMOOTH.ordinal()]);
+				wedgeRecipe(marble_wedge, 			    BlockType.BT_MARBLE, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MARBLE.ordinal()]);
+				wedgeRecipe(marble_smooth_wedge, 		BlockType.BT_MARBLE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MARBLE_SMOOTH.ordinal()]);
+				wedgeRecipe(pumice_wedge, 			    BlockType.BT_PUMICE, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PUMICE.ordinal()]);
+				wedgeRecipe(pegmatite_wedge, 			BlockType.BT_PEGMATITE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PEGMATITE.ordinal()]);
+				wedgeRecipe(pegmatite_smooth_wedge, 	BlockType.BT_PEGMATITE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PEGMATITE_SMOOTH.ordinal()]);
+				wedgeRecipe(phyllite_wedge, 			BlockType.BT_PHYLLITE, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PHYLLITE.ordinal()]);
+				wedgeRecipe(phyllite_smooth_wedge, 	    BlockType.BT_PHYLLITE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_PHYLLITE_SMOOTH.ordinal()]);
+				wedgeRecipe(rhyolite_wedge, 			BlockType.BT_RHYOLITE, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RHYOLITE.ordinal()]);
+				wedgeRecipe(rhyolite_smooth_wedge, 	    BlockType.BT_RHYOLITE_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_RHYOLITE_SMOOTH.ordinal()]);
+				wedgeRecipe(schist_wedge, 			    BlockType.BT_SCHIST, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SCHIST.ordinal()]);
+				wedgeRecipe(schist_smooth_wedge, 		BlockType.BT_SCHIST_SMOOTH, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SCHIST_SMOOTH.ordinal()]);
+				wedgeRecipe(shale_wedge, 				BlockType.BT_SHALE, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SHALE.ordinal()]);
+				wedgeRecipe(shale_smooth_wedge, 		BlockType.BT_SHALE_SMOOTH, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SHALE_SMOOTH.ordinal()]);
+				wedgeRecipe(slate_wedge, 				BlockType.BT_SLATE, 			MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SLATE.ordinal()]);
+				wedgeRecipe(slate_smooth_wedge, 		BlockType.BT_SLATE_SMOOTH, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SLATE_SMOOTH.ordinal()]);
+			}
+			catch (Exception e) {
+				System.out.println("Could not load mineralogy");
+				e.printStackTrace(System.err);
+			}
+		} 
+		if (Loader.isModLoaded("natura")) {
+			try {
+				// Natura Wedge
+				wedgeRecipe(amaranth_wedge, 	BlockType.BT_PLANK_AMARANTH,	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_AMARANTH.ordinal()]);
+				wedgeRecipe(darkwood_wedge, 	BlockType.BT_PLANK_DARKWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_DARKWOOD.ordinal()]);
+				wedgeRecipe(eucalyptus_wedge, 	BlockType.BT_PLANK_EUCALYPTUS, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_EUCALYPTUS.ordinal()]);
+				wedgeRecipe(fusewood_wedge, 	BlockType.BT_PLANK_FUSEWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_FUSEWOOD.ordinal()]);
+				wedgeRecipe(ghostwood_wedge, 	BlockType.BT_PLANK_GHOSTWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_GHOSTWOOD.ordinal()]);
+				wedgeRecipe(hopseed_wedge, 		BlockType.BT_PLANK_HOPSEED, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_HOPSEED.ordinal()]);
+				wedgeRecipe(maple_wedge, 		BlockType.BT_PLANK_MAPLE, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_MAPLE.ordinal()]);
+				wedgeRecipe(redwood_wedge, 		BlockType.BT_PLANK_REDWOOD, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_REDWOOD.ordinal()]);
+				wedgeRecipe(sakura_wedge, 		BlockType.BT_PLANK_SAKURA, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SAKURA.ordinal()]);
+				wedgeRecipe(silverbell_wedge, 	BlockType.BT_PLANK_SILVERBELL, 	MpConfiguration.BlockEnable[ConfigInfo.WEDGE_SILVERBELL.ordinal()]);
+				wedgeRecipe(tiger_wedge, 		BlockType.BT_PLANK_TIGER, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_TIGER.ordinal()]);
+				wedgeRecipe(willow_wedge, 		BlockType.BT_PLANK_WILLOW, 		MpConfiguration.BlockEnable[ConfigInfo.WEDGE_WILLOW.ordinal()]);
+
+
+				System.out.println("\nLoaded natura wedges\n");
+			}
+			catch (Exception e) {
+				System.out.println("Could not load natura wedges");
+				e.printStackTrace(System.err);
+			}
+		} else {
+			System.out.println("\nNo Natura\n");
+		}
+
+	} // End initCommon()
+
+
 	public static void initClientOnly(){
 
 		registerItem(acacia_candelabra, 	MpConfiguration.BlockEnable[ConfigInfo.CANDELABRA_ACACIA.ordinal()]);
@@ -1588,44 +2079,52 @@ public class Blocks {
 
 	}
 
-	public static BlockCandelabra createCandelabra(String name, BlockType ingredientA, Material mType, Boolean enabled){
+	public static BlockCandelabra createCandelabra(String name, Material mType, Boolean enabled){
 
 		BlockCandelabra candelabra = null;
 		if(enabled) {
 			candelabra = (BlockCandelabra)(new BlockCandelabra(mType).setUnlocalizedName(name));
-			GameRegistry.register(candelabra.setRegistryName(name));
+			blockRegistry.register(candelabra.setRegistryName(name));
 			//GameRegistry.registerBlock(candelabra, name);
-			GameRegistry.register(new ItemBlock(candelabra).setRegistryName(candelabra.getRegistryName()));
+			itemRegistry.register(new ItemBlock(candelabra).setRegistryName(candelabra.getRegistryName()));
 
 			//OreDictionary.registerOre(candelabra.getOredictName(),candelabra);
 			//OreDictionary.registerOre("candelabra",candelabra); //generic
-			if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) { // can't enable recipe if no spindle
-
-				GameRegistry.addRecipe(new ItemStack(candelabra, 2),
-						"G G",
-						"TWT",
-						"SSS",
-						'W', BlockInfo.blockType2Stack(ingredientA),
-						'G', BlockInfo.blockType2Stack(BlockType.BT_GLASS_PANE),
-						'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE),
-						'T', BlockInfo.blockType2Stack(BlockType.BT_TORCH)
-						);
-			}
 		}
 		return candelabra;
 	};
+	
+	public static void candelabraRecipe( BlockCandelabra bc, BlockType ingredientA, Boolean enabled){
+		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) { // can't enable recipe if no spindle
+
+			GameRegistry.addShapedRecipe(bc.getRegistryName(), new ResourceLocation(MissingPieces.MODID + ":" + "candelabra"),new ItemStack(bc, 2),
+					"G G",
+					"TWT",
+					"SSS",
+					'W', BlockInfo.blockType2Stack(ingredientA),
+					'G', BlockInfo.blockType2Stack(BlockType.BT_GLASS_PANE),
+					'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE),
+					'T', BlockInfo.blockType2Stack(BlockType.BT_TORCH)
+					);
+		}
+
+	}
 	public static BlockLamp createLamp(String name, BlockType ingredientA, Material mType, Boolean enabled){
 
 		BlockLamp lamp = null;
 		if(enabled) {
 			lamp = (BlockLamp)(new BlockLamp(mType).setUnlocalizedName(name));
-			GameRegistry.register(lamp.setRegistryName(name));
-			GameRegistry.register(new ItemBlock(lamp).setRegistryName(lamp.getRegistryName()));
+			blockRegistry.register(lamp.setRegistryName(name));
+			itemRegistry.register(new ItemBlock(lamp).setRegistryName(lamp.getRegistryName()));
+		}
+		return lamp;
+	};
+	public static void lampRecipe(BlockLamp bl, BlockType ingredientA, Boolean enabled){
 
-
+		if(enabled) {
 			if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) { // can't enable recipe if no spindle
 
-				GameRegistry.addRecipe(new ItemStack(lamp, 2),
+				GameRegistry.addShapedRecipe(bl.getRegistryName(),new ResourceLocation(MissingPieces.MODID + ":" + "lamp"), new ItemStack(bl, 2),
 						"GTG",
 						" S ",
 						" W ",
@@ -1636,27 +2135,34 @@ public class Blocks {
 						);
 			}
 		}
-		return lamp;
+		return;
 	};
 
-	public static BlockPillar createPillar(String name, BlockType ingredientA, Material mType, Float mHardness, Boolean enabled, String mHarvest, int harvestLevel){
+	public static BlockPillar createPillar(String name, Material mType, Float mHardness, Boolean enabled, String mHarvest, int harvestLevel){
 
 		BlockPillar pillar = null;
 		if(enabled) {
 
 
 			pillar = (BlockPillar)new BlockPillar(mType, mHardness, mHarvest, harvestLevel).setUnlocalizedName(name);
-			GameRegistry.register(pillar.setRegistryName(name));
-			GameRegistry.register(new ItemBlock(pillar).setRegistryName(pillar.getRegistryName()));
+			blockRegistry.register(pillar.setRegistryName(name));
+			itemRegistry.register(new ItemBlock(pillar).setRegistryName(pillar.getRegistryName()));
 
-			GameRegistry.addRecipe(new ItemStack(pillar, 3),
+		}
+		return pillar;
+	}
+	public static void pillarRecipe( BlockPillar bp,  BlockType ingredientA, Boolean enabled ){
+		if(enabled) {
+
+			GameRegistry.addShapedRecipe(bp.getRegistryName(), 
+					new ResourceLocation(MissingPieces.MODID + ":" + "pillar"),new ItemStack(bp, 3),
 					" A ",
 					" A ",
 					" A ",
 					'A', BlockInfo.blockType2Stack(ingredientA)
 					);
 		}
-		return pillar;
+		
 	}
 	public static MpBlockStairs createStairs(String name, BlockType ingredientA, Float mHardness, Boolean enabled, String mHarvest, int harvestLevel){
 
@@ -1665,10 +2171,11 @@ public class Blocks {
 
 
 			stairs = (MpBlockStairs)(new MpBlockStairs(mHardness, mHarvest, harvestLevel).setUnlocalizedName(name));
-			GameRegistry.register(stairs.setRegistryName(name));
-			GameRegistry.register(new ItemBlock(stairs).setRegistryName(stairs.getRegistryName()));
+			blockRegistry.register(stairs.setRegistryName(name));
+			itemRegistry.register(new ItemBlock(stairs).setRegistryName(stairs.getRegistryName()));
 
-			GameRegistry.addRecipe(new ItemStack(stairs, 3),
+			GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name),
+					new ResourceLocation(MissingPieces.MODID + ":" + "stairs"),new ItemStack(stairs, 3),
 					"A  ",
 					"AA ",
 					"AAA",
@@ -1679,23 +2186,28 @@ public class Blocks {
 	}
 
 
-	public static BlockChair createChair(String name, BlockType ingredientA, Material mType, Boolean enabled){
+	public static BlockChair createChair(String name, Material mType, Boolean enabled){
 		
 		BlockChair chair = null;
 		chair = (BlockChair) new BlockChair(mType, EnumChairTypes.SPINDLE).setUnlocalizedName(name);
 		chair.setRegistryName(name);
-		GameRegistry.register(chair);
+		blockRegistry.register(chair);
 		
-		System.out.println("creating chair: " + name);
+		//System.out.println("creating chair: " + name);
 		
 		ItemBlockChair itemChair = (ItemBlockChair) new ItemBlockChair((Block) chair);
 		itemChair.setRegistryName(chair.getRegistryName());
 		
-		GameRegistry.register(itemChair);
+		itemRegistry.register(itemChair);
 
-		
+		return chair;
+	}
+	
+	private static void chairRecipe(BlockChair bc, BlockType ingredientA, Boolean enabled) {
+		if( enabled) {
 		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
-			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.SPINDLE.getMeta()),
+			GameRegistry.addShapedRecipe(bc.getRegistryName(),
+					new ResourceLocation(MissingPieces.MODID + ":" + "chair"),new ItemStack(bc, 2, EnumChairTypes.SPINDLE.getMeta()),
 					"  S",
 					" AA",
 					" SS",
@@ -1704,7 +2216,8 @@ public class Blocks {
 					);
 		}
 		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_FLAT_SPINDLE.ordinal()] ==true) {
-			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.STRAIGHT.getMeta()),
+			GameRegistry.addShapedRecipe(bc.getRegistryName(),
+					new ResourceLocation(MissingPieces.MODID + ":" + "chair"),new ItemStack(bc, 2, EnumChairTypes.STRAIGHT.getMeta()),
 					"  S",
 					" AA",
 					" SS",
@@ -1713,7 +2226,8 @@ public class Blocks {
 					);
 		}
 		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_TALL_SPINDLE.ordinal()] ==true) {
-			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.TALL.getMeta()),
+			GameRegistry.addShapedRecipe(bc.getRegistryName(),
+					new ResourceLocation(MissingPieces.MODID + ":" + "chair"),new ItemStack(bc, 2, EnumChairTypes.TALL.getMeta()),
 					"  S",
 					" AA",
 					" SS",
@@ -1722,7 +2236,8 @@ public class Blocks {
 					);
 		}
 		if( MpConfiguration.BlockEnable[ConfigInfo.MISC_BENT_SPINDLE.ordinal()] ==true) {
-			GameRegistry.addRecipe(new ItemStack(chair, 2, EnumChairTypes.ADIRONDACK.getMeta()),
+			GameRegistry.addShapedRecipe(bc.getRegistryName(),
+					new ResourceLocation(MissingPieces.MODID + ":" + "chair"),new ItemStack(bc, 2, EnumChairTypes.ADIRONDACK.getMeta()),
 					"  S",
 					" AA",
 					" SS",
@@ -1730,23 +2245,33 @@ public class Blocks {
 					'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_BENT_SPINDLE)
 					);
 		}
-		return chair;
+		
+		}
 	}
 
 
 	public static BlockTable createTable(String name, BlockType ingredientA, Material mType, Boolean enabled){
 
 		BlockTable table = null;
-		if(enabled) {
 			if(enabled) {
 
 				table = (BlockTable)(new BlockTable(mType).setUnlocalizedName(name));
 				table = (BlockTable)(new BlockTable(mType).setUnlocalizedName(name));
-				GameRegistry.register(table.setRegistryName(name));
-				GameRegistry.register(new ItemBlock(table).setRegistryName(table.getRegistryName()));
+				blockRegistry.register(table.setRegistryName(name));
+				itemRegistry.register(new ItemBlock(table).setRegistryName(table.getRegistryName()));
+
+			}
+
+		return table;
+	};
+	
+	public static void tableRecipe(BlockTable bt, BlockType ingredientA, Boolean enabled){
+
+		if(enabled) {
 
 				if( MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] ==true) {
-					GameRegistry.addRecipe(new ItemStack(table, 2),
+					GameRegistry.addShapedRecipe(bt.getRegistryName(),
+							new ResourceLocation(MissingPieces.MODID + ":" + "table"),new ItemStack(bt, 2),
 							"AAA",
 							"S S",
 							"S S",
@@ -1754,13 +2279,12 @@ public class Blocks {
 							'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE)
 							);
 
-				}
 			}
 
 		}
-		return table;
+		return;
 	};
-	public static BlockWedge createWedge(String name, BlockType ingredientA, Material mType, Float mHardness, Boolean enabled, String mHarvest, int harvestLevel){
+	public static BlockWedge createWedge(String name, Material mType, Float mHardness, Boolean enabled, String mHarvest, int harvestLevel){
 
 		BlockWedge wedge = null;
 		if(enabled) {
@@ -1768,18 +2292,27 @@ public class Blocks {
 
 			// each instance of your block should have a name that is unique within your mod.  use lower case.
 			wedge = (BlockWedge)(new BlockWedge(mType, mHardness, mHarvest, harvestLevel).setUnlocalizedName(name));
-			GameRegistry.register(wedge.setRegistryName(name));
-			GameRegistry.register(new ItemBlock(wedge).setRegistryName(wedge.getRegistryName()));
+			blockRegistry.register(wedge.setRegistryName(name));
+			itemRegistry.register(new ItemBlock(wedge).setRegistryName(wedge.getRegistryName()));
 
-			GameRegistry.addRecipe(new ItemStack(wedge, MpConfiguration.ConfigValue[ConfigInfo.WEDGE_QTY.ordinal()]),
+		}
+		return wedge;
+	}
+    	public static void wedgeRecipe(BlockWedge bw, BlockType ingredientA, Boolean enabled){
+
+		if(enabled) {
+			// each instance of your block should have a name that is unique within your mod.  use lower case.
+			GameRegistry.addShapedRecipe(bw.getRegistryName(),
+					new ResourceLocation(MissingPieces.MODID + ":" + "wedge"),new ItemStack(bw, MpConfiguration.ConfigValue[ConfigInfo.WEDGE_QTY.ordinal()]),
 					"   ",
 					"A  ",
 					"AA ",
 					'A', BlockInfo.blockType2Stack(ingredientA)
 					);
 		}
-		return wedge;
+		return;
 	}
+
 
 	public static MpBlockSlab_half createHalfSlab(String name, Material mType, Float mHardness, Boolean enabled, String mHarvest, int harvestLevel){
 
@@ -1807,17 +2340,18 @@ public class Blocks {
 		if(enabled) {
 			//System.out.println("register slab:" + name_half + " : " + name_double);;
 
-			GameRegistry.register(slab_half.setRegistryName(name_half));
+			blockRegistry.register(slab_half.setRegistryName(name_half));
 			//GameRegistry.registerBlock(slab_half, ItemBlockSlab.class, name_half, slab_half, slab_double,false);
 
-			GameRegistry.register(new ItemSlab(slab_half, slab_half, slab_double).setRegistryName(name_half));
+			itemRegistry.register(new ItemSlab(slab_half, slab_half, slab_double).setRegistryName(name_half));
 			//GameRegistry.registerBlock(slab_double, ItemBlockSlab.class , name_double, slab_half, slab_double,true);
-			GameRegistry.register(slab_double.setRegistryName(name_double));
+			blockRegistry.register(slab_double.setRegistryName(name_double));
 			
 			OreDictionary.registerOre(slab_half.getOredictName(),slab_half);
 			switch(sType){
 			case PATT_1:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 4),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 4),
 						"AA ",
 						"AA ",
 						"   ",
@@ -1826,7 +2360,8 @@ public class Blocks {
 
 				break;
 			case PATT_10:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 4),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 4),
 						"A A",
 						"A A",
 						"   ",
@@ -1834,7 +2369,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_11:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 6),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 6),
 						"A A",
 						"A A",
 						"A A",
@@ -1842,7 +2378,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_12:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 4),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 4),
 						"AA ",
 						"   ",
 						"AA ",
@@ -1850,7 +2387,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_2:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 6),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 6),
 						"A A",
 						"AAA",
 						" A ",
@@ -1858,7 +2396,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_3:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 5),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 5),
 						" A ",
 						"AAA",
 						" A ",
@@ -1866,7 +2405,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_4:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 5),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 5),
 						"A A",
 						" A ",
 						"A A",
@@ -1874,7 +2414,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_5:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 4),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 4),
 						"A A",
 						"   ",
 						"A A",
@@ -1882,7 +2423,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_6:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 8),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 8),
 						"AAA",
 						"A A",
 						"AAA",
@@ -1890,7 +2432,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_7:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 6),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 6),
 						"AAA",
 						"   ",
 						"AAA",
@@ -1898,7 +2441,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_8:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 6),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 6),
 						"AA ",
 						" AA",
 						"AA ",
@@ -1906,7 +2450,8 @@ public class Blocks {
 						);
 				break;
 			case PATT_9:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 6),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 6),
 						"   ",
 						"AAA",
 						"A A",
@@ -1915,7 +2460,8 @@ public class Blocks {
 				break;
 			case PATT_NORM:
 			default:
-				GameRegistry.addRecipe(new ItemStack(slab_half, 6),
+				GameRegistry.addShapedRecipe(new ResourceLocation(MissingPieces.MODID + ":" + name_half),
+						new ResourceLocation(MissingPieces.MODID + ":" + "slab"),new ItemStack(slab_half, 6),
 						"   ",
 						"   ",
 						"AAA",
@@ -1960,7 +2506,7 @@ public class Blocks {
 	public static void registerChair(BlockChair chair_block, Boolean enabled){
 		String name = chair_block.getUnlocalizedName().substring(5);
 
-		System.out.println("register item " + name);
+		//System.out.println("register item " + name);
 
 		
 		for( EnumChairTypes chairType: EnumChairTypes.values()){
@@ -2000,7 +2546,7 @@ public class Blocks {
 				}
 				if( spindleEnabled == true){
 					ModelResourceLocation itemModelResourceLocation = new ModelResourceLocation("missing_pieces:"+name, "facing=north,type="+chairType.getName()); 
-					System.out.println("item location:" + itemModelResourceLocation.toString());
+					//System.out.println("item location:" + itemModelResourceLocation.toString());
 					//System.out.println("ID:" + Item.getIdFromItem(Item.getItemFromBlock(blockChair)));
 					Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(chair_block), chairType.getMeta(), itemModelResourceLocation);
 

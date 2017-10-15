@@ -30,11 +30,12 @@ public class MpGuiFactory implements IModGuiFactory
 		// for the configuration gui
 	}
 	
-	@Override
-	public Class<? extends GuiScreen> mainConfigGuiClass() 
-	{
-		return MissingPiecesConfigGui.class; //tells Forge which class represents our main GUI screen
-	}
+	// removed in 1.12
+	//@Override
+	//public Class<? extends GuiScreen> mainConfigGuiClass() 
+	//{
+	//	return MissingPiecesConfigGui.class; //tells Forge which class represents our main GUI screen
+	//}
 	
 	//The following two functions are needed for implementation only, the config gui does not require them
 	@Override
@@ -43,12 +44,25 @@ public class MpGuiFactory implements IModGuiFactory
 		return null;
 	}
 	
-	
 	@Override
-	public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) 
-	{
-		return null;
+	public boolean hasConfigGui() {
+		return true;
 	}
+
+	@Override
+	public GuiScreen createConfigGui(GuiScreen parentScreen) {
+		return new MissingPiecesConfigGui( parentScreen); 
+				//GuiConfig(parentScreen, MissingPieces.MODID, true, true, I18n.format("gui.configuration.misc"));
+		//GuiConfig(GuiScreen parentScreen, String modID, boolean allRequireWorldRestart, boolean allRequireMcRestart, String title,
+	    //        Class<?>... configClasses)
+
+	}
+	
+	//@Override
+	//public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) 
+	//{
+	//	return null;
+	//}
 	
 	
 	//This class inherits from GuiConfig, a specialized GuiScreen designed to display your

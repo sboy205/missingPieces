@@ -40,6 +40,9 @@ public abstract class CommonProxy {
   {
 	  
 	com.sb205.missing_pieces.Config.StartupCommon.initCommon();
+	com.sb205.missing_pieces.Blocks.initCommon();
+	com.sb205.missing_pieces.TileEntities.initCommon();
+
 
   }
 

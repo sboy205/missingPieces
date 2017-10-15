@@ -14,9 +14,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class Items {
 
@@ -25,11 +28,15 @@ public class Items {
 	public static ItemSpindle item_flat_spindle;
 	public static ItemSpindle item_tall_spindle;
 	public static ItemSpindle item_bent_spindle;
+	private static IForgeRegistry<Item> itemRegistry;
+
 
 
 		
 	// Init Calls
 	public static void preInitCommon() {
+		itemRegistry =ForgeRegistries.ITEMS; 
+
 		item_spindle = 			createSpindle("spindle",		1, MpConfiguration.BlockEnable[ConfigInfo.MISC_SPINDLE.ordinal()] );
 		item_flat_spindle = 	createSpindle("flat_spindle",	2, MpConfiguration.BlockEnable[ConfigInfo.MISC_FLAT_SPINDLE.ordinal()] );
 		item_tall_spindle = 	createSpindle("tall_spindle",	3, MpConfiguration.BlockEnable[ConfigInfo.MISC_TALL_SPINDLE.ordinal()] );
@@ -52,59 +59,67 @@ public class Items {
 		if(enabled) {
 			//System.out.println("create Spindle");
 		    spindle = (ItemSpindle)(new ItemSpindle().setUnlocalizedName(name));
-			GameRegistry.register(spindle.setRegistryName(name));
+		    ResourceLocation resource = new ResourceLocation(MissingPieces.MODID + ":"+ name);
+			itemRegistry.register(spindle.setRegistryName(name));
 		    OreDictionary.registerOre("MaterialSpindle", spindle);
 		    switch( type){
 		    default:
 		    case 1: // spindle
-			    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spindle, 4),
+			    GameRegistry.addShapedRecipe(resource ,
+			    		new ResourceLocation(MissingPieces.MODID + ":"+ "spindle"),
+			    		new ItemStack(spindle, 4),
 			        	"A",
 			        	"B",
 			        	"A",
 			        	'A', net.minecraft.init.Blocks.PLANKS,
 			    	    'B', net.minecraft.init.Items.STICK
-				    ));
-			    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spindle, 4),
+				    );
+			    GameRegistry.addShapedRecipe(resource,
+			    		new ResourceLocation(MissingPieces.MODID + ":"+ "spindle"), new ItemStack(spindle, 4),
 			        	"A",
 			        	"B",
 			        	"A",
 			        	'A', "plankWood", 
 			    	    'B', "stickWood"
-				    ));
+				    );
 			    break;
 		    case 2: // Flat Spindle
-			    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spindle, 4),
+			    GameRegistry.addShapedRecipe(resource,
+			    		new ResourceLocation(MissingPieces.MODID + ":"+ "spindle"), new ItemStack(spindle, 4),
 			        	"   ",
 			        	"PSP",
 			        	"   ",
 			        	'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE),
 			    	    'P', net.minecraft.init.Blocks.PLANKS
-				    ));
-			    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spindle, 4),
+				    );
+			    GameRegistry.addShapedRecipe(resource,
+			    		new ResourceLocation(MissingPieces.MODID + ":"+ "spindle"), new ItemStack(spindle, 4),
 			        	"   ",
 			        	"PSP",
 			        	"   ",
 			        	'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE), 
 			    	    'P', "plankWood"
-				    ));
+				    );
 
 		    	break;
 		    case 3: // tall spindle
-			    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spindle, 3),
+			    GameRegistry.addShapedRecipe(resource,
+			    		new ResourceLocation(MissingPieces.MODID + ":"+ "spindle"), new ItemStack(spindle, 3),
 			        	"S",
 			        	"S",
 			        	"S",
 			        	'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE) 
-				    ));
+				    );
 
 		    	break;
 		    case 4: // bent spindle
-			    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(spindle, 3),
+			    GameRegistry.addShapedRecipe(resource,
+			    		new ResourceLocation(MissingPieces.MODID + ":"+ "spindle"), new ItemStack(spindle, 3),
 			        	"S  ",
 			        	" S ",
 			        	" S ",
 			        	'S', BlockInfo.blockType2Stack(BlockType.BT_ITEM_SPINDLE)
-				    ));
+				    );
 
 		    	break;
 		    }
